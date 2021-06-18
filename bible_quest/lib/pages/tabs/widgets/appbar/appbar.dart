@@ -1,4 +1,5 @@
 import 'package:bible_quest/pages/tabs/widgets/appbar/clipper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BibleQuestAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -33,6 +34,17 @@ class BibleQuestAppBar extends StatelessWidget with PreferredSizeWidget {
                         margin:
                             EdgeInsets.only(top: kToolbarHeight - 20, left: 10),
                         child: Icon(Icons.menu)),
+                    Positioned(
+                      top: kToolbarHeight - 27,
+                      right: 10,
+                      child: Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 1.5, color: Colors.white),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(Icons.notifications)),
+                    ),
                     Container(
                       margin: EdgeInsets.only(top: kToolbarHeight - 25),
                       width: MediaQuery.of(context).size.width,
