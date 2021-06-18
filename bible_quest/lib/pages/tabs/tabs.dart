@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bible_quest/pages/mains/home/home.dart';
 import 'package:bible_quest/pages/mains/missions/missions.dart';
 import 'package:bible_quest/pages/mains/plans/plans.dart';
@@ -35,51 +37,65 @@ class _TabsPageState extends State<TabsPage> {
       appBar: BibleQuestAppBar(),
       drawer: Drawer(),
       body: widgetsChildren[indexTap],
-      bottomNavigationBar: Container(
-        height: 90,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
-          color: Theme.of(context).cardColor,
-        ),
-        child: Theme(
-          data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+      bottomNavigationBar: Stack(
+        children: <Widget>[
+          ClipRect(
+            child: Container(
+              height: 90,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
+                color: Color.fromRGBO(25, 26, 50, 0.5),
+              ),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 0.0),
+                child: Container(
+                  decoration:
+                      BoxDecoration(color: Colors.white.withOpacity(0.0)),
+                ),
+              ),
+            ),
           ),
-          child: BottomNavigationBar(
-            iconSize: 30,
-            type: BottomNavigationBarType.fixed,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.white.withOpacity(0.5),
-            elevation: 0,
-            onTap: _onTapTapped,
-            currentIndex: indexTap,
-            items: [
-              BottomNavigationBarItem(icon: Icon(TabIcons.home), label: "Home"),
-              BottomNavigationBarItem(
-                  icon: Icon(TabIcons.tasks), label: "Task"),
-              BottomNavigationBarItem(
-                  icon: Container(
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        shape: BoxShape.circle),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Icon(
-                        TabIcons.read,
-                        color: Theme.of(context).accentColor,
+          Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: Colors.transparent,
+            ),
+            child: BottomNavigationBar(
+              iconSize: 30,
+              type: BottomNavigationBarType.fixed,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              selectedItemColor: Colors.white,
+              unselectedItemColor: Colors.white.withOpacity(0.5),
+              elevation: 0,
+              onTap: _onTapTapped,
+              currentIndex: indexTap,
+              items: [
+                BottomNavigationBarItem(
+                    icon: Icon(TabIcons.home), label: "Home"),
+                BottomNavigationBarItem(
+                    icon: Icon(TabIcons.tasks), label: "Task"),
+                BottomNavigationBarItem(
+                    icon: Container(
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          shape: BoxShape.circle),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Icon(
+                          TabIcons.read,
+                          color: Theme.of(context).accentColor,
+                        ),
                       ),
                     ),
-                  ),
-                  label: "Search"),
-              BottomNavigationBarItem(
-                  icon: Icon(TabIcons.summons), label: "Task"),
-              BottomNavigationBarItem(
-                  icon: Icon(TabIcons.social), label: "Task"),
-            ],
+                    label: "Search"),
+                BottomNavigationBarItem(
+                    icon: Icon(TabIcons.summons), label: "Task"),
+                BottomNavigationBarItem(
+                    icon: Icon(TabIcons.social), label: "Task"),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
