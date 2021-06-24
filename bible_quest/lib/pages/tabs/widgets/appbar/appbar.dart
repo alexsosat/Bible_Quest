@@ -1,4 +1,5 @@
 import 'package:bible_quest/pages/tabs/widgets/appbar/clipper.dart';
+import 'package:bible_quest/pages/tabs/widgets/tab_icons_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -81,7 +82,25 @@ class BibleQuestAppBar extends StatelessWidget with PreferredSizeWidget {
                     Icons.paid_outlined,
                     color: Colors.yellow,
                   ),
+                  SizedBox(width: 5),
                   Text("125"),
+                ],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(
+                    TabIcons.upgrade,
+                    color: Colors.lightBlue[200],
+                  ),
+                  SizedBox(width: 5),
+                  Text("Lv. 9"),
                 ],
               ),
             ),

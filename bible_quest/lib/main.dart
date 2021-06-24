@@ -1,7 +1,14 @@
 import 'package:bible_quest/pages/tabs/tabs.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => MyApp(), // Wrap your app
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   @override
@@ -15,6 +22,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Color.fromRGBO(51, 230, 246, 1.0),
           accentColor: Color.fromRGBO(41, 52, 208, 1.0),
           cardColor: Color.fromRGBO(21, 21, 41, 1.0),
+          fontFamily: 'sk_Modernist',
           appBarTheme: AppBarTheme(
               brightness: Brightness.light,
               textTheme: TextTheme(
@@ -25,6 +33,8 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
               )),
         ),
+        locale: DevicePreview.locale(context), // Add the locale here
+        builder: DevicePreview.appBuilder,
         home: TabsPage());
   }
 }

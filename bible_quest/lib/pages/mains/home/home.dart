@@ -1,3 +1,4 @@
+import 'package:bible_quest/pages/mains/home/widgets/current_reading_box.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -5,9 +6,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text("home"),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+      child: ListView(
+        children: <Widget>[
+          ContinueReadingBox(),
+        ],
       ),
     );
   }
