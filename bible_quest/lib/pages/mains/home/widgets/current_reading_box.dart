@@ -20,6 +20,7 @@ class ContinueReadingBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 35),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(20),
@@ -37,7 +38,7 @@ class ContinueReadingBox extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20),
             child: Text(
-              "Do not loose your streak... keep reading!!!",
+              "No pierdas tu racha... continua leyendo!!!",
               style: Theme.of(context).textTheme.subtitle1!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -50,13 +51,13 @@ class ContinueReadingBox extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Genesis",
+                    "Génesis",
                     style: Theme.of(context).textTheme.headline5!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   Text(
-                    "The creation",
+                    "La creación",
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],

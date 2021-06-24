@@ -68,6 +68,9 @@ flutter:
     - family: TabIcons
       fonts:
         - asset: assets/fonts/TabIcons.ttf
+    - family: Noto
+      fonts:
+        - asset: assets/fonts/NotoColorEmoji.ttf
     - family: sk_Modernist
       fonts:
         - asset: assets/fonts/sk_Modernist/Sk-Modernist-Regular.otf
