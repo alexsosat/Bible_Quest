@@ -10,10 +10,10 @@ class CardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> listChildren = [SizedBox(width: 17), ...cards];
+
     final listTitle = Container(
-      margin: EdgeInsets.only(
-        bottom: 20,
-      ),
+      margin: EdgeInsets.only(bottom: 20, left: 20),
       child: Text(
         title,
         style: Theme.of(context).textTheme.headline6!.copyWith(
@@ -27,7 +27,7 @@ class CardList extends StatelessWidget {
       child: ListView(
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        children: cards,
+        children: listChildren,
       ),
     );
 

@@ -20,7 +20,7 @@ class ContinueReadingBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 35),
+      margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(20),
@@ -67,6 +67,8 @@ class ContinueReadingBox extends StatelessWidget {
             child: LinearPercentIndicator(
               percent: 0.5,
               backgroundColor: Color(0xFF545568),
+              animation: true,
+              animationDuration: 1500,
               linearGradient: LinearGradient(colors: <Color>[
                 Color.fromRGBO(0, 153, 255, 1.0),
                 Color.fromRGBO(204, 97, 255, 1.0)
