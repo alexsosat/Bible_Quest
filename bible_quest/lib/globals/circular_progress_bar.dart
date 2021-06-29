@@ -5,17 +5,19 @@ class CircularProgressBar extends StatelessWidget {
   final Color fillColor;
   final double percent;
   final String? subtitle;
+  final double radius;
   const CircularProgressBar({
     Key? key,
     required this.percent,
     this.subtitle,
     this.fillColor = Colors.green,
+    this.radius = 75.0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CircularPercentIndicator(
-      radius: 85,
+      radius: radius,
       percent: percent,
       backgroundColor: fillColor.withOpacity(0.2),
       progressColor: fillColor,

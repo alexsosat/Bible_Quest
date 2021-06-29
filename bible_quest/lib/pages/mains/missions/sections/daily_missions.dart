@@ -2,85 +2,87 @@ import 'package:bible_quest/globals/round_tile.dart';
 import 'package:bible_quest/globals/tab_page.dart';
 import 'package:flutter/material.dart';
 
-class PlansPage extends StatelessWidget {
-  const PlansPage({Key? key}) : super(key: key);
+class DailyMissions extends StatelessWidget {
+  const DailyMissions({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
       child: TabPage(
+        topSpace: 0,
+        bottomSpace: 95,
         children: <Widget>[
           RoundListTile(
-            onPressed: () {},
             percentage: 0.5,
             title: Text(
-              "Antiguo Testamento",
+              "Leer dos capítulos del Génesis",
               style: Theme.of(context)
                   .textTheme
                   .subtitle1!
                   .copyWith(fontWeight: FontWeight.bold),
             ),
-            subtitle: Column(
+            subtitle: Row(
               children: <Widget>[
                 Container(
-                    margin: EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      "Libros: 12",
-                      style: Theme.of(context).textTheme.bodyText1,
-                    )),
+                  margin: EdgeInsets.only(right: 7),
+                  child: Icon(
+                    Icons.monetization_on_outlined,
+                    color: Colors.yellow,
+                  ),
+                ),
                 Text(
-                  "Leídos: 1",
+                  "15",
                   style: Theme.of(context).textTheme.bodyText1,
                 )
               ],
             ),
           ),
           RoundListTile(
-            onPressed: () {},
-            percentage: 0.2,
+            percentage: 0.3,
             title: Text(
-              "Nuevo Testamento",
+              "Jugar un minijuego",
               style: Theme.of(context)
                   .textTheme
                   .subtitle1!
                   .copyWith(fontWeight: FontWeight.bold),
             ),
-            subtitle: Column(
+            subtitle: Row(
               children: <Widget>[
                 Container(
-                    margin: EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      "Libros: 24",
-                      style: Theme.of(context).textTheme.bodyText1,
-                    )),
+                  margin: EdgeInsets.only(right: 7),
+                  child: Icon(
+                    Icons.monetization_on_outlined,
+                    color: Colors.yellow,
+                  ),
+                ),
                 Text(
-                  "Leídos: 2",
+                  "5",
                   style: Theme.of(context).textTheme.bodyText1,
                 )
               ],
             ),
           ),
           RoundListTile(
-            onPressed: () {},
-            percentage: 0,
+            percentage: 0.1,
             title: Text(
-              "Planes",
+              "Estudia la matutina",
               style: Theme.of(context)
                   .textTheme
                   .subtitle1!
                   .copyWith(fontWeight: FontWeight.bold),
             ),
-            subtitle: Column(
+            subtitle: Row(
               children: <Widget>[
                 Container(
-                    margin: EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      "Libros: 1",
-                      style: Theme.of(context).textTheme.bodyText1,
-                    )),
+                  margin: EdgeInsets.only(right: 7),
+                  child: Icon(
+                    Icons.monetization_on_outlined,
+                    color: Colors.yellow,
+                  ),
+                ),
                 Text(
-                  "Leídos: 0",
+                  "15",
                   style: Theme.of(context).textTheme.bodyText1,
                 )
               ],

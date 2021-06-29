@@ -83,7 +83,7 @@ class _TabsPageState extends State<TabsPage> {
                                   ),
                                 ),
                               ),
-                              label: "Search"),
+                              label: "Plans"),
                           BottomNavigationBarItem(
                               icon: Icon(TabIcons.summons), label: "Summons"),
                           BottomNavigationBarItem(
