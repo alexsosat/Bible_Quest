@@ -5,6 +5,8 @@ import 'package:bible_quest/pages/mains/home/widgets/current_reading_box.dart';
 import 'package:bible_quest/pages/mains/home/widgets/user_stats.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/card_emoji_item.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -15,20 +17,20 @@ class HomePage extends StatelessWidget {
       UserStats(),
       CardList(
         title: "Gemas",
-        cards: <CardItem>[
-          CardItem(
+        cards: <Widget>[
+          CardEmojiItem(
             title: "Triste",
             emoji: "😥",
           ),
-          CardItem(
+          CardEmojiItem(
             title: "Enojado",
             emoji: "😡",
           ),
-          CardItem(
+          CardEmojiItem(
             title: "Feliz",
             emoji: "😁",
           ),
-          CardItem(
+          CardEmojiItem(
             title: "Confundido",
             emoji: "😵",
           ),

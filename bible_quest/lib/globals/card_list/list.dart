@@ -1,17 +1,14 @@
-import 'package:bible_quest/globals/card_list/item.dart';
 import 'package:flutter/material.dart';
 
 class CardList extends StatelessWidget {
   final String title;
-  final List<CardItem> cards;
+  final List<Widget> cards;
 
   const CardList({Key? key, required this.title, required this.cards})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> listChildren = [SizedBox(width: 17), ...cards];
-
     final listTitle = Container(
       margin: EdgeInsets.only(bottom: 20, left: 20),
       child: Text(
@@ -24,10 +21,19 @@ class CardList extends StatelessWidget {
 
     final horizontalList = Container(
       height: 160,
-      child: ListView(
+      child: ListView.separated(
+        padding: EdgeInsets.symmetric(horizontal: 20),
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        children: listChildren,
+        itemCount: cards.length,
+        itemBuilder: (context, index) {
+          return cards[index];
+        },
+        separatorBuilder: (context, index) {
+          return SizedBox(
+            width: 20,
+          );
+        },
       ),
     );
 

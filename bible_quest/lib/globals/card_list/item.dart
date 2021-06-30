@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 
 class CardItem extends StatelessWidget {
-  final String title;
-  final String emoji;
+  final Widget title;
+  final Widget centerItem;
+  final double height;
+  final double width;
+
   const CardItem({
     Key? key,
     required this.title,
-    required this.emoji,
+    required this.centerItem,
+    this.height = 164,
+    this.width = 124,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 124,
-      width: 124,
-      margin: EdgeInsets.only(right: 20),
-      decoration: BoxDecoration(
-        color: Color(0xFF151529),
-        borderRadius: BorderRadius.all(Radius.circular(15)),
+    return TextButton(
+      onPressed: () {},
+      style: TextButton.styleFrom(
+        fixedSize: Size(width, height),
+        primary: Colors.white,
+        backgroundColor: Color(0xFF151529),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -30,17 +37,9 @@ class CardItem extends StatelessWidget {
               color: Theme.of(context).scaffoldBackgroundColor,
               shape: BoxShape.circle,
             ),
-            child: RichText(
-              text: TextSpan(
-                  text: emoji,
-                  style: TextStyle(fontSize: 35, fontFamily: 'Noto')),
-            ),
+            child: centerItem,
           ),
-          Text(title,
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(fontWeight: FontWeight.bold)),
+          title,
         ],
       ),
     );
