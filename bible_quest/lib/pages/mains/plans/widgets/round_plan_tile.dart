@@ -5,17 +5,19 @@ class PlanTile extends StatelessWidget {
   final String title;
   final int totalBooks;
   final int readedBooks;
+  final Function()? onPressed;
   const PlanTile({
     Key? key,
     required this.title,
     required this.totalBooks,
     required this.readedBooks,
+    this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RoundListTile(
-      onPressed: () {},
+      onPressed: onPressed,
       percentage: readedBooks / totalBooks,
       title: Text(
         title,

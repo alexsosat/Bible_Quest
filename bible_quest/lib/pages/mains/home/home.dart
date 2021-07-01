@@ -1,4 +1,3 @@
-import 'package:bible_quest/globals/card_list/item.dart';
 import 'package:bible_quest/globals/card_list/list.dart';
 import 'package:bible_quest/globals/tab_page.dart';
 import 'package:bible_quest/pages/mains/home/widgets/current_reading_box.dart';
