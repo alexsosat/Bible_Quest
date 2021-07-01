@@ -1,5 +1,5 @@
-import 'package:bible_quest/globals/round_tile.dart';
 import 'package:bible_quest/globals/tab_page.dart';
+import 'package:bible_quest/pages/mains/plans/widgets/round_plan_tile.dart';
 import 'package:flutter/material.dart';
 
 class PlansPage extends StatelessWidget {
@@ -11,81 +11,9 @@ class PlansPage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0),
       child: TabPage(
         children: <Widget>[
-          RoundListTile(
-            onPressed: () {},
-            percentage: 0.5,
-            title: Text(
-              "Antiguo Testamento",
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Column(
-              children: <Widget>[
-                Container(
-                    margin: EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      "Libros: 12",
-                      style: Theme.of(context).textTheme.bodyText1,
-                    )),
-                Text(
-                  "Leídos: 1",
-                  style: Theme.of(context).textTheme.bodyText1,
-                )
-              ],
-            ),
-          ),
-          RoundListTile(
-            onPressed: () {},
-            percentage: 0.2,
-            title: Text(
-              "Nuevo Testamento",
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Column(
-              children: <Widget>[
-                Container(
-                    margin: EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      "Libros: 24",
-                      style: Theme.of(context).textTheme.bodyText1,
-                    )),
-                Text(
-                  "Leídos: 2",
-                  style: Theme.of(context).textTheme.bodyText1,
-                )
-              ],
-            ),
-          ),
-          RoundListTile(
-            onPressed: () {},
-            percentage: 0,
-            title: Text(
-              "Planes",
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Column(
-              children: <Widget>[
-                Container(
-                    margin: EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      "Libros: 1",
-                      style: Theme.of(context).textTheme.bodyText1,
-                    )),
-                Text(
-                  "Leídos: 0",
-                  style: Theme.of(context).textTheme.bodyText1,
-                )
-              ],
-            ),
-          ),
+          PlanTile(title: "Antiguo Testamento", totalBooks: 12, readedBooks: 1),
+          PlanTile(title: "Nuevo Testamento", totalBooks: 24, readedBooks: 2),
+          PlanTile(title: "Planes", totalBooks: 6, readedBooks: 3),
         ],
       ),
     );

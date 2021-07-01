@@ -1,5 +1,6 @@
 import 'package:bible_quest/globals/round_tile.dart';
 import 'package:bible_quest/globals/tab_page.dart';
+import 'package:bible_quest/pages/mains/missions/widgets/round_mission_tile.dart';
 import 'package:flutter/material.dart';
 
 class WeeklyMissions extends StatelessWidget {
@@ -13,80 +14,20 @@ class WeeklyMissions extends StatelessWidget {
         topSpace: 0,
         bottomSpace: 95,
         children: <Widget>[
-          RoundListTile(
-            percentage: 0.5,
-            title: Text(
-              "Leer siete capítulos del Génesis",
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Row(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(right: 7),
-                  child: Icon(
-                    Icons.monetization_on_outlined,
-                    color: Colors.yellow,
-                  ),
-                ),
-                Text(
-                  "25",
-                  style: Theme.of(context).textTheme.bodyText1,
-                )
-              ],
-            ),
+          MissionTile(
+            title: "Leer siete capítulos del Génesis",
+            rewardType: RewardType.money,
+            reward: "30",
           ),
-          RoundListTile(
-            percentage: 0.3,
-            title: Text(
-              "Llegar al nivel 5",
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Row(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(right: 7),
-                  child: Icon(
-                    Icons.monetization_on_outlined,
-                    color: Colors.yellow,
-                  ),
-                ),
-                Text(
-                  "10",
-                  style: Theme.of(context).textTheme.bodyText1,
-                )
-              ],
-            ),
+          MissionTile(
+            title: "Llegar al nivel 5",
+            rewardType: RewardType.experience,
+            reward: "150",
           ),
-          RoundListTile(
-            percentage: 0.1,
-            title: Text(
-              "Memoriza el versículo de memoria",
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Row(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(right: 7),
-                  child: Icon(
-                    Icons.monetization_on_outlined,
-                    color: Colors.yellow,
-                  ),
-                ),
-                Text(
-                  "15",
-                  style: Theme.of(context).textTheme.bodyText1,
-                )
-              ],
-            ),
+          MissionTile(
+            title: "Memoriza el versículo de memoria",
+            rewardType: RewardType.item,
+            reward: "Biblia",
           ),
         ],
       ),

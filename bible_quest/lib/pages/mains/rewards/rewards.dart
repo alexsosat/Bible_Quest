@@ -1,10 +1,10 @@
 import 'package:bible_quest/globals/tab_page.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/card_summon_item.dart';
+import 'widgets/card_reward_item.dart';
 
-class SummonsPage extends StatelessWidget {
-  const SummonsPage({Key? key}) : super(key: key);
+class RewardsPage extends StatelessWidget {
+  const RewardsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,19 +17,19 @@ class SummonsPage extends StatelessWidget {
             spacing: 20,
             runSpacing: 20,
             children: [
-              CardSummonItem(
+              CardRewardItem(
                 cost: 15,
                 item: '',
               ),
-              CardSummonItem(
+              CardRewardItem(
                 cost: 20,
                 item: '',
               ),
-              CardSummonItem(
+              CardRewardItem(
                 cost: 45,
                 item: '',
               ),
-              CardSummonItem(
+              CardRewardItem(
                 cost: 100,
                 item: '',
               ),

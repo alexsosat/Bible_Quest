@@ -1,10 +1,10 @@
 import 'package:bible_quest/globals/card_list/item.dart';
 import 'package:flutter/material.dart';
 
-class CardSummonItem extends StatelessWidget {
+class CardRewardItem extends StatelessWidget {
   final String item;
   final int cost;
-  const CardSummonItem({Key? key, required this.item, required this.cost})
+  const CardRewardItem({Key? key, required this.item, required this.cost})
       : super(key: key);
 
   @override

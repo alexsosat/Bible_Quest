@@ -1,5 +1,5 @@
-import 'package:bible_quest/globals/round_tile.dart';
 import 'package:bible_quest/globals/tab_page.dart';
+import 'package:bible_quest/pages/mains/missions/widgets/round_mission_tile.dart';
 import 'package:flutter/material.dart';
 
 class MonthlyMissions extends StatelessWidget {
@@ -13,80 +13,20 @@ class MonthlyMissions extends StatelessWidget {
         topSpace: 0,
         bottomSpace: 95,
         children: <Widget>[
-          RoundListTile(
-            percentage: 0.5,
-            title: Text(
-              "Terminar el libro de Génesis",
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Row(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(right: 7),
-                  child: Icon(
-                    Icons.monetization_on_outlined,
-                    color: Colors.yellow,
-                  ),
-                ),
-                Text(
-                  "30",
-                  style: Theme.of(context).textTheme.bodyText1,
-                )
-              ],
-            ),
+          MissionTile(
+            title: "Terminar el libro de Génesis",
+            rewardType: RewardType.money,
+            reward: "30",
           ),
-          RoundListTile(
-            percentage: 0.3,
-            title: Text(
-              "Llegar al nivel 10",
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Row(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(right: 7),
-                  child: Icon(
-                    Icons.monetization_on_outlined,
-                    color: Colors.yellow,
-                  ),
-                ),
-                Text(
-                  "35",
-                  style: Theme.of(context).textTheme.bodyText1,
-                )
-              ],
-            ),
+          MissionTile(
+            title: "Consigue 5 insignias",
+            rewardType: RewardType.experience,
+            reward: "250",
           ),
-          RoundListTile(
-            percentage: 0.1,
-            title: Text(
-              "Consigue 5 insignias",
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Row(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(right: 7),
-                  child: Icon(
-                    Icons.monetization_on_outlined,
-                    color: Colors.yellow,
-                  ),
-                ),
-                Text(
-                  "25",
-                  style: Theme.of(context).textTheme.bodyText1,
-                )
-              ],
-            ),
+          MissionTile(
+            title: "Llegar al nivel 10",
+            rewardType: RewardType.item,
+            reward: "Tunica de Jose",
           ),
         ],
       ),

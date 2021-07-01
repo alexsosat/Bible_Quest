@@ -4,7 +4,7 @@ import 'package:bible_quest/pages/mains/home/home.dart';
 import 'package:bible_quest/pages/mains/missions/missions.dart';
 import 'package:bible_quest/pages/mains/plans/plans.dart';
 import 'package:bible_quest/pages/mains/social/social.dart';
-import 'package:bible_quest/pages/mains/summons/summons.dart';
+import 'package:bible_quest/pages/mains/rewards/rewards.dart';
 import 'package:bible_quest/pages/tabs/widgets/appbar/appbar.dart';
 import 'package:bible_quest/pages/tabs/widgets/tab_icons_icons.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class _TabsPageState extends State<TabsPage> {
     HomePage(),
     MissionsPage(),
     PlansPage(),
-    SummonsPage(),
+    RewardsPage(),
     SocialPage()
   ];
 

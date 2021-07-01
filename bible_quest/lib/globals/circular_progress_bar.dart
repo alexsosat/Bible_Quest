@@ -25,7 +25,7 @@ class CircularProgressBar extends StatelessWidget {
       animationDuration: 2500,
       lineWidth: 7,
       center: Text(
-        (percent * 100).toString() + "%",
+        (percent * 100).toStringAsFixed(0) + "%",
         style: Theme.of(context).textTheme.bodyText1,
       ),
       footer: (subtitle != null)
