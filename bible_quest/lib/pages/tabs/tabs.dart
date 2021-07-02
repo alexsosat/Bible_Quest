@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:bible_quest/bloc/navigation.dart';
+import 'package:bible_quest/models/bible/sections.dart';
 import 'package:bible_quest/pages/mains/home/home.dart';
 import 'package:bible_quest/pages/mains/missions/missions.dart';
 import 'package:bible_quest/pages/mains/plans/plans.dart';
@@ -21,7 +22,27 @@ class _TabsPageState extends State<TabsPage>
   final List<Widget> widgetsChildren = [
     HomePage(),
     MissionsPage(),
-    PlansPage(),
+    PlansPage(
+      content: BibleSections.main,
+      /*children: <PlanTile>[
+        PlanTile(
+          title: "Antiguo Testamento",
+          totalBooks: 12,
+          readedBooks: 1,
+          onPressed: () {},
+        ),
+        PlanTile(
+          title: "Nuevo Testamento",
+          totalBooks: 24,
+          readedBooks: 2,
+        ),
+        PlanTile(
+          title: "Planes",
+          totalBooks: 6,
+          readedBooks: 3,
+        ),
+      ],*/
+    ),
     RewardsPage(),
     SocialPage()
   ];
