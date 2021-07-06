@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PlansPage extends StatelessWidget {
-  final BibleSections content;
-
-  const PlansPage({Key? key, required this.content}) : super(key: key);
+  const PlansPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0),
-      child: GetX<PlansController>(
-          init: PlansController(section: content),
+      child: GetBuilder<PlansController>(
+          init: PlansController(section: BibleSections.main),
           builder: (_) {
+            if (_.isLoading.value)
+              return Center(child: CircularProgressIndicator());
             return TabPage(
               children: _.content,
             );

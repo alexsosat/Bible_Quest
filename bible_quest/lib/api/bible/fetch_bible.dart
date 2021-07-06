@@ -13,7 +13,7 @@ class ApiBibleService extends GetConnect {
     if (response.status.hasError) {
       return Future.error(response.statusText!);
     } else {
-      return Bible.fromJson(jsonDecode(response.body));
+      return Bible.fromJson(jsonDecode(response.bodyString!));
     }
   }
 }

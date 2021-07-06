@@ -22,27 +22,7 @@ class _TabsPageState extends State<TabsPage>
   final List<Widget> widgetsChildren = [
     HomePage(),
     MissionsPage(),
-    PlansPage(
-      content: BibleSections.main,
-      /*children: <PlanTile>[
-        PlanTile(
-          title: "Antiguo Testamento",
-          totalBooks: 12,
-          readedBooks: 1,
-          onPressed: () {},
-        ),
-        PlanTile(
-          title: "Nuevo Testamento",
-          totalBooks: 24,
-          readedBooks: 2,
-        ),
-        PlanTile(
-          title: "Planes",
-          totalBooks: 6,
-          readedBooks: 3,
-        ),
-      ],*/
-    ),
+    PlansPage(),
     RewardsPage(),
     SocialPage()
   ];

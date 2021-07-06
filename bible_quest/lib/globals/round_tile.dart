@@ -4,15 +4,50 @@ import 'package:flutter/material.dart';
 class RoundListTile extends StatelessWidget {
   final Widget title;
   final Widget subtitle;
-  final double percentage;
+  final double? percentage;
   final Function()? onPressed;
   const RoundListTile({
     Key? key,
     required this.title,
     required this.subtitle,
-    required this.percentage,
+    this.percentage,
     this.onPressed,
   }) : super(key: key);
+
+  List<Widget> _childrenRow() {
+    List<Widget> children = <Widget>[
+      Expanded(
+        flex: 2,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(bottom: 10),
+              child: title,
+            ),
+            Container(
+              child: subtitle,
+            )
+          ],
+        ),
+      ),
+    ];
+
+    if (percentage != null)
+      children.add(
+        Flexible(
+          flex: 1,
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: CircularProgressBar(
+              percent: percentage!,
+            ),
+          ),
+        ),
+      );
+    return children;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,33 +64,7 @@ class RoundListTile extends StatelessWidget {
           ),
         ),
         child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(bottom: 10),
-                    child: title,
-                  ),
-                  Container(
-                    child: subtitle,
-                  )
-                ],
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: CircularProgressBar(
-                  percent: percentage,
-                ),
-              ),
-            )
-          ],
+          children: _childrenRow(),
         ),
       ),
     );

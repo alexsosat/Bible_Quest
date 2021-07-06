@@ -1,8 +1,9 @@
+import 'dart:math';
+
 import 'package:bible_quest/api/bible/fetch_bible.dart';
 import 'package:bible_quest/models/bible/sections.dart';
 import 'package:bible_quest/models/bible/bible.dart';
 import 'package:bible_quest/pages/mains/plans/widgets/round_plan_tile.dart';
-import 'package:get/get.dart';
 
 import '../abstract_model.dart';
 
@@ -12,7 +13,7 @@ class PlansController extends ControllerTemplate {
   var section = BibleSections.main;
   Bible bible = Bible.instance();
 
-  var content = List<PlanTile>.empty(growable: true).obs;
+  var content = List<PlanTile>.empty(growable: true);
 
   BibleTestaments? testament;
 
@@ -28,32 +29,21 @@ class PlansController extends ControllerTemplate {
     super.refreshContent();
   }
 
-  void fetchContent() {
+  void fetchContent() async {
     try {
       isLoading(true);
-      switch (section) {
-        case BibleSections.main:
-          fetchPlans();
-          break;
-
-        case BibleSections.books:
-          fetchBooks();
-          break;
-
-        case BibleSections.chapters:
-          fetchChapters();
-          break;
-      }
+      await fetchPlans();
     } finally {
       isLoading(false);
+      update();
     }
   }
 
-  void fetchPlans() async {
+  Future<void> fetchPlans() async {
     final response = await ApiBibleService().getBible();
     bible = response;
 
-    content(<PlanTile>[
+    content = <PlanTile>[
       PlanTile(
         title: "Antiguo Testamento",
         totalBooks: 12,
@@ -70,23 +60,65 @@ class PlansController extends ControllerTemplate {
         readedBooks: 2,
         onPressed: () {
           section = BibleSections.books;
-          testament = BibleTestaments.at;
+          testament = BibleTestaments.nt;
           fetchBooks();
         },
       ),
-    ]);
+    ];
   }
 
-  void fetchBooks() async {
+  void fetchBooks() {
+    List<PlanTile> tiles = List<PlanTile>.empty(growable: true);
+    int startIndex = 0;
+    int endIndex = 0;
     switch (testament!) {
       case BibleTestaments.at:
-        // Todo: split the books by testaments Note: test what you have right now
+        startIndex = 0;
+        endIndex = 38;
         break;
 
       case BibleTestaments.nt:
+        startIndex = 39;
+        endIndex = bible.books.length;
         break;
     }
+
+    for (int i = startIndex; i < endIndex; i++) {
+      tiles.add(PlanTile(
+        title: bible.books[i].name,
+        readedBooks: Random().nextInt(bible.books[i].chapters.length),
+        totalBooks: bible.books[i].chapters.length,
+        onPressed: () {
+          section = BibleSections.chapters;
+          fetchChapters(i);
+        },
+      ));
+    }
+    content = tiles;
+
+    update();
   }
 
-  void fetchChapters() {}
+  void fetchChapters(int bibleIndex) {
+    List<PlanTile> tiles = List<PlanTile>.empty(growable: true);
+
+    for (int i = 0; i < bible.books[bibleIndex].chapters.length; i++) {
+      tiles.add(
+        PlanTile(
+            title: bible.books[bibleIndex].name +
+                " " +
+                bible.books[bibleIndex].chapters[i].number,
+            onPressed: () {
+              print(
+                "going to " +
+                    bible.books[bibleIndex].name +
+                    " " +
+                    bible.books[bibleIndex].chapters[i].number,
+              );
+            }),
+      );
+    }
+    content = tiles;
+    update();
+  }
 }
