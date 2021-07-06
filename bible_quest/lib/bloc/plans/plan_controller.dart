@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:bible_quest/api/bible/fetch_bible.dart';
 import 'package:bible_quest/models/bible/sections.dart';
 import 'package:bible_quest/models/bible/bible.dart';
-import 'package:bible_quest/pages/mains/plans/widgets/round_plan_tile.dart';
+import 'package:bible_quest/pages/mains/plans/widgets/chapter_tile.dart';
+import 'package:bible_quest/pages/mains/plans/widgets/plan_tile.dart';
+import 'package:flutter/material.dart';
 
 import '../abstract_model.dart';
 
@@ -13,7 +15,7 @@ class PlansController extends ControllerTemplate {
   var section = BibleSections.main;
   Bible bible = Bible.instance();
 
-  var content = List<PlanTile>.empty(growable: true);
+  var content = List<Widget>.empty(growable: true);
 
   BibleTestaments? testament;
 
@@ -68,7 +70,7 @@ class PlansController extends ControllerTemplate {
   }
 
   void fetchBooks() {
-    List<PlanTile> tiles = List<PlanTile>.empty(growable: true);
+    content = List<Widget>.empty(growable: true);
     int startIndex = 0;
     int endIndex = 0;
     switch (testament!) {
@@ -84,7 +86,7 @@ class PlansController extends ControllerTemplate {
     }
 
     for (int i = startIndex; i < endIndex; i++) {
-      tiles.add(PlanTile(
+      content.add(PlanTile(
         title: bible.books[i].name,
         readedBooks: Random().nextInt(bible.books[i].chapters.length),
         totalBooks: bible.books[i].chapters.length,
@@ -94,20 +96,20 @@ class PlansController extends ControllerTemplate {
         },
       ));
     }
-    content = tiles;
 
     update();
   }
 
   void fetchChapters(int bibleIndex) {
-    List<PlanTile> tiles = List<PlanTile>.empty(growable: true);
+    content = List<Widget>.empty(growable: true);
 
     for (int i = 0; i < bible.books[bibleIndex].chapters.length; i++) {
-      tiles.add(
-        PlanTile(
+      content.add(
+        ChapterTile(
             title: bible.books[bibleIndex].name +
                 " " +
                 bible.books[bibleIndex].chapters[i].number,
+            readed: Random().nextBool(),
             onPressed: () {
               print(
                 "going to " +
@@ -118,7 +120,6 @@ class PlansController extends ControllerTemplate {
             }),
       );
     }
-    content = tiles;
     update();
   }
 }
