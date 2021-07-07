@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:bible_quest/models/bible/book.dart';
+import 'book.dart';
 
 class Bible {
   Bible({

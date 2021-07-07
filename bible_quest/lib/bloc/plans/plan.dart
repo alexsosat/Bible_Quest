@@ -1,11 +1,14 @@
 import 'dart:math';
 
 import 'package:bible_quest/api/bible/fetch_bible.dart';
-import 'package:bible_quest/models/bible/sections.dart';
-import 'package:bible_quest/models/bible/bible.dart';
+import 'package:bible_quest/models/bible/indexes/bible.dart';
+import 'package:bible_quest/models/bible/indexes/sections.dart';
+import 'package:bible_quest/pages/mains/plans/subpages/read.dart';
+
 import 'package:bible_quest/pages/mains/plans/widgets/chapter_tile.dart';
 import 'package:bible_quest/pages/mains/plans/widgets/plan_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../abstract_model.dart';
 
@@ -111,12 +114,12 @@ class PlansController extends ControllerTemplate {
                 bible.books[bibleIndex].chapters[i].number,
             readed: Random().nextBool(),
             onPressed: () {
-              print(
-                "going to " +
-                    bible.books[bibleIndex].name +
-                    " " +
-                    bible.books[bibleIndex].chapters[i].number,
-              );
+              Get.to(() => ReadPage(
+                    chapterId: bible.books[bibleIndex].chapters[i].id,
+                    chapterName: bible.books[bibleIndex].name +
+                        " " +
+                        bible.books[bibleIndex].chapters[i].number,
+                  ));
             }),
       );
     }

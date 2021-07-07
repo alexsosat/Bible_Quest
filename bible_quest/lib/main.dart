@@ -2,6 +2,7 @@ import 'package:bible_quest/pages/tabs/tabs.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 void main() => runApp(
       //MyApp()
@@ -14,7 +15,7 @@ void main() => runApp(
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         title: 'Bible Quest',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

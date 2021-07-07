@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:bible_quest/bloc/navigation.dart';
-import 'package:bible_quest/models/bible/sections.dart';
 import 'package:bible_quest/pages/mains/home/home.dart';
 import 'package:bible_quest/pages/mains/missions/missions.dart';
 import 'package:bible_quest/pages/mains/plans/plans.dart';
@@ -30,7 +29,6 @@ class _TabsPageState extends State<TabsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: BibleQuestAppBar(),
       drawer: Drawer(),
       body: GetX<NavigationController>(
           init: NavigationController(

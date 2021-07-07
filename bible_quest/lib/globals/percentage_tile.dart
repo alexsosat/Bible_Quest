@@ -51,7 +51,7 @@ class PercentageListTile extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: CircularProgressBar(
-                  percent: percentage!,
+                  percent: percentage,
                 ),
               ),
             ),
