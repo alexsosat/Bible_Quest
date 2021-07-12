@@ -56,48 +56,46 @@ class _TabsPageState extends State<TabsPage>
                         borderRadius:
                             BorderRadius.vertical(top: Radius.circular(35)),
                         child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                            child: BottomNavigationBar(
-                              backgroundColor: Colors.transparent,
-                              iconSize: 30,
-                              type: BottomNavigationBarType.fixed,
-                              showSelectedLabels: false,
-                              showUnselectedLabels: false,
-                              selectedItemColor: Colors.white,
-                              unselectedItemColor:
-                                  Colors.white.withOpacity(0.5),
-                              elevation: 0,
-                              onTap: _.onItemTapped,
-                              currentIndex: _.selectedIndex.value,
-                              items: [
-                                BottomNavigationBarItem(
-                                    icon: Icon(TabIcons.home), label: "Home"),
-                                BottomNavigationBarItem(
-                                    icon: Icon(TabIcons.tasks), label: "Task"),
-                                BottomNavigationBarItem(
-                                    icon: Container(
-                                      decoration: BoxDecoration(
-                                          color: Theme.of(context).primaryColor,
-                                          shape: BoxShape.circle),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(15.0),
-                                        child: Icon(
-                                          TabIcons.read,
-                                          color: Theme.of(context).accentColor,
-                                        ),
+                          filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+                          child: BottomNavigationBar(
+                            backgroundColor: Theme.of(context)
+                                .scaffoldBackgroundColor
+                                .withOpacity(0.5),
+                            iconSize: 30,
+                            type: BottomNavigationBarType.fixed,
+                            showSelectedLabels: false,
+                            showUnselectedLabels: false,
+                            selectedItemColor: Colors.white,
+                            unselectedItemColor: Colors.white.withOpacity(0.5),
+                            elevation: 0,
+                            onTap: _.onItemTapped,
+                            currentIndex: _.selectedIndex.value,
+                            items: [
+                              BottomNavigationBarItem(
+                                  icon: Icon(TabIcons.home), label: "Home"),
+                              BottomNavigationBarItem(
+                                  icon: Icon(TabIcons.tasks), label: "Task"),
+                              BottomNavigationBarItem(
+                                  icon: Container(
+                                    decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor,
+                                        shape: BoxShape.circle),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: Icon(
+                                        TabIcons.read,
+                                        color: Theme.of(context).accentColor,
                                       ),
                                     ),
-                                    label: "Plans"),
-                                BottomNavigationBarItem(
-                                    icon: Icon(TabIcons.summons),
-                                    label: "Summons"),
-                                BottomNavigationBarItem(
-                                    icon: Icon(TabIcons.games, size: 34),
-                                    label: "Games"),
-                              ],
-                            ),
+                                  ),
+                                  label: "Plans"),
+                              BottomNavigationBarItem(
+                                  icon: Icon(TabIcons.summons),
+                                  label: "Summons"),
+                              BottomNavigationBarItem(
+                                  icon: Icon(TabIcons.games, size: 34),
+                                  label: "Games"),
+                            ],
                           ),
                         ),
                       ),

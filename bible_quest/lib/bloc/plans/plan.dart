@@ -116,9 +116,6 @@ class PlansController extends ControllerTemplate {
             onPressed: () {
               Get.to(() => ReadPage(
                     chapterId: bible.books[bibleIndex].chapters[i].id,
-                    chapterName: bible.books[bibleIndex].name +
-                        " " +
-                        bible.books[bibleIndex].chapters[i].number,
                   ));
             }),
       );

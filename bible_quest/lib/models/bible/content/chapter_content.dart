@@ -19,6 +19,25 @@ class ChapterContent {
         "data": data.toJson(),
         "meta": meta.toJson(),
       };
+
+  factory ChapterContent.instance() => new ChapterContent(
+        data: Data(
+          id: "",
+          bibleId: "",
+          number: "",
+          bookId: "",
+          reference: "",
+          copyright: "",
+          verseCount: 0,
+          content: "",
+        ),
+        meta: Meta(
+            fums: "",
+            fumsId: "",
+            fumsJsInclude: "",
+            fumsJs: "",
+            fumsNoScript: ""),
+      );
 }
 
 class Data {

@@ -1,12 +1,13 @@
 import 'package:bible_quest/api/bible/fetch_bible.dart';
 import 'package:bible_quest/bloc/abstract_model.dart';
+import 'package:bible_quest/models/bible/content/chapter_content.dart';
 import 'package:get/get.dart';
 
 class ReadController extends ControllerTemplate {
   final chapterId;
   ReadController({required this.chapterId});
 
-  var content = "".obs;
+  var content = ChapterContent.instance().obs;
 
   @override
   onInit() {
@@ -18,7 +19,7 @@ class ReadController extends ControllerTemplate {
     try {
       isLoading(true);
       var response = await ApiBibleService().getChapter(chapterId);
-      content(response.data.content);
+      content(response);
     } finally {
       isLoading(false);
     }

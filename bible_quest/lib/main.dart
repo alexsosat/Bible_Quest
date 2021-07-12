@@ -4,12 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
-void main() => runApp(
-      //MyApp()
-      DevicePreview(
+void main() => runApp(MyApp()
+    /*DevicePreview(
         enabled: !kReleaseMode,
         builder: (context) => MyApp(), // Wrap your app
-      ),
+      ),*/
     );
 
 class MyApp extends StatelessWidget {
@@ -35,8 +34,8 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
               )),
         ),
-        locale: DevicePreview.locale(context), // Add the locale here
-        builder: DevicePreview.appBuilder,
+        //locale: DevicePreview.locale(context), // Add the locale here
+        //builder: DevicePreview.appBuilder,
         home: TabsPage());
   }
 }
