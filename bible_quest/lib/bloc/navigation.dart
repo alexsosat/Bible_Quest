@@ -55,7 +55,6 @@ class NavigationController extends GetxController {
   /// * Mehod used to navigate to a subpage inside a tab Page
   void goToSubTabView(Widget widget, BuildContext context) {
     Navigator.of(context).push(PageRouteBuilder(
-      transitionDuration: Duration(seconds: 0),
       pageBuilder: (context, animation, secondaryAnimation) => widget,
     ));
   }
