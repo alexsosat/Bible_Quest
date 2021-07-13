@@ -36,6 +36,7 @@ class PlansController extends ControllerTemplate {
 
   Future<void> fetchPlans() async {
     final response = await ApiBibleService().getBible();
+
     bible = response;
   }
 }

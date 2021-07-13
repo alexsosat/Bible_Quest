@@ -1,15 +1,14 @@
 import 'package:bible_quest/pages/tabs/tabs.dart';
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() => runApp(MyApp()
-    /*DevicePreview(
-        enabled: !kReleaseMode,
-        builder: (context) => MyApp(), // Wrap your app
-      ),*/
-    );
+void main() async {
+  await GetStorage.init();
+  runApp(
+    MyApp(),
+  );
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -34,8 +33,6 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
               )),
         ),
-        //locale: DevicePreview.locale(context), // Add the locale here
-        //builder: DevicePreview.appBuilder,
         home: TabsPage());
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'book.dart';
 
 class Bible {
@@ -7,15 +5,13 @@ class Bible {
     required this.books,
   });
 
-  static Bible bibleBooksFromJson(String str) =>
-      Bible.fromJson(json.decode(str));
-
-  static String bibleBooksToJson(Bible data) => json.encode(data.toJson());
-
   List<Book> books;
 
-  factory Bible.fromJson(Map<String, dynamic> json) => Bible(
-        books: List<Book>.from(json["data"].map((x) => Book.fromJson(x))),
+  factory Bible.fromJson(
+          Map<String, dynamic> json, Map<String, dynamic> userData) =>
+      Bible(
+        books: List<Book>.from(
+            json["data"].map((x) => Book.fromJson(x, userData))),
       );
 
   Map<String, dynamic> toJson() => {

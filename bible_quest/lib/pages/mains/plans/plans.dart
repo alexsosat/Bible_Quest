@@ -79,8 +79,8 @@ class PlansPage extends StatelessWidget {
         for (int i = startIndex; i < endIndex; i++) {
           content.add(PlanTile(
             title: _.bible.books[i].name,
-            readedBooks: Random().nextInt(_.bible.books[i].chapters.length),
-            totalBooks: _.bible.books[i].chapters.length,
+            readedBooks: _.bible.books[i].readedChapters,
+            totalBooks: _.bible.books[i].totalChapters,
             onPressed: () {
               _.section = BibleSections.chapters;
               Get.find<NavigationController>().goToSubTabView(
@@ -102,7 +102,7 @@ class PlansPage extends StatelessWidget {
                 title: _.bible.books[bibleIndex!].name +
                     " " +
                     _.bible.books[bibleIndex!].chapters[i].number,
-                readed: Random().nextBool(),
+                readed: _.bible.books[bibleIndex!].chapters[i].readed,
                 onPressed: () {
                   Get.to(() => ReadPage(
                         chapterId: _.bible.books[bibleIndex!].chapters[i].id,
