@@ -20,7 +20,7 @@ class Book {
   List<Chapter> chapters;
 
   factory Book.fromJson(
-          Map<String, dynamic> json, Map<String, dynamic> userData) =>
+          Map<String, dynamic> json, Map<String, dynamic>? userData) =>
       Book(
         id: json["id"],
         abbreviation: json["abbreviation"],
@@ -28,7 +28,7 @@ class Book {
         nameLong: json["nameLong"],
         totalChapters: json["chapters"].length,
         readedChapters:
-            (userData[json["id"]] != null) ? userData[json["id"]].length : 0,
+            (userData?[json["id"]] != null) ? userData![json["id"]].length : 0,
         chapters: List<Chapter>.from(
             json["chapters"].map((x) => Chapter.fromJson(x, userData))),
       );

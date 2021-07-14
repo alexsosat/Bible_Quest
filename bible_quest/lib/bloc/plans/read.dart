@@ -4,7 +4,7 @@ import 'package:bible_quest/models/bible/content/chapter_content.dart';
 import 'package:get/get.dart';
 
 class ReadController extends ControllerTemplate {
-  final chapterId;
+  String chapterId;
   ReadController({required this.chapterId});
 
   var content = ChapterContent.instance().obs;
@@ -13,6 +13,17 @@ class ReadController extends ControllerTemplate {
   onInit() {
     fetchChapter();
     super.onInit();
+  }
+
+  @override
+  refreshContent() {
+    fetchChapter();
+    super.refreshContent();
+  }
+
+  changeChapter(String id) {
+    chapterId = id;
+    fetchChapter();
   }
 
   void fetchChapter() async {

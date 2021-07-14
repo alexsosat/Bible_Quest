@@ -22,7 +22,7 @@ class _TabsPageState extends State<TabsPage>
   final List<Widget> widgetsChildren = [
     HomePage(),
     MissionsPage(),
-    PlansPage(),
+    PlansPage(section: BibleSections.main),
     RewardsPage(),
     SocialPage()
   ];

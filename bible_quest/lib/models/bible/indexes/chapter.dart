@@ -14,13 +14,13 @@ class Chapter {
   bool readed;
 
   factory Chapter.fromJson(
-          Map<String, dynamic> json, Map<String, dynamic> userData) =>
+          Map<String, dynamic> json, Map<String, dynamic>? userData) =>
       Chapter(
         id: json["id"],
         bookId: json["bookId"],
         number: json["number"],
-        readed: (userData[json["bookId"]] != null)
-            ? userData[json["bookId"]].contains(json["id"])
+        readed: (userData?[json["bookId"]] != null)
+            ? userData![json["bookId"]].contains(json["id"])
             : false,
         reference: json["reference"] ?? json["postion"] ?? "",
       );

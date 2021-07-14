@@ -8,7 +8,7 @@ class Bible {
   List<Book> books;
 
   factory Bible.fromJson(
-          Map<String, dynamic> json, Map<String, dynamic> userData) =>
+          Map<String, dynamic> json, Map<String, dynamic>? userData) =>
       Bible(
         books: List<Book>.from(
             json["data"].map((x) => Book.fromJson(x, userData))),

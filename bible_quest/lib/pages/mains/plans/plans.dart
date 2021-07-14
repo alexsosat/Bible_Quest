@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bible_quest/bloc/navigation.dart';
 import 'package:bible_quest/bloc/plans/plan.dart';
 import 'package:bible_quest/globals/tab_page.dart';
@@ -13,7 +11,15 @@ import 'widgets/plan_tile.dart';
 
 class PlansPage extends StatelessWidget {
   final int? bibleIndex;
-  const PlansPage({Key? key, this.bibleIndex}) : super(key: key);
+  final BibleSections section;
+  final BibleTestaments? testament;
+
+  const PlansPage({
+    Key? key,
+    required this.section,
+    this.bibleIndex,
+    this.testament,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +40,7 @@ class PlansPage extends StatelessWidget {
   }
 
   List<Widget> _sectionsContent(PlansController _, BuildContext context) {
-    switch (_.section) {
+    switch (section) {
       case BibleSections.main:
         return [
           PlanTile(
@@ -42,10 +48,11 @@ class PlansPage extends StatelessWidget {
             totalBooks: 12,
             readedBooks: 1,
             onPressed: () {
-              _.section = BibleSections.books;
-              _.testament = BibleTestaments.at;
-              Get.find<NavigationController>()
-                  .goToSubTabView(PlansPage(), context);
+              Get.find<NavigationController>().goToSubTabView(
+                  PlansPage(
+                      section: BibleSections.books,
+                      testament: BibleTestaments.at),
+                  context);
             },
           ),
           PlanTile(
@@ -53,10 +60,11 @@ class PlansPage extends StatelessWidget {
             totalBooks: 24,
             readedBooks: 2,
             onPressed: () {
-              _.section = BibleSections.books;
-              _.testament = BibleTestaments.nt;
-              Get.find<NavigationController>()
-                  .goToSubTabView(PlansPage(), context);
+              Get.find<NavigationController>().goToSubTabView(
+                  PlansPage(
+                      section: BibleSections.books,
+                      testament: BibleTestaments.nt),
+                  context);
             },
           ),
         ];
@@ -64,7 +72,7 @@ class PlansPage extends StatelessWidget {
         List<Widget> content = List<Widget>.empty(growable: true);
         int startIndex = 0;
         int endIndex = 0;
-        switch (_.testament!) {
+        switch (testament!) {
           case BibleTestaments.at:
             startIndex = 0;
             endIndex = 38;
@@ -82,9 +90,9 @@ class PlansPage extends StatelessWidget {
             readedBooks: _.bible.books[i].readedChapters,
             totalBooks: _.bible.books[i].totalChapters,
             onPressed: () {
-              _.section = BibleSections.chapters;
               Get.find<NavigationController>().goToSubTabView(
                   PlansPage(
+                    section: BibleSections.chapters,
                     bibleIndex: i,
                   ),
                   context);

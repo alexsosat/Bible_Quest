@@ -1,16 +1,12 @@
 import 'package:bible_quest/api/bible/fetch_bible.dart';
 import 'package:bible_quest/models/bible/indexes/bible.dart';
-import 'package:bible_quest/models/bible/indexes/sections.dart';
 
 import '../abstract_model.dart';
 
 class PlansController extends ControllerTemplate {
   PlansController();
 
-  BibleSections section = BibleSections.main;
   Bible bible = Bible.instance();
-
-  BibleTestaments? testament;
 
   @override
   void onInit() {
@@ -21,6 +17,7 @@ class PlansController extends ControllerTemplate {
   @override
   void refreshContent() {
     fetchContent();
+    update();
     super.refreshContent();
   }
 
