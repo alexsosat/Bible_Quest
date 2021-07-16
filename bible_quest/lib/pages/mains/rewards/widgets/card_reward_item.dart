@@ -12,6 +12,8 @@ class CardRewardItem extends StatelessWidget {
     return CardItem(
       height: 135,
       width: 105,
+      radiusSpread: 1,
+      centerItem: Image.asset(item, fit: BoxFit.contain, height: 60),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,7 +34,6 @@ class CardRewardItem extends StatelessWidget {
           )
         ],
       ),
-      centerItem: Image.asset(item, fit: BoxFit.contain),
     );
   }
 }

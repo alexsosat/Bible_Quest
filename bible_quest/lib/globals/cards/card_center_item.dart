@@ -5,6 +5,7 @@ class CardItem extends StatelessWidget {
   final Widget centerItem;
   final double height;
   final double width;
+  final double radiusSpread;
 
   const CardItem({
     Key? key,
@@ -12,6 +13,7 @@ class CardItem extends StatelessWidget {
     required this.centerItem,
     this.height = 164,
     this.width = 124,
+    this.radiusSpread = 12.0,
   }) : super(key: key);
 
   @override
@@ -32,7 +34,7 @@ class CardItem extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(bottom: 5),
-            padding: EdgeInsets.all(12),
+            padding: EdgeInsets.all(radiusSpread),
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
               shape: BoxShape.circle,

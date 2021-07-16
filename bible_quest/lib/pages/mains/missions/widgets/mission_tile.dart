@@ -1,4 +1,4 @@
-import 'package:bible_quest/globals/percentage_tile.dart';
+import 'package:bible_quest/globals/tiles/percentage_tile.dart';
 import 'package:bible_quest/pages/tabs/widgets/tab_icons_icons.dart';
 import 'package:flutter/material.dart';
 
