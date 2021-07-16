@@ -1,4 +1,4 @@
-import 'package:bible_quest/globals/circular_progress_bar.dart';
+import 'package:bible_quest/globals/progress/circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 
 class PercentageListTile extends StatelessWidget {

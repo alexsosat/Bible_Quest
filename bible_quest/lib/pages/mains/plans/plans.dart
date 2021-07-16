@@ -1,6 +1,6 @@
 import 'package:bible_quest/bloc/navigation.dart';
 import 'package:bible_quest/bloc/plans/plan.dart';
-import 'package:bible_quest/globals/tab_page.dart';
+import 'package:bible_quest/globals/layout/tab_page.dart';
 import 'package:bible_quest/models/bible/indexes/sections.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

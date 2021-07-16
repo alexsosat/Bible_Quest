@@ -1,6 +1,7 @@
-import 'package:bible_quest/globals/tab_page.dart';
+import 'package:bible_quest/globals/layout/tab_page.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/section/user_section.dart';
 import 'widgets/stats/user_stats.dart';
 
 class UserPage extends StatelessWidget {
@@ -11,11 +12,7 @@ class UserPage extends StatelessWidget {
     return TabPage(
       children: <Widget>[
         UserStats(),
-        Container(
-          color: Colors.green,
-          height: 200,
-          margin: EdgeInsets.only(bottom: 20),
-        ),
+        UserSection(headerTitle: "Equipamento"),
         Container(
           color: Colors.yellow,
           height: 400,

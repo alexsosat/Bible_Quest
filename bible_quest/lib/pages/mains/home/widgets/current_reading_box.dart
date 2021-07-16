@@ -1,8 +1,8 @@
 import 'dart:math';
 
+import 'package:bible_quest/globals/progress/linear_progress_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class ContinueReadingBox extends StatelessWidget {
   const ContinueReadingBox({Key? key}) : super(key: key);
@@ -10,7 +10,6 @@ class ContinueReadingBox extends StatelessWidget {
   String _getImage() {
     List<int> png = [1, 4, 5, 9, 10];
     final _random = new Random();
-    //TODO: search for better background images
     int index = 1 + _random.nextInt(10 - 1);
     String extension = png.contains(index) ? 'png' : 'jpg';
 
@@ -64,15 +63,16 @@ class ContinueReadingBox extends StatelessWidget {
               )),
           Container(
             margin: EdgeInsets.only(bottom: 20),
-            child: LinearPercentIndicator(
-              percent: 0.5,
-              backgroundColor: Color(0xFF545568),
-              animation: true,
-              animationDuration: 1500,
-              linearGradient: LinearGradient(colors: <Color>[
-                Color.fromRGBO(0, 153, 255, 1.0),
-                Color.fromRGBO(204, 97, 255, 1.0)
-              ]),
+            child: LinearProgressBar(
+              currentValue: 20,
+              maxValue: 100,
+              lineWidth: 7,
+              gradient: LinearGradient(
+                colors: <Color>[
+                  Color.fromRGBO(0, 153, 255, 1.0),
+                  Color.fromRGBO(204, 97, 255, 1.0)
+                ],
+              ),
             ),
           ),
         ],

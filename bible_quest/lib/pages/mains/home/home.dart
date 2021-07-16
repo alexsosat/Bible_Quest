@@ -1,5 +1,5 @@
-import 'package:bible_quest/globals/card_list/list.dart';
-import 'package:bible_quest/globals/tab_page.dart';
+import 'package:bible_quest/globals/layout/horizontal_list.dart';
+import 'package:bible_quest/globals/layout/tab_page.dart';
 import 'package:bible_quest/pages/mains/home/widgets/current_reading_box.dart';
 import 'package:bible_quest/pages/mains/home/widgets/user_stats.dart';
 import 'package:flutter/material.dart';

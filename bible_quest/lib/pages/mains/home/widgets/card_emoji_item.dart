@@ -1,4 +1,4 @@
-import 'package:bible_quest/globals/card_list/item.dart';
+import 'package:bible_quest/globals/cards/card_center_item.dart';
 import 'package:flutter/material.dart';
 
 class CardEmojiItem extends StatelessWidget {

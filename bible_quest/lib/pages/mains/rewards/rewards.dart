@@ -1,4 +1,4 @@
-import 'package:bible_quest/globals/tab_page.dart';
+import 'package:bible_quest/globals/layout/tab_page.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/card_reward_item.dart';
@@ -14,8 +14,8 @@ class RewardsPage extends StatelessWidget {
         child: Center(
           child: Wrap(
             direction: Axis.horizontal,
-            spacing: 20,
-            runSpacing: 20,
+            spacing: 10,
+            runSpacing: 10,
             children: [
               CardRewardItem(
                 cost: 15,
