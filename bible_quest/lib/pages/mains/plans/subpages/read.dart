@@ -1,5 +1,5 @@
-import 'package:bible_quest/bloc/plans/plan.dart';
-import 'package:bible_quest/bloc/plans/read.dart';
+import 'package:bible_quest/bloc/bible/plan.dart';
+import 'package:bible_quest/bloc/bible/read.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
