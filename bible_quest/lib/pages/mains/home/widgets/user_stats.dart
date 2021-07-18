@@ -11,7 +11,7 @@ class UserStats extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(20, 35, 20, 15),
-      child: GetX<UserStatsController>(
+      child: GetBuilder<UserStatsController>(
           init: UserStatsController(),
           builder: (controller) {
             if (controller.isLoading.value)

@@ -28,4 +28,14 @@ class UserStatsController extends ControllerTemplate {
       isLoading(false);
     }
   }
+
+  void updateCurrency(double value) {
+    content.value.currency += value;
+    update();
+  }
+
+  void updateHealth(int value) {
+    content.value.health.current += value;
+    update();
+  }
 }

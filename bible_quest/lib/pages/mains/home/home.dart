@@ -3,7 +3,6 @@ import 'package:bible_quest/globals/layout/tab_page.dart';
 import 'package:bible_quest/pages/mains/home/widgets/current_reading_box.dart';
 import 'package:bible_quest/pages/mains/home/widgets/user_stats.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 
 import 'widgets/card_emoji_item.dart';
 
@@ -36,12 +35,6 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      ElevatedButton(
-          onPressed: () {
-            final storage = GetStorage();
-            print(storage.read('user_stats'));
-          },
-          child: Text("Delete userData")),
     ]);
   }
 }

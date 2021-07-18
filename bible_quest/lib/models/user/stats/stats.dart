@@ -41,8 +41,8 @@ class UserStats {
         "level": 1,
         "streak": 0,
         "currency": 0.0,
-        "health": {"current": 50.0, "total": 50.0},
-        "experience": {"current": 0.0, "total": 100.0}
+        "health": {"current": 50, "total": 50},
+        "experience": {"current": 0, "total": 100}
       };
 
   factory UserStats.instance() => UserStats.fromJson(initalStats());

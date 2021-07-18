@@ -1,0 +1,32 @@
+import 'package:bible_quest/bloc/user/stats.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class UserCurrencies extends StatelessWidget {
+  const UserCurrencies({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<UserStatsController>(
+        init: UserStatsController(),
+        builder: (controller) {
+          return Row(
+            children: <Widget>[
+              Container(
+                width: 20,
+                height: 20,
+                margin: EdgeInsets.only(right: 10),
+                color: Colors.white,
+              ),
+              Text("Nivel ${controller.content.value.level}"),
+              Expanded(child: SizedBox()),
+              Icon(Icons.monetization_on, color: Colors.yellow, size: 18),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 5),
+                child: Text(controller.content.value.currency.toString()),
+              ),
+            ],
+          );
+        });
+  }
+}

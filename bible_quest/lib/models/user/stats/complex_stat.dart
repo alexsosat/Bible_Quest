@@ -4,8 +4,8 @@ class ComplexStat {
     required this.total,
   });
 
-  double current;
-  double total;
+  int current;
+  int total;
 
   factory ComplexStat.fromJson(Map<String, dynamic> json) => ComplexStat(
         current: json["current"],

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'widgets/section/sprite_card.dart';
 import 'widgets/section/user_section.dart';
-import 'widgets/stats/user_stats.dart';
+import 'widgets/stats/stat_section.dart';
 
 class UserPage extends StatelessWidget {
   const UserPage({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class UserPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabPage(
       children: <Widget>[
-        UserStats(),
+        UserStatSection(),
         UserSection(
           headerTitle: "Equipamento",
           children: <SpriteCard>[
