@@ -25,14 +25,6 @@ class ApiBibleService extends GetConnect {
     final storage = GetStorage();
 
     return storage.read('bible_readed');
-    /*return {
-      'GEN': [
-        'GEN.1',
-        'GEN.2',
-        'GEN.3',
-        'GEN.9',
-      ],
-    };*/
   }
 
   Future<ChapterContent> getChapter(String chapterId) async {
