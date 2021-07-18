@@ -17,35 +17,35 @@ class UserPage extends StatelessWidget {
           headerTitle: "Equipamento",
           children: <SpriteCard>[
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
           ],
@@ -54,35 +54,35 @@ class UserPage extends StatelessWidget {
           headerTitle: "Logros",
           children: <SpriteCard>[
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
             SpriteCard(
-              spritePath: 'assets/images/sprites/default-sprite.png',
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "default sprite",
             ),
           ],
