@@ -24,7 +24,7 @@ class _ReadPageState extends State<ReadPage> {
     super.initState();
 
     // Setup the listener.
-    _scrollController.addListener(() {
+    _scrollController.addListener(() async {
       if (_scrollController.position.atEdge) {
         if (_scrollController.position.pixels == 0) {
           // You're at the top.
@@ -53,7 +53,7 @@ class _ReadPageState extends State<ReadPage> {
             _showSnackbar();
           }
 
-          userController.updateUser(readedBooks);
+          await userController.updateUser({"books_readed": readedBooks});
           Get.find<PlansController>().refreshContent();
         }
       }

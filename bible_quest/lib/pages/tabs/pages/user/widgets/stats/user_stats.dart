@@ -13,6 +13,8 @@ class UserStats extends StatelessWidget {
     return GetBuilder<UserController>(
         init: UserController(),
         builder: (controller) {
+          if (controller.isLoading.value)
+            return Center(child: CircularProgressIndicator());
           return Expanded(
             flex: 6,
             child: Container(

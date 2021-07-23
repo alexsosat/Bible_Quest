@@ -12,9 +12,9 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           child: Text("Login"),
-          onPressed: () {
+          onPressed: () async {
             final GetStorage storage = GetStorage();
-            storage.write('userId', 1);
+            await storage.write('userId', 1);
             Get.off(() => TabsPage());
           },
         ),

@@ -8,9 +8,7 @@ import 'package:get_storage/get_storage.dart';
 class UserService extends GetConnect {
   GetStorage storage = GetStorage();
 
-  get userId {
-    storage.read('userId');
-  }
+  int get userId => storage.read('userId');
 
   Future<User> getUser() async {
     final response = await get(
@@ -28,7 +26,7 @@ class UserService extends GetConnect {
     }
   }
 
-  void updateUser(Map<String, dynamic> content) async {
+  Future updateUser(Map<String, dynamic> content) async {
     final response = await put(
       '${environment['web_url']}users/${this.userId}',
       content,

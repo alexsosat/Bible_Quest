@@ -18,35 +18,23 @@ class UserPage extends StatelessWidget {
           children: <SpriteCard>[
             SpriteCard(
               spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
+              title: "Cabeza",
             ),
             SpriteCard(
               spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
+              title: "Cuerpo",
             ),
             SpriteCard(
               spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
+              title: "Brazos",
             ),
             SpriteCard(
               spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
+              title: "Fondo",
             ),
             SpriteCard(
               spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
+              title: "Mascota",
             ),
           ],
         ),

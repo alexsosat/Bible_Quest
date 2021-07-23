@@ -28,12 +28,13 @@ class UserController extends ControllerTemplate {
       content(response);
     } finally {
       isLoading(false);
+      update();
     }
   }
 
   User get user => content.value;
 
-  void updateUser(Map<String, dynamic> content) async {
+  Future updateUser(Map<String, dynamic> content) async {
     apiService.updateUser(content);
   }
 

@@ -21,7 +21,8 @@ class SpriteCard extends StatelessWidget {
         fit: BoxFit.contain,
       ),
       title: Container(
-        width: 50,
+        margin: EdgeInsets.symmetric(vertical: 5),
+        width: 60,
         child: Text(
           title,
           textAlign: TextAlign.center,

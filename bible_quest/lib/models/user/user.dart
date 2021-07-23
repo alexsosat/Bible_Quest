@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bible_quest/models/items/item.dart';
 
+import 'stats/complex_stat.dart';
 import 'stats/stats.dart';
 
 class User {
@@ -35,10 +36,10 @@ class User {
         biography: json["biography"],
         stats: UserStats(
           level: json["level"],
-          currency: json["currency"],
+          currency: json["currency"].toDouble(),
           streak: json["streak"],
-          experience: json["experience"],
-          health: json["health"],
+          experience: ComplexStat.fromJson(json["experience"]),
+          health: ComplexStat.fromJson(json["health"]),
         ),
         booksReaded: json["books_readed"],
         items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
