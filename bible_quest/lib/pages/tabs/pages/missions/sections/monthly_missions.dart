@@ -1,9 +1,9 @@
 import 'package:bible_quest/globals/layout/tab_page.dart';
-import 'package:bible_quest/pages/mains/missions/widgets/mission_tile.dart';
+import 'package:bible_quest/pages/tabs/pages/missions/widgets/mission_tile.dart';
 import 'package:flutter/material.dart';
 
-class WeeklyMissions extends StatelessWidget {
-  const WeeklyMissions({Key? key}) : super(key: key);
+class MonthlyMissions extends StatelessWidget {
+  const MonthlyMissions({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,19 +14,19 @@ class WeeklyMissions extends StatelessWidget {
         bottomSpace: 95,
         children: <Widget>[
           MissionTile(
-            title: "Leer siete capítulos del Génesis",
+            title: "Terminar el libro de Génesis",
             rewardType: RewardType.money,
             reward: "30",
           ),
           MissionTile(
-            title: "Llegar al nivel 5",
+            title: "Consigue 5 insignias",
             rewardType: RewardType.experience,
-            reward: "150",
+            reward: "250",
           ),
           MissionTile(
-            title: "Memoriza el versículo de memoria",
+            title: "Llegar al nivel 10",
             rewardType: RewardType.item,
-            reward: "Biblia",
+            reward: "Tunica de Jose",
           ),
         ],
       ),

@@ -1,4 +1,4 @@
-import 'package:bible_quest/bloc/user/stats.dart';
+import 'package:bible_quest/bloc/user/user.dart';
 import 'package:bible_quest/globals/progress/linear_progress_bar.dart';
 import 'package:bible_quest/pages/tabs/widgets/tab_icons_icons.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +10,8 @@ class UserStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<UserStatsController>(
-        init: UserStatsController(),
+    return GetBuilder<UserController>(
+        init: UserController(),
         builder: (controller) {
           return Expanded(
             flex: 6,
@@ -23,16 +23,16 @@ class UserStats extends StatelessWidget {
                   LinearProgressBar(
                     icon: Icon(Icons.favorite, color: Colors.red),
                     barColor: Colors.red,
-                    currentValue: controller.content.value.health.current,
-                    maxValue: controller.content.value.health.total,
+                    currentValue: controller.user.stats.health.current,
+                    maxValue: controller.user.stats.health.total,
                     showTextStatus: true,
                     lineWidth: 7,
                   ),
                   LinearProgressBar(
                     icon: Icon(TabIcons.upgrade, color: Colors.lightBlueAccent),
                     barColor: Colors.lightBlueAccent,
-                    currentValue: controller.content.value.experience.current,
-                    maxValue: controller.content.value.experience.total,
+                    currentValue: controller.user.stats.experience.current,
+                    maxValue: controller.user.stats.experience.total,
                     showTextStatus: true,
                     lineWidth: 7,
                   ),

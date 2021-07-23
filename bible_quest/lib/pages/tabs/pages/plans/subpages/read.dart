@@ -1,8 +1,8 @@
 import 'package:bible_quest/bloc/bible/plan.dart';
 import 'package:bible_quest/bloc/bible/read.dart';
+import 'package:bible_quest/bloc/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class ReadPage extends StatefulWidget {
   final String chapterId;
@@ -18,7 +18,6 @@ class ReadPage extends StatefulWidget {
 
 class _ReadPageState extends State<ReadPage> {
   final _scrollController = ScrollController();
-  final storage = GetStorage();
 
   @override
   void initState() {
@@ -32,7 +31,9 @@ class _ReadPageState extends State<ReadPage> {
         } else {
           // You're at the bottom.
 
-          Map<String, dynamic>? readedBooks = storage.read('bible_readed');
+          var userController = Get.find<UserController>();
+
+          Map<String, dynamic>? readedBooks = userController.user.booksReaded;
           final bookData = Get.find<ReadController>().content.value.data;
 
           if (readedBooks != null) {
@@ -52,7 +53,7 @@ class _ReadPageState extends State<ReadPage> {
             _showSnackbar();
           }
 
-          storage.write('bible_readed', readedBooks);
+          userController.updateUser(readedBooks);
           Get.find<PlansController>().refreshContent();
         }
       }
@@ -142,22 +143,6 @@ class _ReadPageState extends State<ReadPage> {
                               ),
                             )
                           : Container(),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: () {
-                              print(storage.read('bible_readed'));
-                              //storage.remove('bible_readed');
-                            },
-                            backgroundColor: Colors.grey[850],
-                            elevation: 0,
-                            child: Icon(Icons.add),
-                          ),
-                        ),
-                      )
                     ],
                   ),
           );

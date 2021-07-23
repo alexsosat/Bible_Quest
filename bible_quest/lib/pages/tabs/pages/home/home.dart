@@ -1,10 +1,10 @@
 import 'package:bible_quest/globals/layout/horizontal_list.dart';
 import 'package:bible_quest/globals/layout/tab_page.dart';
-import 'package:bible_quest/pages/mains/home/widgets/current_reading_box.dart';
-import 'package:bible_quest/pages/mains/home/widgets/user_stats.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/card_emoji_item.dart';
+import 'widgets/current_reading_box.dart';
+import 'widgets/user_stats.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

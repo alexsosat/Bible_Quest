@@ -1,6 +1,5 @@
 import 'package:bible_quest/bloc/abstract_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MissionsController extends ControllerTemplate {
   final controller = PageController(initialPage: 0);

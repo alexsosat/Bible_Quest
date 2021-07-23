@@ -1,5 +1,5 @@
 import 'package:bible_quest/globals/layout/tab_page.dart';
-import 'package:bible_quest/pages/mains/missions/widgets/mission_tile.dart';
+import 'package:bible_quest/pages/tabs/pages/missions/widgets/mission_tile.dart';
 import 'package:flutter/material.dart';
 
 class DailyMissions extends StatelessWidget {

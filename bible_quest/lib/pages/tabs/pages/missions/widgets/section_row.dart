@@ -1,4 +1,4 @@
-import 'package:bible_quest/pages/mains/missions/widgets/section_button.dart';
+import 'package:bible_quest/pages/tabs/pages/missions/widgets/section_button.dart';
 import 'package:flutter/material.dart';
 
 class SectionRow extends StatelessWidget {

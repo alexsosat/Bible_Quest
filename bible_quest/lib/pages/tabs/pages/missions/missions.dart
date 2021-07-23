@@ -1,10 +1,11 @@
 import 'package:bible_quest/bloc/user/missions.dart';
-import 'package:bible_quest/pages/mains/missions/sections/daily_missions.dart';
-import 'package:bible_quest/pages/mains/missions/sections/monthly_missions.dart';
-import 'package:bible_quest/pages/mains/missions/sections/weekly_missions.dart';
-import 'package:bible_quest/pages/mains/missions/widgets/section_row.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'sections/daily_missions.dart';
+import 'sections/monthly_missions.dart';
+import 'sections/weekly_missions.dart';
+import 'widgets/section_row.dart';
 
 class MissionsPage extends StatefulWidget {
   MissionsPage({Key? key}) : super(key: key);

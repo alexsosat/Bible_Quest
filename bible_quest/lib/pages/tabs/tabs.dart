@@ -2,15 +2,17 @@ import 'dart:ui';
 
 import 'package:bible_quest/bloc/navigation.dart';
 import 'package:bible_quest/models/bible/indexes/sections.dart';
-import 'package:bible_quest/pages/mains/home/home.dart';
-import 'package:bible_quest/pages/mains/missions/missions.dart';
-import 'package:bible_quest/pages/mains/plans/plans.dart';
-import 'package:bible_quest/pages/mains/rewards/rewards.dart';
-import 'package:bible_quest/pages/mains/user/user.dart';
+
 import 'package:bible_quest/pages/tabs/widgets/appbar/appbar.dart';
 import 'package:bible_quest/pages/tabs/widgets/tab_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'pages/home/home.dart';
+import 'pages/missions/missions.dart';
+import 'pages/plans/plans.dart';
+import 'pages/rewards/rewards.dart';
+import 'pages/user/user.dart';
 
 class TabsPage extends StatefulWidget {
   @override

@@ -1,7 +1,8 @@
-import 'package:bible_quest/pages/tabs/tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
+
+import 'pages/login/login.dart';
 
 void main() async {
   await GetStorage.init();
@@ -33,6 +34,6 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
               )),
         ),
-        home: TabsPage());
+        home: LoginPage());
   }
 }
