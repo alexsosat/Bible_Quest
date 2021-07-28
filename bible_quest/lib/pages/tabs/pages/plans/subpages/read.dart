@@ -32,29 +32,19 @@ class _ReadPageState extends State<ReadPage> {
           // You're at the bottom.
 
           var userController = Get.find<UserController>();
+          var plansController = Get.find<PlansController>();
+          var readController = Get.find<ReadController>();
 
           Map<String, dynamic>? readedBooks = userController.user.booksReaded;
-          final bookData = Get.find<ReadController>().content.value.data;
 
-          if (readedBooks != null) {
-            if (readedBooks.containsKey(bookData.bookId)) {
-              if (!readedBooks[bookData.bookId].contains(bookData.id)) {
-                readedBooks[bookData.bookId].add(bookData.id);
-                _showSnackbar();
-              }
-            } else {
-              readedBooks[bookData.bookId] = [bookData.id];
-              _showSnackbar();
-            }
-          } else {
-            readedBooks = {
-              bookData.bookId: [bookData.id],
-            };
+          Map<String, dynamic> data =
+              readController.isChapterReaded(readedBooks);
+
+          if (!data['isReaded']) {
+            plansController.updateReadedBooks(data['books']);
+            userController.chapterReward();
             _showSnackbar();
           }
-
-          await userController.updateUser({"books_readed": readedBooks});
-          Get.find<PlansController>().refreshContent();
         }
       }
     });

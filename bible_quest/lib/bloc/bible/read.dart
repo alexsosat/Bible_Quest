@@ -35,4 +35,39 @@ class ReadController extends ControllerTemplate {
       isLoading(false);
     }
   }
+
+  Map<String, dynamic> isChapterReaded(Map<String, dynamic>? readedBooks) {
+    final bookData = content.value.data;
+
+    if (readedBooks != null) {
+      if (readedBooks.containsKey(bookData.bookId)) {
+        if (!readedBooks[bookData.bookId].contains(bookData.id)) {
+          readedBooks[bookData.bookId].add(bookData.id);
+          return {
+            'isReaded': false,
+            'books': readedBooks,
+          };
+        }
+      } else {
+        readedBooks[bookData.bookId] = [bookData.id];
+        return {
+          'isReaded': false,
+          'books': readedBooks,
+        };
+      }
+    } else {
+      readedBooks = {
+        bookData.bookId: [bookData.id],
+      };
+      return {
+        'isReaded': false,
+        'books': readedBooks,
+      };
+    }
+
+    return {
+      'isReaded': true,
+      'books': readedBooks,
+    };
+  }
 }

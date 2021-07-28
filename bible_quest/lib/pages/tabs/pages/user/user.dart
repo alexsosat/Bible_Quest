@@ -36,6 +36,10 @@ class UserPage extends StatelessWidget {
               spritePath: 'assets/images/sprites/arms/default-sprite.png',
               title: "Mascota",
             ),
+            SpriteCard(
+              spritePath: 'assets/images/sprites/arms/default-sprite.png',
+              title: "Piel",
+            ),
           ],
         ),
         UserSection(
