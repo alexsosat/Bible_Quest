@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'user_character.dart';
+import '../../../../../../globals/user_character.dart';
 import 'user_currency.dart';
 import 'user_stats.dart';
 
@@ -12,7 +12,8 @@ class UserStatSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      alignment: Alignment.bottomCenter,
+      margin: EdgeInsets.only(top: 160),
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [

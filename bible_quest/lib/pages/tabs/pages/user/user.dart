@@ -1,8 +1,8 @@
 import 'package:bible_quest/globals/layout/tab_page.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/section/sprite_card.dart';
-import 'widgets/section/user_section.dart';
+import 'widgets/stats/achivements.dart';
+import 'widgets/stats/equipment.dart';
 import 'widgets/stats/stat_section.dart';
 
 class UserPage extends StatelessWidget {
@@ -10,76 +10,45 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TabPage(
-      children: <Widget>[
-        UserStatSection(),
-        UserSection(
-          headerTitle: "Equipamento",
-          children: <SpriteCard>[
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "Cabeza",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "Cuerpo",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "Brazos",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "Fondo",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "Mascota",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "Piel",
-            ),
-          ],
-        ),
-        UserSection(
-          headerTitle: "Logros",
-          children: <SpriteCard>[
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
-            ),
-            SpriteCard(
-              spritePath: 'assets/images/sprites/arms/default-sprite.png',
-              title: "default sprite",
-            ),
-          ],
+    // return TabPage(
+    //   children: <Widget>[
+    //     UserStatSection(),
+    //     EquipmentSection(),
+    //     AchievementsSection(),
+    //   ],
+    // );
+
+    return CustomScrollView(
+      physics: BouncingScrollPhysics(),
+      slivers: [
+        _CustomAppBar(),
+        SliverList(
+          delegate: SliverChildListDelegate([
+            EquipmentSection(),
+            AchievementsSection(),
+            SizedBox(height: 95),
+          ]),
         ),
       ],
+    );
+  }
+}
+
+class _CustomAppBar extends StatelessWidget {
+  const _CustomAppBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      leading: Container(),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      expandedHeight: 300,
+      floating: false,
+      pinned: false,
+      stretch: true,
+      flexibleSpace: FlexibleSpaceBar(
+        background: UserStatSection(),
+      ),
     );
   }
 }

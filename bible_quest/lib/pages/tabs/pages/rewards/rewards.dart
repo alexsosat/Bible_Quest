@@ -37,7 +37,7 @@ class RewardsPage extends StatelessWidget {
       examples.add(
         CardRewardItem(
           cost: Random().nextInt(100),
-          item: 'assets/images/sprites/arms/default-sprite.png',
+          item: 'assets/images/sprites/arms/tile00${Random().nextInt(6)}.png',
         ),
       );
     } while (examples.length < 12);

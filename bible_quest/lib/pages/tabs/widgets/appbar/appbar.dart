@@ -1,3 +1,4 @@
+import 'package:bible_quest/globals/user_character.dart';
 import 'package:bible_quest/pages/tabs/widgets/appbar/clipper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,10 +46,9 @@ class BibleQuestAppBar extends StatelessWidget with PreferredSizeWidget {
               width: MediaQuery.of(context).size.width,
               child: Column(
                 children: [
-                  CircleAvatar(
-                    radius: 25,
-                    backgroundImage: NetworkImage(
-                        "https://images.unsplash.com/photo-1525357816819-392d2380d821?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=967&q=80"),
+                  UserCharacter(
+                    size: 50,
+                    shape: BoxShape.circle,
                   ),
                   Text(
                     "Alex Sosa",

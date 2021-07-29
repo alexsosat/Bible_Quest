@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bible_quest/models/items/current_items.dart';
 import 'package:bible_quest/models/items/item.dart';
 
 import 'stats/complex_stat.dart';
@@ -11,6 +12,7 @@ class User {
     required this.username,
     required this.stats,
     required this.items,
+    required this.currentItems,
     this.biography,
     this.booksReaded,
   });
@@ -20,12 +22,13 @@ class User {
   String? biography;
   UserStats stats;
   Map<String, dynamic>? booksReaded;
-
+  CurrentItems currentItems;
   List<Item> items;
 
   factory User.instance() => User(
         id: 0,
         username: "",
+        currentItems: CurrentItems.instance(),
         items: [],
         stats: UserStats.instance(),
       );
@@ -43,6 +46,8 @@ class User {
         ),
         booksReaded: json["books_readed"],
         items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+        currentItems:
+            CurrentItems.fromJson(json["current_items"]).stringtoImagePath(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -51,5 +56,6 @@ class User {
         "biography": biography,
         "books_readed": jsonEncode(booksReaded!),
         "items": List<dynamic>.from(items.map((x) => x.toJson())),
+        "current_items": currentItems.toJson(),
       }..addAll(stats.toJson());
 }

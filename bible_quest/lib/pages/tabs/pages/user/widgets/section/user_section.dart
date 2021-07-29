@@ -21,7 +21,7 @@ class UserSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(bottom: 10),
+            padding: EdgeInsets.only(bottom: 20),
             child:
                 Text(headerTitle, style: Theme.of(context).textTheme.headline6),
           ),
@@ -29,6 +29,7 @@ class UserSection extends StatelessWidget {
             width: double.infinity,
             child: GridView.count(
               primary: false,
+              padding: EdgeInsets.zero,
               crossAxisSpacing: 5,
               mainAxisSpacing: 5,
               crossAxisCount: 3,

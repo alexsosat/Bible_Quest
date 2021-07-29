@@ -1,8 +1,9 @@
 import 'package:bible_quest/globals/cards/card_display.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SpriteCard extends StatelessWidget {
-  final String spritePath;
+  final String? spritePath;
   final String title;
 
   const SpriteCard({
@@ -14,12 +15,25 @@ class SpriteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CardDisplay(
-      content: Image.asset(
-        spritePath,
-        height: 60,
-        width: 60,
-        fit: BoxFit.contain,
-      ),
+      onPressed: () {
+        Get.dialog(
+          AlertDialog(
+            title: Text("Selecciona el objeto a equipar"),
+            content: Text("Objetos"),
+          ),
+        );
+      },
+      content: (spritePath != null)
+          ? Image.asset(
+              spritePath!,
+              height: 60,
+              width: 60,
+              fit: BoxFit.contain,
+            )
+          : Container(
+              height: 60,
+              width: 60,
+            ),
       title: Container(
         margin: EdgeInsets.symmetric(vertical: 5),
         width: 60,
