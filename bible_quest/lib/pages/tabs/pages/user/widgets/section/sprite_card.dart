@@ -1,28 +1,22 @@
 import 'package:bible_quest/globals/cards/card_display.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class SpriteCard extends StatelessWidget {
   final String? spritePath;
   final String title;
+  final Function()? onPressed;
 
   const SpriteCard({
     Key? key,
     required this.spritePath,
     required this.title,
+    this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CardDisplay(
-      onPressed: () {
-        Get.dialog(
-          AlertDialog(
-            title: Text("Selecciona el objeto a equipar"),
-            content: Text("Objetos"),
-          ),
-        );
-      },
+      onPressed: onPressed,
       content: (spritePath != null)
           ? Image.asset(
               spritePath!,

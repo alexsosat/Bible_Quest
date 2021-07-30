@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class CardDisplay extends StatelessWidget {
   final Widget content;
   final Widget title;
-  final Function() onPressed;
+  final Function()? onPressed;
 
   const CardDisplay({
     Key? key,
     required this.title,
     required this.content,
-    required this.onPressed,
+    this.onPressed,
   }) : super(key: key);
 
   @override

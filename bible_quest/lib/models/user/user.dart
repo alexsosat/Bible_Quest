@@ -25,6 +25,9 @@ class User {
   CurrentItems currentItems;
   List<Item> items;
 
+  List<Item> itemfromCategory(ItemCategory category) =>
+      items.where((element) => element.type == category).toList();
+
   factory User.instance() => User(
         id: 0,
         username: "",
