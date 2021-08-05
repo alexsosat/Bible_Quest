@@ -1,8 +1,9 @@
 import 'dart:math';
+import 'package:get/get.dart';
 
 import 'package:bible_quest/api/user/fetch_user.dart';
+import 'package:bible_quest/models/items/item_exports.dart';
 import 'package:bible_quest/models/user/user.dart';
-import 'package:get/get.dart';
 
 import '../abstract_model.dart';
 
@@ -71,6 +72,17 @@ class UserController extends ControllerTemplate {
     user.stats.level++;
     userHealth.total =
         userHealth.current = userGrow.nextHealth(user.stats.level);
+  }
+
+  Future changeGear(ItemCategory key, String itemId) async {
+    Map<String, dynamic> json = user.currentItems.toJson();
+    String jsonKey = ItemCategoryHelpers.categoryToString(key);
+
+    json[jsonKey] = itemId;
+
+    user.currentItems = CurrentItems.fromJson(json);
+
+    await updateUser({"current_items": json});
   }
 }
 

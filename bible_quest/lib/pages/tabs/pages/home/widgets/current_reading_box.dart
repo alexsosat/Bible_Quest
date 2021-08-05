@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:bible_quest/globals/progress/linear_progress_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ContinueReadingBox extends StatelessWidget {

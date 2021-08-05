@@ -11,35 +11,35 @@ class AchievementsSection extends StatelessWidget {
       headerTitle: "Logros",
       children: <SpriteCard>[
         SpriteCard(
-          spritePath: 'assets/images/sprites/arms/tile000.png',
+          spritePath: 'assets/images/sprites/arm/tile000.png',
           title: "default sprite",
         ),
         SpriteCard(
-          spritePath: 'assets/images/sprites/arms/tile000.png',
+          spritePath: 'assets/images/sprites/arm/tile000.png',
           title: "default sprite",
         ),
         SpriteCard(
-          spritePath: 'assets/images/sprites/arms/tile000.png',
+          spritePath: 'assets/images/sprites/arm/tile000.png',
           title: "default sprite",
         ),
         SpriteCard(
-          spritePath: 'assets/images/sprites/arms/tile000.png',
+          spritePath: 'assets/images/sprites/arm/tile000.png',
           title: "default sprite",
         ),
         SpriteCard(
-          spritePath: 'assets/images/sprites/arms/tile000.png',
+          spritePath: 'assets/images/sprites/arm/tile000.png',
           title: "default sprite",
         ),
         SpriteCard(
-          spritePath: 'assets/images/sprites/arms/tile000.png',
+          spritePath: 'assets/images/sprites/arm/tile000.png',
           title: "default sprite",
         ),
         SpriteCard(
-          spritePath: 'assets/images/sprites/arms/tile000.png',
+          spritePath: 'assets/images/sprites/arm/tile000.png',
           title: "default sprite",
         ),
         SpriteCard(
-          spritePath: 'assets/images/sprites/arms/tile000.png',
+          spritePath: 'assets/images/sprites/arm/tile000.png',
           title: "default sprite",
         ),
       ],

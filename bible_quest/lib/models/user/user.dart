@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bible_quest/models/items/categories.dart';
 import 'package:bible_quest/models/items/current_items.dart';
 import 'package:bible_quest/models/items/item.dart';
 
@@ -25,7 +26,7 @@ class User {
   CurrentItems currentItems;
   List<Item> items;
 
-  List<Item> itemfromCategory(ItemCategory category) =>
+  List<Item> itemsfromCategory(ItemCategory category) =>
       items.where((element) => element.type == category).toList();
 
   factory User.instance() => User(
@@ -49,8 +50,7 @@ class User {
         ),
         booksReaded: json["books_readed"],
         items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
-        currentItems:
-            CurrentItems.fromJson(json["current_items"]).stringtoImagePath(),
+        currentItems: CurrentItems.fromJson(json["current_items"]),
       );
 
   Map<String, dynamic> toJson() => {

@@ -1,6 +1,6 @@
+import 'package:bible_quest/globals/user_character.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../globals/user_character.dart';
 import 'user_currency.dart';
 import 'user_stats.dart';
 

@@ -1,3 +1,5 @@
+import 'package:bible_quest/models/items/categories.dart';
+
 class CurrentItems {
   CurrentItems({
     required this.head,
@@ -18,7 +20,24 @@ class CurrentItems {
   factory CurrentItems.instance() =>
       CurrentItems(head: "tile023", body: "tile055", base: "tile007");
 
-  CurrentItems stringtoImagePath() {
+  String? categoryToItem(ItemCategory category) {
+    switch (category) {
+      case ItemCategory.arm:
+        return this.arm;
+      case ItemCategory.background:
+        return this.background;
+      case ItemCategory.base:
+        return this.base;
+      case ItemCategory.body:
+        return this.body;
+      case ItemCategory.head:
+        return this.head;
+      case ItemCategory.pet:
+        return this.pet;
+    }
+  }
+
+  CurrentItems get stringtoImagePath {
     final basePath = 'assets/images/sprites';
 
     return CurrentItems(
@@ -26,7 +45,7 @@ class CurrentItems {
       head: "$basePath/head/${this.head}.png",
       body: "$basePath/body/${this.body}.png",
       arm: (this.arm != null && this.arm!.isNotEmpty)
-          ? "$basePath/arms/${this.arm}.png"
+          ? "$basePath/arm/${this.arm}.png"
           : null,
       background: (this.background != null && this.background!.isNotEmpty)
           ? "$basePath/background/${this.background}.png"
@@ -52,6 +71,6 @@ class CurrentItems {
         "arm": arm,
         "background": background,
         "pet": pet,
-        "skin": base,
+        "base": base,
       };
 }

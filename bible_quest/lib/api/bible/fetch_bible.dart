@@ -1,10 +1,9 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 
 import 'package:bible_quest/bloc/user/user.dart';
 import 'package:bible_quest/keys.dart';
-import 'package:bible_quest/models/bible/content/chapter_content.dart';
-import 'package:bible_quest/models/bible/indexes/bible.dart';
-import 'package:get/get.dart';
+import 'package:bible_quest/models/bible/bible_exports.dart';
 
 class ApiBibleService extends GetConnect {
   Future<Bible> getBible() async {

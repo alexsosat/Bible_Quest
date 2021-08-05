@@ -30,21 +30,21 @@ class UserCharacter extends StatelessWidget {
               child: Stack(
                 children: <Widget>[
                   Image.asset(
-                    controller.user.currentItems.base,
+                    controller.user.currentItems.stringtoImagePath.base,
                     fit: BoxFit.contain,
                   ),
                   Image.asset(
-                    controller.user.currentItems.body,
+                    controller.user.currentItems.stringtoImagePath.body,
                     fit: BoxFit.contain,
                   ),
                   Image.asset(
-                    controller.user.currentItems.head,
+                    controller.user.currentItems.stringtoImagePath.head,
                     fit: BoxFit.contain,
                   ),
                   if (controller.user.currentItems.arm != null &&
                       controller.user.currentItems.arm!.isNotEmpty)
                     Image.asset(
-                      controller.user.currentItems.arm!,
+                      controller.user.currentItems.stringtoImagePath.arm!,
                       fit: BoxFit.contain,
                     ),
                 ],

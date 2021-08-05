@@ -1,9 +1,9 @@
 import 'dart:convert';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'package:bible_quest/keys.dart';
 import 'package:bible_quest/models/user/user.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class UserService extends GetConnect {
   GetStorage storage = GetStorage();

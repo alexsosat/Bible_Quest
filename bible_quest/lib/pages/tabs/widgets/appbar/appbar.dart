@@ -1,6 +1,5 @@
 import 'package:bible_quest/globals/user_character.dart';
 import 'package:bible_quest/pages/tabs/widgets/appbar/clipper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BibleQuestAppBar extends StatelessWidget with PreferredSizeWidget {

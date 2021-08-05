@@ -1,6 +1,5 @@
 import 'package:bible_quest/bloc/user/user.dart';
 import 'package:bible_quest/globals/progress/circular_progress_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

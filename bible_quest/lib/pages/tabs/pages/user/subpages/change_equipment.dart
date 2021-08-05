@@ -1,14 +1,27 @@
 import 'package:bible_quest/bloc/user/user.dart';
 import 'package:bible_quest/globals/layout/tab_page.dart';
-import 'package:bible_quest/models/items/item.dart';
+import 'package:bible_quest/models/items/item_exports.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ChangeEquipment extends StatelessWidget {
-  final List<Item> items;
-  ChangeEquipment({Key? key, required this.items}) : super(key: key);
+class ChangeEquipment extends StatefulWidget {
+  final ItemCategory category;
+  ChangeEquipment({Key? key, required this.category}) : super(key: key);
 
+  @override
+  _ChangeEquipmentState createState() => _ChangeEquipmentState();
+}
+
+class _ChangeEquipmentState extends State<ChangeEquipment> {
   final userController = Get.find<UserController>();
+  late final List<Item> items;
+
+  @override
+  void initState() {
+    items = userController.user.itemsfromCategory(widget.category);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +38,11 @@ class ChangeEquipment extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         primary: Colors.white,
                       ),
-                      onPressed: () {},
+                      onPressed: () async {
+                        await userController.changeGear(
+                            widget.category, element.assetName);
+                        setState(() {});
+                      },
                       child: Container(
                         child: Column(
                           children: [
@@ -46,14 +63,14 @@ class ChangeEquipment extends StatelessWidget {
                               ),
                               title: Text(element.displayName),
                               subtitle: Text(element.description),
-                              trailing:
-                                  (userController.user.currentItems.head ==
-                                          element.imagePath)
-                                      ? Icon(
-                                          Icons.check_circle,
-                                          color: Colors.green,
-                                        )
-                                      : null,
+                              trailing: (userController.user.currentItems
+                                          .categoryToItem(widget.category) ==
+                                      element.assetName)
+                                  ? Icon(
+                                      Icons.check_circle,
+                                      color: Colors.green,
+                                    )
+                                  : null,
                             ),
                             SizedBox(height: 10),
                             Divider(height: 0),
