@@ -1,6 +1,8 @@
 import 'package:bible_quest/bloc/bible/plan.dart';
 import 'package:bible_quest/bloc/bible/read.dart';
 import 'package:bible_quest/bloc/user/user.dart';
+import 'package:bible_quest/globals/user_character.dart';
+import 'package:bible_quest/pages/tabs/widgets/tab_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,20 +44,100 @@ class _ReadPageState extends State<ReadPage> {
 
           if (!data['isReaded']) {
             plansController.updateReadedBooks(data['books']);
-            userController.chapterReward();
-            _showSnackbar();
+            Map<String, dynamic> growStats =
+                await userController.chapterReward(onLevelUp: _levelUpDialog);
+            _showSnackbar(growStats['xp'], growStats['money']);
           }
         }
       }
     });
   }
 
-  _showSnackbar() {
+  _showSnackbar(int xp, double money) {
     Get.snackbar(
       "Bien hecho",
       "Completataste un capítulo más de la Biblia",
+      titleText: Text("Bien Hecho"),
+      messageText: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("Completataste un capítulo más de la Biblia"),
+          SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 8.0),
+                    child:
+                        Icon(TabIcons.upgrade, color: Colors.lightBlueAccent),
+                  ),
+                  Text(xp.toString()),
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 8.0),
+                    child: Icon(Icons.monetization_on, color: Colors.yellow),
+                  ),
+                  Text(money.toString()),
+                ],
+              )
+            ],
+          )
+        ],
+      ),
       snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.all(12),
+      duration: Duration(milliseconds: 1500),
+    );
+  }
+
+  Future _levelUpDialog() async {
+    int level = Get.find<UserController>().user.stats.level;
+    await Get.dialog(
+      AlertDialog(
+        title: Text("🎉  Subiste de nivel  🎉"),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            UserCharacter(size: 100),
+            SizedBox(height: 5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  "Nv. $level",
+                  style: Theme.of(context).textTheme.subtitle1,
+                ),
+                Text(
+                  "→",
+                  style: TextStyle(fontSize: 28),
+                ),
+                Text(
+                  "Nv. ${++level}",
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1!
+                      .copyWith(color: Colors.lightBlueAccent),
+                )
+              ],
+            )
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('yay!'),
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.lightBlueAccent,
+              primary: Colors.white,
+            ),
+          )
+        ],
+      ),
     );
   }
 

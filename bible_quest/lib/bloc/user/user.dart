@@ -43,7 +43,8 @@ class UserController extends ControllerTemplate {
     update();
   }
 
-  Future chapterReward() async {
+  Future<Map<String, dynamic>> chapterReward(
+      {required Future<dynamic> Function() onLevelUp}) async {
     int lv = user.stats.level;
     double moneyEarned = userGrow.getMoney(lv);
     int xpEarned = userGrow.getXP(lv);
@@ -53,7 +54,8 @@ class UserController extends ControllerTemplate {
     userExperience.current += xpEarned;
     user.stats.currency += moneyEarned;
 
-    if (userExperience.current >= userExperience.total) this.levelUp();
+    if (userExperience.current >= userExperience.total)
+      await this.levelUp(onLevelUp);
 
     updateUser({
       "currency": moneyEarned,
@@ -61,9 +63,15 @@ class UserController extends ControllerTemplate {
       "experience": userExperience.toJson(),
       "health": userExperience.toJson(),
     });
+
+    return {
+      'money': moneyEarned,
+      'xp': xpEarned,
+    };
   }
 
-  void levelUp() {
+  Future levelUp(Future<dynamic> Function() onLevelUp) async {
+    await onLevelUp();
     var userExperience = user.stats.experience;
     var userHealth = user.stats.health;
 
