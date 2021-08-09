@@ -6,6 +6,7 @@ class CardItem extends StatelessWidget {
   final double height;
   final double width;
   final double radiusSpread;
+  final Function()? onPressed;
 
   const CardItem({
     Key? key,
@@ -14,12 +15,13 @@ class CardItem extends StatelessWidget {
     this.height = 164,
     this.width = 124,
     this.radiusSpread = 12.0,
+    this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: TextButton.styleFrom(
         fixedSize: Size(width, height),
         primary: Colors.white,

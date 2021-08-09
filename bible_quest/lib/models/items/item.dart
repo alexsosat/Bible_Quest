@@ -4,17 +4,17 @@ class Item {
   Item({
     required this.id,
     required this.assetName,
-    required this.cost,
     required this.displayName,
     required this.type,
     required this.description,
+    required this.appearRate,
     this.effects,
   });
 
   int id;
   String assetName;
   String description;
-  int cost;
+  double appearRate;
   Map<String, dynamic>? effects;
   String displayName;
   ItemCategory type;
@@ -26,9 +26,9 @@ class Item {
         id: json["id"],
         assetName: json["asset_name"],
         description: json["description"],
-        cost: json["cost"],
         effects: json["effects"],
         displayName: json["display_name"],
+        appearRate: json["appearRate"].toDouble(),
         type: ItemCategoryHelpers.stringToCategory(json["type"]),
       );
 
@@ -36,7 +36,6 @@ class Item {
         "id": id,
         "asset_name": assetName,
         "description": description,
-        "cost": cost,
         "effects": effects,
         "display_name": displayName,
         "type": ItemCategoryHelpers.categoryToString(type),
