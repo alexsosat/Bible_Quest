@@ -1,7 +1,6 @@
 import 'package:bible_quest/globals/cards/card_center_item.dart';
 import 'package:bible_quest/models/items/item_banner.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'banner_dialog.dart';
 
@@ -21,7 +20,7 @@ class CardRewardItem extends StatelessWidget {
         width: double.maxFinite,
         radiusSpread: 2,
         centerItem: Image.asset(
-          "assets/images/sprites/chests/chest000.png", //TODO: search for better images
+          "assets/images/sprites/miscellaneous/tile000.png", //TODO: search for better images
           fit: BoxFit.contain,
           height: 50,
         ),
@@ -32,7 +31,11 @@ class CardRewardItem extends StatelessWidget {
               .subtitle1!
               .copyWith(fontWeight: FontWeight.bold),
         ),
-        onPressed: () => bannerDialog(banner),
+        onPressed: () async {
+          final reward = await bannerDialog(banner);
+          //print(reward);
+          if (reward.isNotEmpty) rewardedItemsDialog(reward);
+        },
       ),
     );
   }

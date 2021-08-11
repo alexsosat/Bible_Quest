@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bible_quest/bloc/store/store.dart';
 import 'package:bible_quest/globals/layout/tab_page.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +24,11 @@ class RewardsPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 children: controller.banners
+                    .where((banner) {
+                      final currentTime = DateTime.now();
+                      return currentTime.isAfter(banner.startDate) &&
+                          currentTime.isBefore(banner.endDate);
+                    })
                     .map(
                       (element) => CardRewardItem(
                         banner: element,

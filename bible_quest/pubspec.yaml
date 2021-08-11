@@ -55,7 +55,7 @@ flutter:
     - assets/images/sprites/base/
     - assets/images/sprites/body/
     - assets/images/sprites/head/
-    - assets/images/sprites/chests/
+    - assets/images/sprites/miscellaneous/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
