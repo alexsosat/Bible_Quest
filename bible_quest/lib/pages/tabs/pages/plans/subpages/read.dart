@@ -2,6 +2,7 @@ import 'package:bible_quest/bloc/bible/plan.dart';
 import 'package:bible_quest/bloc/bible/read.dart';
 import 'package:bible_quest/bloc/user/user.dart';
 import 'package:bible_quest/globals/user_character.dart';
+import 'package:bible_quest/pages/tabs/pages/plans/widgets/read_page_icons_icons.dart';
 import 'package:bible_quest/pages/tabs/widgets/tab_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,7 @@ class ReadPage extends StatefulWidget {
 
 class _ReadPageState extends State<ReadPage> {
   final _scrollController = ScrollController();
+  double _value = 18.0;
 
   @override
   void initState() {
@@ -151,6 +153,32 @@ class _ReadPageState extends State<ReadPage> {
               title: (readerController.isLoading.value)
                   ? Text("Cargando")
                   : Text(readerController.content.value.data.reference),
+              actions: (!readerController.isLoading.value)
+                  ? [
+                      IconButton(
+                        onPressed: () {
+                          if (_value > 18) {
+                            setState(() {
+                              _value -= 6;
+                            });
+                          }
+                        },
+                        icon: Icon(ReadPageIcons
+                            .format_font_size_decrease_icon_136597),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          if (_value < 76) {
+                            setState(() {
+                              _value += 6;
+                            });
+                          }
+                        },
+                        icon: Icon(ReadPageIcons
+                            .format_font_size_increase_icon_137585),
+                      ),
+                    ]
+                  : null,
             ),
             body: (readerController.isLoading.value)
                 ? Center(child: CircularProgressIndicator())
@@ -167,8 +195,10 @@ class _ReadPageState extends State<ReadPage> {
                               EdgeInsets.only(top: 20, left: 10, right: 10),
                           child: Text(
                             readerController.content.value.data.content,
-                            style:
-                                Get.textTheme.subtitle1!.copyWith(height: 1.5),
+                            style: Get.textTheme.subtitle1!.copyWith(
+                              height: 1.5,
+                              fontSize: _value,
+                            ),
                           ),
                         ),
                       ),
