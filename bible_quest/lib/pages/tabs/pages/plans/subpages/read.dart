@@ -4,6 +4,7 @@ import 'package:bible_quest/bloc/user/user.dart';
 import 'package:bible_quest/globals/user_character.dart';
 import 'package:bible_quest/pages/tabs/pages/plans/widgets/read_page_icons_icons.dart';
 import 'package:bible_quest/pages/tabs/widgets/tab_icons_icons.dart';
+import 'package:bible_quest/services/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,12 +22,14 @@ class ReadPage extends StatefulWidget {
 
 class _ReadPageState extends State<ReadPage> {
   final _scrollController = ScrollController();
-  double _value = 18.0;
+  final storage = Storage();
+  late double _value;
 
   @override
   void initState() {
     super.initState();
-
+    _value = (storage.getStorage.hasData('fontSize')) ? storage.fontSize : 18;
+    print(_value);
     // Setup the listener.
     _scrollController.addListener(() async {
       if (_scrollController.position.atEdge) {
@@ -158,6 +161,7 @@ class _ReadPageState extends State<ReadPage> {
                       IconButton(
                         onPressed: () {
                           if (_value > 18) {
+                            storage.write('fontSize', _value - 6);
                             setState(() {
                               _value -= 6;
                             });
@@ -169,6 +173,7 @@ class _ReadPageState extends State<ReadPage> {
                       IconButton(
                         onPressed: () {
                           if (_value < 76) {
+                            storage.write('fontSize', _value + 6);
                             setState(() {
                               _value += 6;
                             });

@@ -1,12 +1,12 @@
 import 'package:get_storage/get_storage.dart';
 
 class Storage {
-  GetStorage storage = GetStorage();
+  GetStorage getStorage = GetStorage();
 
-  int get userId => storage.read('userId');
+  int get userId => getStorage.read('userId');
 
-  int get fontSize => storage.read('fontSize');
+  double get fontSize => getStorage.read('fontSize');
 
   Future<void> write(String key, dynamic value) async =>
-      await storage.write(key, value);
+      await getStorage.write(key, value);
 }
