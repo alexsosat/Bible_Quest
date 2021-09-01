@@ -25,7 +25,7 @@ class CardItem extends StatelessWidget {
       style: TextButton.styleFrom(
         fixedSize: Size(width, height),
         primary: Colors.white,
-        backgroundColor: Color(0xFF151529),
+        backgroundColor: Theme.of(context).cardColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),

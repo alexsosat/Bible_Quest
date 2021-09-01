@@ -1,6 +1,9 @@
+import 'package:bible_quest/bloc/navigation.dart';
 import 'package:bible_quest/globals/cards/card_center_item.dart';
 import 'package:bible_quest/models/items/item_banner.dart';
+import 'package:bible_quest/pages/tabs/pages/rewards/subpages/banner.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'banner_dialog.dart';
 
@@ -32,9 +35,13 @@ class CardRewardItem extends StatelessWidget {
               .copyWith(fontWeight: FontWeight.bold),
         ),
         onPressed: () async {
-          final reward = await bannerDialog(banner);
-          //print(reward);
-          if (reward.isNotEmpty) rewardedItemsDialog(reward);
+          Get.find<NavigationController>().goToSubTabView(
+            BannerPage(banner: banner),
+            context,
+          );
+          // final reward = await bannerDialog(banner);
+
+          // if (reward.isNotEmpty) rewardedItemsDialog(reward);
         },
       ),
     );

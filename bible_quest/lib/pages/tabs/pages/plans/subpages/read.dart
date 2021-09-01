@@ -198,7 +198,7 @@ class _ReadPageState extends State<ReadPage> {
                           controller: _scrollController,
                           padding:
                               EdgeInsets.only(top: 20, left: 10, right: 10),
-                          child: Text(
+                          child: SelectableText(
                             readerController.content.value.data.content,
                             style: Get.textTheme.subtitle1!.copyWith(
                               height: 1.5,

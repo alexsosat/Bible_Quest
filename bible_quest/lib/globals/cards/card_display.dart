@@ -20,7 +20,7 @@ class CardDisplay extends StatelessWidget {
             onPressed: onPressed,
             style: TextButton.styleFrom(
               primary: Colors.white,
-              backgroundColor: Color(0xFF151529),
+              backgroundColor: Theme.of(context).cardColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
