@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 
 import 'widgets/card_reward_item.dart';
 
-class RewardsPage extends StatelessWidget {
-  const RewardsPage({Key? key}) : super(key: key);
+class BannerListPage extends StatelessWidget {
+  const BannerListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

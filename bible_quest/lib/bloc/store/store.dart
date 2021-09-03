@@ -37,7 +37,8 @@ class StoreController extends ControllerTemplate {
     final user = Get.find<UserController>().user;
 
     for (int i = 0; i < count; i++) {
-      if (i <= 5) {
+      if (i < 5) {
+        print("entre $i");
         user.stats.currency -= banner.cost;
       }
       double random = Random().nextDouble() * weight;
@@ -67,7 +68,6 @@ class StoreController extends ControllerTemplate {
     await Get.find<UserController>()
         .updateUser({'currency': json['currency'], 'items': json['items']});
 
-    Get.back();
     return rewards;
   }
 

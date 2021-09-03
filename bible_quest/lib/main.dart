@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'pages/login/login.dart';
 
@@ -38,14 +38,16 @@ class MyApp extends StatelessWidget {
         cardColor: Color(0xFF151529),
         fontFamily: 'sk_Modernist',
         appBarTheme: AppBarTheme(
-            brightness: Brightness.light,
-            textTheme: TextTheme(
-                headline6: Theme.of(context).textTheme.headline6!.copyWith(
-                      color: Colors.white,
-                    )),
-            iconTheme: IconThemeData(
-              color: Colors.white,
-            )),
+          brightness: Brightness.light,
+          textTheme: TextTheme(
+            headline6: Theme.of(context).textTheme.headline6!.copyWith(
+                  color: Colors.white,
+                ),
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+        ),
       ),
       builder: (BuildContext context, Widget? child) {
         Intl.defaultLocale = Localizations.localeOf(context).languageCode;

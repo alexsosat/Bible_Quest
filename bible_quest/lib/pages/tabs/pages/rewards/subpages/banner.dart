@@ -1,7 +1,7 @@
-import 'package:bible_quest/bloc/store/store.dart';
 import 'package:bible_quest/bloc/user/user.dart';
 import 'package:bible_quest/globals/layout/tab_page.dart';
 import 'package:bible_quest/models/items/item_exports.dart';
+import 'package:bible_quest/pages/tabs/pages/rewards/subpages/rewards.dart';
 import 'package:bible_quest/pages/tabs/pages/user/widgets/section/sprite_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -92,8 +92,13 @@ class BannerPage extends StatelessWidget {
                     ElevatedButton(
                       onPressed: (userCurrency >= banner.cost)
                           ? () async {
-                              rewards = await Get.find<StoreController>()
-                                  .buyItem(banner, 1);
+                              Get.to(
+                                () => RewardsPage(
+                                  banner: banner,
+                                  rewardCount: 1,
+                                ),
+                                transition: Transition.rightToLeft,
+                              );
                             }
                           : null,
                       child: Text('1 item'),
@@ -120,8 +125,13 @@ class BannerPage extends StatelessWidget {
                     ElevatedButton(
                       onPressed: (userCurrency >= (banner.cost * 5))
                           ? () async {
-                              rewards = await Get.find<StoreController>()
-                                  .buyItem(banner, 6);
+                              Get.to(
+                                () => RewardsPage(
+                                  banner: banner,
+                                  rewardCount: 6,
+                                ),
+                                transition: Transition.rightToLeft,
+                              );
                             }
                           : null,
                       child: Text('6 items'),
