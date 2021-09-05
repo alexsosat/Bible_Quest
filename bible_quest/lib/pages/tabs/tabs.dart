@@ -2,16 +2,10 @@ import 'dart:ui';
 
 import 'package:bible_quest/bloc/navigation.dart';
 import 'package:bible_quest/models/bible/indexes/sections.dart';
-import 'package:bible_quest/pages/tabs/widgets/appbar/appbar.dart';
+import 'package:bible_quest/pages/tabs/pages/page_export.dart';
 import 'package:bible_quest/pages/tabs/widgets/tab_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'pages/home/home.dart';
-import 'pages/missions/missions.dart';
-import 'pages/plans/plans.dart';
-import 'pages/rewards/banner_list.dart';
-import 'pages/user/user.dart';
 
 class TabsPage extends StatefulWidget {
   @override
@@ -45,10 +39,6 @@ class _TabsPageState extends State<TabsPage>
                     controller: _.tabController,
                     physics: NeverScrollableScrollPhysics(),
                     children: _.mainTabs,
-                  ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: BibleQuestAppBar(),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,

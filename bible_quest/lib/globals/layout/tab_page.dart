@@ -1,3 +1,4 @@
+import 'package:bible_quest/pages/tabs/widgets/appbar/appbar.dart';
 import 'package:flutter/material.dart';
 
 class TabPage extends StatelessWidget {
@@ -8,20 +9,28 @@ class TabPage extends StatelessWidget {
   const TabPage({
     Key? key,
     required this.children,
-    this.topSpace = 115,
+    this.topSpace = 150,
     this.bottomSpace = 95,
     this.horizontalPadding = 0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: BouncingScrollPhysics(),
-      padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-      children: <Widget>[
-        SizedBox(height: topSpace),
-        ...children,
-        SizedBox(height: bottomSpace),
+    return Stack(
+      children: [
+        ListView(
+          physics: BouncingScrollPhysics(),
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+          children: <Widget>[
+            SizedBox(height: topSpace),
+            ...children,
+            SizedBox(height: bottomSpace),
+          ],
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: BibleQuestAppBar(),
+        ),
       ],
     );
   }

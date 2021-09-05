@@ -1,6 +1,6 @@
 import 'package:bible_quest/bloc/user/missions.dart';
+import 'package:bible_quest/globals/layout/buider_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'sections/daily_missions.dart';
 import 'sections/monthly_missions.dart';
@@ -17,34 +17,30 @@ class MissionsPage extends StatefulWidget {
 class _MissionsPageState extends State<MissionsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 130, bottom: 0),
-      child: GetBuilder<MissionsController>(
-          init: MissionsController(),
-          builder: (_) {
-            return Column(
-              children: <Widget>[
-                SectionRow(),
-                Expanded(
-                  child: PageView(
-                    controller: _.controller,
-                    scrollDirection: Axis.horizontal,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: <Widget>[
-                      ///Page 1
-                      DailyMissions(),
+    return BuilderPage<MissionsController>(
+      controller: MissionsController(),
+      scrollPhysics: NeverScrollableScrollPhysics(),
+      children: (controller) => <Widget>[
+        SectionRow(),
+        Container(
+          height: 500,
+          child: PageView(
+            controller: controller.controller,
+            scrollDirection: Axis.horizontal,
+            physics: NeverScrollableScrollPhysics(),
+            children: <Widget>[
+              ///Page 1
+              DailyMissions(),
 
-                      ///Page 2
-                      WeeklyMissions(),
+              ///Page 2
+              WeeklyMissions(),
 
-                      ///Page 3
-                      MonthlyMissions(),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          }),
+              ///Page 3
+              MonthlyMissions(),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

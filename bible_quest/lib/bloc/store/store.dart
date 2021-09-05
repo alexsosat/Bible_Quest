@@ -27,6 +27,7 @@ class StoreController extends ControllerTemplate {
       banners(await ApiBannerService().getBanners());
     } finally {
       isLoading(false);
+      update();
     }
   }
 

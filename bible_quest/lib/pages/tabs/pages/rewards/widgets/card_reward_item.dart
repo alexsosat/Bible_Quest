@@ -5,8 +5,6 @@ import 'package:bible_quest/pages/tabs/pages/rewards/subpages/banner.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'banner_dialog.dart';
-
 class CardRewardItem extends StatelessWidget {
   final ItemBanner banner;
   const CardRewardItem({

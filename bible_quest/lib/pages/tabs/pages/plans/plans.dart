@@ -1,6 +1,6 @@
 import 'package:bible_quest/bloc/navigation.dart';
 import 'package:bible_quest/bloc/bible/plan.dart';
-import 'package:bible_quest/globals/layout/tab_page.dart';
+import 'package:bible_quest/globals/layout/buider_page.dart';
 import 'package:bible_quest/models/bible/indexes/sections.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,19 +23,10 @@ class PlansPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0),
-        child: GetBuilder<PlansController>(
-            init: PlansController(),
-            builder: (_) {
-              if (_.isLoading.value)
-                return Center(child: CircularProgressIndicator());
-              return TabPage(
-                children: _sectionsContent(_, context),
-              );
-            }),
-      ),
+    return BuilderPage<PlansController>(
+      controller: PlansController(),
+      horizontalPadding: 20.0,
+      children: (controller) => _sectionsContent(controller, context),
     );
   }
 

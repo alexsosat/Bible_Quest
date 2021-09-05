@@ -1,3 +1,4 @@
+import 'package:bible_quest/pages/tabs/widgets/appbar/appbar.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/stats/achivements.dart';
@@ -10,16 +11,24 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        physics: BouncingScrollPhysics(),
-        slivers: [
-          UserAppBar(),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              EquipmentSection(),
-              AchievementsSection(),
-              SizedBox(height: 95),
-            ]),
+      body: Stack(
+        children: [
+          CustomScrollView(
+            physics: BouncingScrollPhysics(),
+            slivers: [
+              UserAppBar(),
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  EquipmentSection(),
+                  AchievementsSection(),
+                  SizedBox(height: 95),
+                ]),
+              ),
+            ],
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: BibleQuestAppBar(),
           ),
         ],
       ),

@@ -13,7 +13,7 @@ class UserStatSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
-      margin: EdgeInsets.only(top: 160),
+      margin: EdgeInsets.only(top: 140),
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [

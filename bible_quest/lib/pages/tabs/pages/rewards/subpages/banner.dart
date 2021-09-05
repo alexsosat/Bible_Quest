@@ -15,7 +15,6 @@ class BannerPage extends StatelessWidget {
   }) : super(key: key);
 
   final userCurrency = Get.find<UserController>().user.stats.currency;
-  List<RewardItem> rewards = List.empty(growable: true);
 
   @override
   Widget build(BuildContext context) {
