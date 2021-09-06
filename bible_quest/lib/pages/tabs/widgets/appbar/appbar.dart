@@ -26,19 +26,44 @@ class BibleQuestAppBar extends StatelessWidget with PreferredSizeWidget {
                 tileMode: TileMode.clamp)),
         child: Stack(
           children: <Widget>[
-            Container(
-                margin: EdgeInsets.only(top: kToolbarHeight - 20, left: 10),
-                child: Icon(Icons.menu)),
+            (!Navigator.of(context).canPop())
+                ? Container(
+                    margin: EdgeInsets.only(top: kToolbarHeight - 30),
+                    child: Material(
+                      elevation: 0,
+                      clipBehavior: Clip.hardEdge,
+                      type: MaterialType.circle,
+                      color: Colors.transparent,
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.menu),
+                      ),
+                    ),
+                  )
+                : Container(
+                    margin: EdgeInsets.only(top: kToolbarHeight - 30),
+                    child: Material(
+                      elevation: 0,
+                      clipBehavior: Clip.hardEdge,
+                      type: MaterialType.circle,
+                      color: Colors.transparent,
+                      child: IconButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        icon: Icon(Icons.arrow_back),
+                      ),
+                    ),
+                  ),
             Positioned(
               top: kToolbarHeight - 27,
               right: 10,
               child: Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1.5, color: Colors.white),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(Icons.notifications)),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1.5, color: Colors.white),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(Icons.notifications),
+              ),
             ),
             Container(
               margin: EdgeInsets.only(top: kToolbarHeight - 25),

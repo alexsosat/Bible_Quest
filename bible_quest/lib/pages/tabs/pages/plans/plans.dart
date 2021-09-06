@@ -26,11 +26,16 @@ class PlansPage extends StatelessWidget {
     return BuilderPage<PlansController>(
       controller: PlansController(),
       horizontalPadding: 20.0,
-      children: (controller) => _sectionsContent(controller, context),
+      children: (controller) => _sectionsContent(
+        context,
+      ),
     );
   }
 
-  List<Widget> _sectionsContent(PlansController _, BuildContext context) {
+  List<Widget> _sectionsContent(
+    BuildContext context,
+  ) {
+    final _ = Get.find<PlansController>();
     switch (section) {
       case BibleSections.main:
         return [
@@ -41,8 +46,9 @@ class PlansPage extends StatelessWidget {
             onPressed: () {
               Get.find<NavigationController>().goToSubTabView(
                   PlansPage(
-                      section: BibleSections.books,
-                      testament: BibleTestaments.at),
+                    section: BibleSections.books,
+                    testament: BibleTestaments.at,
+                  ),
                   context);
             },
           ),
@@ -53,8 +59,9 @@ class PlansPage extends StatelessWidget {
             onPressed: () {
               Get.find<NavigationController>().goToSubTabView(
                   PlansPage(
-                      section: BibleSections.books,
-                      testament: BibleTestaments.nt),
+                    section: BibleSections.books,
+                    testament: BibleTestaments.nt,
+                  ),
                   context);
             },
           ),
