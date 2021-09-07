@@ -2,6 +2,7 @@ import 'package:bible_quest/bloc/bible/plan.dart';
 import 'package:bible_quest/bloc/bible/read.dart';
 import 'package:bible_quest/bloc/user/user.dart';
 import 'package:bible_quest/globals/user_character.dart';
+import 'package:bible_quest/models/bible/indexes/current_reading.dart';
 import 'package:bible_quest/pages/tabs/pages/plans/widgets/read_page_icons_icons.dart';
 import 'package:bible_quest/pages/tabs/widgets/tab_icons_icons.dart';
 import 'package:bible_quest/services/storage.dart';
@@ -23,39 +24,61 @@ class ReadPage extends StatefulWidget {
 class _ReadPageState extends State<ReadPage> {
   final _scrollController = ScrollController();
   final storage = Storage();
+  late CurrentReading currentReading = CurrentReading(
+    reference: "",
+    chapterProgress: 0,
+  );
+
   late double _value;
+
+  @override
+  void dispose() {
+    storage.write(
+      'curReading',
+      currentReading.toJson(),
+    );
+
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
     _value = (storage.getStorage.hasData('fontSize')) ? storage.fontSize : 18;
-    print(_value);
+
     // Setup the listener.
-    _scrollController.addListener(() async {
-      if (_scrollController.position.atEdge) {
-        if (_scrollController.position.pixels == 0) {
-          // You're at the top.
-        } else {
-          // You're at the bottom.
+    _scrollController.addListener(
+      () async {
+        currentReading.chapterProgress = ((_scrollController.position.pixels /
+                    _scrollController.position.maxScrollExtent) *
+                100)
+            .toInt();
+        if (_scrollController.position.atEdge) {
+          if (_scrollController.position.pixels == 0) {
+            // You're at the top.
+          } else {
+            // You're at the bottom.
 
-          var userController = Get.find<UserController>();
-          var plansController = Get.find<PlansController>();
-          var readController = Get.find<ReadController>();
+            var userController = Get.find<UserController>();
+            var plansController = Get.find<PlansController>();
+            var readController = Get.find<ReadController>();
 
-          Map<String, dynamic>? readedBooks = userController.user.booksReaded;
+            Map<String, dynamic>? readedBooks = userController.user.booksReaded;
 
-          Map<String, dynamic> data =
-              readController.isChapterReaded(readedBooks);
+            Map<String, dynamic> data =
+                readController.isChapterReaded(readedBooks);
 
-          if (!data['isReaded']) {
-            plansController.updateReadedBooks(data['books']);
-            Map<String, dynamic> growStats =
-                await userController.chapterReward(onLevelUp: _levelUpDialog);
-            _showSnackbar(growStats['xp'], growStats['money']);
+            if (!data['isReaded']) {
+              plansController.updateReadedBooks(data['books']);
+              Map<String, dynamic> growStats =
+                  await userController.chapterReward(onLevelUp: _levelUpDialog);
+              _showSnackbar(growStats['xp'], growStats['money']);
+            }
           }
         }
-      }
-    });
+      },
+    );
   }
 
   _showSnackbar(int xp, double money) {
@@ -151,6 +174,10 @@ class _ReadPageState extends State<ReadPage> {
     return GetX<ReadController>(
         init: ReadController(chapterId: widget.chapterId),
         builder: (readerController) {
+          if (!readerController.isLoading.value) {
+            currentReading.reference =
+                readerController.content.value.data.reference;
+          }
           return Scaffold(
             appBar: AppBar(
               title: (readerController.isLoading.value)
