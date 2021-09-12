@@ -1,4 +1,4 @@
-import 'package:bible_quest/modules/tabs/modules/user/models/current_reading.dart';
+import 'package:bible_quest/app/modules/user/models/current_reading.dart';
 import 'package:get_storage/get_storage.dart';
 
 class Storage {

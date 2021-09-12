@@ -4,7 +4,7 @@ import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 
-import 'modules/login/views/login.dart';
+import 'app/routes/app_pages.dart';
 
 void main() async {
   await GetStorage.init();
@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Bible Quest',
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       locale: Locale('es'),
       supportedLocales: [
@@ -56,7 +58,6 @@ class MyApp extends StatelessWidget {
           child: child!,
         );
       },
-      home: LoginPage(),
     );
   }
 }

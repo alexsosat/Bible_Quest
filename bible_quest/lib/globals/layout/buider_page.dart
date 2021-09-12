@@ -1,9 +1,8 @@
-import 'package:bible_quest/bloc/abstract_model.dart';
 import 'package:bible_quest/globals/appbar/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BuilderPage<T extends ControllerTemplate> extends StatelessWidget {
+class BuilderPage<T extends GetxController> extends StatelessWidget {
   final List<Widget> Function(T controller) children;
   final T controller;
   final double topSpace;
