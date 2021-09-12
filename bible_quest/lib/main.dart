@@ -4,7 +4,7 @@ import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 
-import 'pages/login/login.dart';
+import 'modules/login/views/login.dart';
 
 void main() async {
   await GetStorage.init();

@@ -1,4 +1,4 @@
-import 'package:bible_quest/bloc/user/user.dart';
+import 'package:bible_quest/modules/tabs/modules/user/controllers/user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,5 @@
 import 'package:bible_quest/bloc/abstract_model.dart';
-import 'package:bible_quest/pages/tabs/widgets/appbar/appbar.dart';
+import 'package:bible_quest/globals/appbar/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
