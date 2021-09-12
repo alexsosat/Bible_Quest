@@ -1,7 +1,6 @@
 import 'package:bible_quest/bloc/abstract_model.dart';
 import 'package:bible_quest/models/bible/indexes/current_reading.dart';
 import 'package:bible_quest/services/storage.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CurrentReadingController extends ControllerTemplate {

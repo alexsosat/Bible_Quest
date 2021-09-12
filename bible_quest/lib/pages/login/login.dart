@@ -1,5 +1,5 @@
-import 'package:bible_quest/pages/tabs/tabs.dart';
-import 'package:bible_quest/services/storage.dart';
+import 'package:bible_quest/bloc/user/login.dart';
+import 'package:bible_quest/pages/login/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,13 +9,17 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          child: Text("Login"),
-          onPressed: () async {
-            await Storage().write('userId', 1);
-            Get.off(() => TabsPage());
-          },
+      body: GetBuilder<ApplicationState>(
+        init: ApplicationState(),
+        builder: (appState) => Authentication(
+          email: appState.email,
+          loginState: appState.loginState,
+          startLoginFlow: appState.startLoginFlow,
+          verifyEmail: appState.verifyEmail,
+          signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
+          cancelRegistration: appState.cancelRegistration,
+          registerAccount: appState.registerAccount,
+          signOut: appState.signOut,
         ),
       ),
     );

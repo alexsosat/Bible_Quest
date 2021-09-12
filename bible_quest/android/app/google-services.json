@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "692856732059",
+    "project_id": "biblequest-fecbf",
+    "storage_bucket": "biblequest-fecbf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692856732059:android:a81f8324311055595d093e",
+        "android_client_info": {
+          "package_name": "com.example.bible_quest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692856732059-hclq6u4o22cq4i7sg0klfv0u0pfqhk8q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR5hR6E1pRO5ZOz04YjIVBJ9TO2RncwVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692856732059-hclq6u4o22cq4i7sg0klfv0u0pfqhk8q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
