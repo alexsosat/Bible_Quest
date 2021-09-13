@@ -1,4 +1,4 @@
-import 'package:bible_quest/globals/layout/buider_page.dart';
+import 'package:bible_quest/globals/layout/tab_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,9 +9,8 @@ import 'widgets/card_reward_item.dart';
 class BannersView extends GetView<BannersController> {
   @override
   Widget build(BuildContext context) {
-    return BuilderPage<BannersController>(
-      controller: BannersController(),
-      children: (controller) => <Widget>[
+    return TabPage(
+      children: <Widget>[
         Container(
             margin: EdgeInsets.only(bottom: 20),
             padding: EdgeInsets.symmetric(horizontal: 20),

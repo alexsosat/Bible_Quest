@@ -1,6 +1,12 @@
 import 'dart:ui';
 
+import 'package:bible_quest/app/modules/banners/views/banners_view.dart';
+import 'package:bible_quest/app/modules/lectures/models/bible/bible_exports.dart';
+import 'package:bible_quest/app/modules/lectures/views/lectures_view.dart';
 import 'package:bible_quest/app/modules/tabs/controllers/tabs_controller.dart';
+import 'package:bible_quest/app/modules/user/views/home/home.dart';
+import 'package:bible_quest/app/modules/user/views/missions/missions.dart';
+import 'package:bible_quest/app/modules/user/views/overview/user.dart';
 import 'package:bible_quest/globals/tab_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,8 +21,8 @@ class _TabsViewState extends State<TabsView>
   final List<Widget> widgetsChildren = [
     HomePage(),
     MissionsPage(),
-    PlansPage(section: BibleSections.main),
-    BannerListPage(),
+    LecturesView(section: BibleSections.main),
+    BannersView(),
     UserPage(),
   ];
 
@@ -76,7 +82,9 @@ class _TabsViewState extends State<TabsView>
                                         padding: const EdgeInsets.all(15.0),
                                         child: Icon(
                                           TabIcons.read,
-                                          color: Theme.of(context).accentColor,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
                                         ),
                                       ),
                                     ),

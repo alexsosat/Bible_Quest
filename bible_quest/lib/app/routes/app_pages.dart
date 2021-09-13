@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
 
-import 'package:bible_quest/app/modules/banners/bindings/banners_binding.dart';
-
 import 'package:bible_quest/app/modules/login/bindings/login_binding.dart';
 import 'package:bible_quest/app/modules/login/views/login_view.dart';
 import 'package:bible_quest/app/modules/tabs/bindings/tabs_binding.dart';

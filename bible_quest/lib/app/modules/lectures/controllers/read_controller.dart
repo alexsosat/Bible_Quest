@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 class ReadController extends GetxController {
   String chapterId;
+  var isLoading = true.obs;
   ReadController({required this.chapterId});
 
   var content = ChapterContent.instance().obs;
@@ -25,11 +26,11 @@ class ReadController extends GetxController {
 
   void fetchChapter() async {
     try {
-      // isLoading(true);
+      isLoading(true);
       var response = await BibleProvider().getChapter(chapterId);
       content(response);
     } finally {
-      // isLoading(false);
+      isLoading(false);
     }
   }
 

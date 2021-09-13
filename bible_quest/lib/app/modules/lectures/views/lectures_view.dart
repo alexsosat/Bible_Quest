@@ -1,6 +1,6 @@
 import 'package:bible_quest/app/modules/lectures/models/bible/bible_exports.dart';
 import 'package:bible_quest/app/modules/tabs/controllers/tabs_controller.dart';
-import 'package:bible_quest/globals/layout/buider_page.dart';
+import 'package:bible_quest/globals/layout/tab_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -24,10 +24,9 @@ class LecturesView extends GetView<LecturesController> {
 
   @override
   Widget build(BuildContext context) {
-    return BuilderPage<LecturesController>(
-      controller: LecturesController(),
+    return TabPage(
       horizontalPadding: 20.0,
-      children: (controller) => _sectionsContent(
+      children: _sectionsContent(
         context,
       ),
     );

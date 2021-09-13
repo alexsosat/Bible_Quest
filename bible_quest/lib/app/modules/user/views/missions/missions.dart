@@ -1,5 +1,4 @@
-import 'package:bible_quest/app/modules/user/controllers/missions_controller.dart';
-import 'package:bible_quest/globals/layout/buider_page.dart';
+import 'package:bible_quest/globals/layout/tab_page.dart';
 import 'package:flutter/material.dart';
 
 import 'sections/daily_missions.dart';
@@ -17,15 +16,13 @@ class MissionsPage extends StatefulWidget {
 class _MissionsPageState extends State<MissionsPage> {
   @override
   Widget build(BuildContext context) {
-    return BuilderPage<MissionsController>(
-      controller: MissionsController(),
-      scrollPhysics: NeverScrollableScrollPhysics(),
-      children: (controller) => <Widget>[
+    return TabPage(
+      children: <Widget>[
         SectionRow(),
         Container(
           height: 500,
           child: PageView(
-            controller: controller.controller,
+            // controller: controller.controller,
             scrollDirection: Axis.horizontal,
             physics: NeverScrollableScrollPhysics(),
             children: <Widget>[

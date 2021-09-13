@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
@@ -18,9 +19,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Bible Quest',
+
+      //Routing
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
+
+      //Internationalization
       locale: Locale('es'),
       supportedLocales: [
         Locale('es'),
@@ -32,25 +37,29 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+
+      //theme
       theme: ThemeData(
         scaffoldBackgroundColor: Color.fromRGBO(25, 26, 50, 1.0),
         brightness: Brightness.dark,
-        primaryColor: Color.fromRGBO(51, 230, 246, 1.0),
-        accentColor: Color.fromRGBO(41, 52, 208, 1.0),
+        colorScheme: ColorScheme.dark(
+          primary: Color.fromRGBO(51, 230, 246, 1.0),
+          secondary: Color.fromRGBO(41, 52, 208, 1.0),
+        ),
         cardColor: Color(0xFF151529),
         fontFamily: 'sk_Modernist',
         appBarTheme: AppBarTheme(
-          brightness: Brightness.light,
-          textTheme: TextTheme(
-            headline6: Theme.of(context).textTheme.headline6!.copyWith(
-                  color: Colors.white,
-                ),
-          ),
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          titleTextStyle: Theme.of(context).textTheme.headline6!.copyWith(
+                color: Colors.white,
+              ),
           iconTheme: IconThemeData(
             color: Colors.white,
           ),
         ),
       ),
+
+      //Builder
       builder: (BuildContext context, Widget? child) {
         Intl.defaultLocale = Localizations.localeOf(context).languageCode;
         return MediaQuery(
