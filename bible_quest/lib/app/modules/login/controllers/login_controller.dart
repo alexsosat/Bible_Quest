@@ -10,6 +10,16 @@ class LoginController extends GetxController {
   ApplicationLoginState _loginState = ApplicationLoginState.login;
   ApplicationLoginState get loginState => _loginState;
 
+  // @override
+  // void onInit() {
+  //   _initFirebase();
+  //   super.onInit();
+  // }
+
+  // void _initFirebase() async {
+  //   await Firebase.initializeApp();
+  // }
+
   void signInWithEmailAndPassword(
     String email,
     String password,

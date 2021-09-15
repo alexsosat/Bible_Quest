@@ -1,8 +1,10 @@
 import 'package:bible_quest/app/modules/login/bindings/authentication_binding.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:bible_quest/app/modules/login/controllers/authentication_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 
@@ -10,6 +12,7 @@ import 'app/routes/app_pages.dart';
 
 void main() async {
   await GetStorage.init();
+  await Firebase.initializeApp();
   runApp(
     MyApp(),
   );
@@ -21,7 +24,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Bible Quest',
       initialBinding: AuthenticationBinding(),
-
       //Routing
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

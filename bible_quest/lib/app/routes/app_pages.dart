@@ -1,3 +1,4 @@
+import 'package:bible_quest/app/modules/login/middlewares/is_user_logged_in.dart';
 import 'package:get/get.dart';
 
 import 'package:bible_quest/app/modules/login/bindings/login_binding.dart';
@@ -22,6 +23,7 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => LoginView(),
       binding: LoginBinding(),
+      middlewares: [IsUserLoggedIn()],
     ),
   ];
 }

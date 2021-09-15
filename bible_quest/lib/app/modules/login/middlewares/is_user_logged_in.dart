@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class IsUserLoggedIn extends GetMiddleware {
-  RouteSettings? redirecTo;
-
   @override
   RouteSettings? redirect(String? route) {
-    return Get.find<AuthenticationController>().isAuthenticated
+    var controller = Get.find<AuthenticationController>();
+    return controller.isUserLoggedIn
         ? RouteSettings(
             name: Routes.TABS,
           )
