@@ -11,16 +11,14 @@ enum ApplicationLoginState {
 class Authentication extends StatelessWidget {
   const Authentication({
     required this.loginState,
-    required this.email,
     required this.signInWithEmailAndPassword,
     required this.cancelRegistration,
     required this.registerAccount,
-    required this.signOut,
     required this.startRegistration,
   });
 
   final ApplicationLoginState loginState;
-  final String? email;
+
   final void Function(
     String email,
     String password,
@@ -34,7 +32,6 @@ class Authentication extends StatelessWidget {
     String password,
     void Function(Exception e) error,
   ) registerAccount;
-  final void Function() signOut;
 
   @override
   Widget build(BuildContext context) {
@@ -149,6 +146,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         }
                         return null;
                       },
+                      textInputAction: TextInputAction.next,
                     ),
                   ),
                   Padding(
@@ -168,6 +166,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         }
                         return null;
                       },
+                      textInputAction: TextInputAction.next,
                     ),
                   ),
                   Padding(
@@ -322,6 +321,7 @@ class _PasswordFormState extends State<PasswordForm> {
                         }
                         return null;
                       },
+                      textInputAction: TextInputAction.next,
                     ),
                   ),
                   Padding(

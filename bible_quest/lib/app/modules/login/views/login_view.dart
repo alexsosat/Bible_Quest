@@ -12,13 +12,11 @@ class LoginView extends GetView<LoginController> {
       body: GetBuilder<LoginController>(
         init: LoginController(),
         builder: (appState) => Authentication(
-          email: appState.email,
           loginState: appState.loginState,
           signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
           startRegistration: appState.startRegistration,
           cancelRegistration: appState.cancelRegistration,
           registerAccount: appState.registerAccount,
-          signOut: appState.signOut,
         ),
       ),
     );
