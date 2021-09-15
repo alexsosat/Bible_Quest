@@ -1,3 +1,4 @@
+import 'package:bible_quest/app/modules/login/bindings/authentication_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Bible Quest',
+      initialBinding: AuthenticationBinding(),
 
       //Routing
       initialRoute: AppPages.INITIAL,

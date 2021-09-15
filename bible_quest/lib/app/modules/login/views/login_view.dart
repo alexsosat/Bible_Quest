@@ -14,9 +14,8 @@ class LoginView extends GetView<LoginController> {
         builder: (appState) => Authentication(
           email: appState.email,
           loginState: appState.loginState,
-          startLoginFlow: appState.startLoginFlow,
-          verifyEmail: appState.verifyEmail,
           signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
+          startRegistration: appState.startRegistration,
           cancelRegistration: appState.cancelRegistration,
           registerAccount: appState.registerAccount,
           signOut: appState.signOut,

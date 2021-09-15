@@ -1,39 +1,33 @@
+import 'package:get/get.dart';
+
 import './widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 enum ApplicationLoginState {
-  emailAddress,
+  login,
   register,
-  password,
-  loggedIn,
-  loggedOut,
 }
 
 class Authentication extends StatelessWidget {
   const Authentication({
     required this.loginState,
     required this.email,
-    required this.startLoginFlow,
-    required this.verifyEmail,
     required this.signInWithEmailAndPassword,
     required this.cancelRegistration,
     required this.registerAccount,
     required this.signOut,
+    required this.startRegistration,
   });
 
   final ApplicationLoginState loginState;
   final String? email;
-  final void Function() startLoginFlow;
-  final void Function(
-    String email,
-    void Function(Exception e) error,
-  ) verifyEmail;
   final void Function(
     String email,
     String password,
     void Function(Exception e) error,
   ) signInWithEmailAndPassword;
   final void Function() cancelRegistration;
+  final void Function() startRegistration;
   final void Function(
     String email,
     String displayName,
@@ -45,35 +39,20 @@ class Authentication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (loginState) {
-      case ApplicationLoginState.loggedOut:
-        return Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 24, bottom: 8),
-              child: StyledButton(
-                onPressed: () {
-                  startLoginFlow();
-                },
-                child: const Text('RSVP'),
-              ),
-            ),
-          ],
-        );
-      case ApplicationLoginState.emailAddress:
-        return EmailForm(
-            callback: (email) => verifyEmail(
-                email, (e) => _showErrorDialog(context, 'Invalid email', e)));
-      case ApplicationLoginState.password:
+      case ApplicationLoginState.login:
         return PasswordForm(
-          email: email!,
           login: (email, password) {
-            signInWithEmailAndPassword(email, password,
-                (e) => _showErrorDialog(context, 'Failed to sign in', e));
+            signInWithEmailAndPassword(
+                email,
+                password,
+                (e) => _showErrorSnackBar(
+                    context, 'Fallo de inicio de sesión', e));
           },
+          startRegistration: startRegistration,
         );
+
       case ApplicationLoginState.register:
         return RegisterForm(
-          email: email!,
           cancel: () {
             cancelRegistration();
           },
@@ -87,128 +66,30 @@ class Authentication extends StatelessWidget {
                 displayName,
                 password,
                 (e) =>
-                    _showErrorDialog(context, 'Failed to create account', e));
+                    _showErrorSnackBar(context, 'Failed to create account', e));
           },
         );
-      case ApplicationLoginState.loggedIn:
-        return Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 24, bottom: 8),
-              child: StyledButton(
-                onPressed: () {
-                  signOut();
-                },
-                child: const Text('LOGOUT'),
-              ),
-            ),
-          ],
-        );
+
       default:
-        return Row(
-          children: const [
-            Text("Internal error, this shouldn't happen..."),
-          ],
+        return Center(
+          child: Row(
+            children: const [
+              Text("Internal error, this shouldn't happen..."),
+            ],
+          ),
         );
     }
   }
 
-  void _showErrorDialog(BuildContext context, String title, Exception e) {
-    showDialog<void>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(
-            title,
-            style: const TextStyle(fontSize: 24),
-          ),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(
-                  '${(e as dynamic).message}',
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            StyledButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'OK',
-                style: TextStyle(color: Colors.deepPurple),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
-class EmailForm extends StatefulWidget {
-  const EmailForm({required this.callback});
-  final void Function(String email) callback;
-  @override
-  _EmailFormState createState() => _EmailFormState();
-}
-
-class _EmailFormState extends State<EmailForm> {
-  final _formKey = GlobalKey<FormState>(debugLabel: '_EmailFormState');
-  final _controller = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Header('Sign in with email'),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextFormField(
-                    controller: _controller,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your email',
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your email address to continue';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 16.0, horizontal: 30),
-                      child: StyledButton(
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            widget.callback(_controller.text);
-                          }
-                        },
-                        child: const Text('NEXT'),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
+  void _showErrorSnackBar(BuildContext context, String title, Exception e) {
+    print((e as dynamic).code);
+    String message =
+        errorMessages[(e as dynamic).code] ?? "Ocurrió un error inesperado";
+    Get.snackbar(
+      title,
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      margin: EdgeInsets.all(20),
     );
   }
 }
@@ -217,9 +98,7 @@ class RegisterForm extends StatefulWidget {
   const RegisterForm({
     required this.registerAccount,
     required this.cancel,
-    required this.email,
   });
-  final String email;
   final void Function(String email, String displayName, String password)
       registerAccount;
   final void Function() cancel;
@@ -236,98 +115,155 @@ class _RegisterFormState extends State<RegisterForm> {
   @override
   void initState() {
     super.initState();
-    _emailController.text = widget.email;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Header('Create account'),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextFormField(
-                    controller: _emailController,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your email',
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your email address to continue';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextFormField(
-                    controller: _displayNameController,
-                    decoration: const InputDecoration(
-                      hintText: 'First & last name',
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your account name';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextFormField(
-                    controller: _passwordController,
-                    decoration: const InputDecoration(
-                      hintText: 'Password',
-                    ),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your password';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: widget.cancel,
-                        child: const Text('CANCEL'),
+    return SingleChildScrollView(
+      padding: EdgeInsets.only(top: 89),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FlutterLogo(
+            size: 100,
+          ),
+          SizedBox(height: 10),
+          Header('Crear cuenta'),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: TextFormField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(
+                        hintText: 'Ingresa tu correo',
                       ),
-                      const SizedBox(width: 16),
-                      StyledButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            widget.registerAccount(
-                              _emailController.text,
-                              _displayNameController.text,
-                              _passwordController.text,
-                            );
-                          }
-                        },
-                        child: const Text('SAVE'),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Ingresa tu correo para continuar';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: TextFormField(
+                      controller: _displayNameController,
+                      decoration: const InputDecoration(
+                        hintText: 'Nombre de usuario',
                       ),
-                      const SizedBox(width: 30),
-                    ],
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Ingresa tu nombre de usuario';
+                        } else if (value.length > 9) {
+                          return 'El nombre de usuario no puede acceder los 9 caractéres';
+                        } else if (value.contains(' ')) {
+                          return 'El nombre de usuario no puede tener espacios';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: TextFormField(
+                      controller: _passwordController,
+                      decoration: const InputDecoration(
+                        hintText: 'Contraseña',
+                      ),
+                      obscureText: true,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Ingresa tu contraseña';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: widget.cancel,
+                          child: const Text(
+                            'Cancelar',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
+                            side: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary),
+                          ),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              widget.registerAccount(
+                                _emailController.text,
+                                _displayNameController.text,
+                                _passwordController.text,
+                              );
+                            }
+                          },
+                          child: const Text('Registrarse'),
+                        ),
+                        const SizedBox(width: 30),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+            child: Row(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Divider(
+                    thickness: 2,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text("o ingresa con tus redes sociales"),
+                ),
+                Flexible(
+                  flex: 1,
+                  child: Divider(
+                    thickness: 2,
                   ),
                 ),
               ],
             ),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                FlutterLogo(
+                  size: 40,
+                ),
+                FlutterLogo(
+                  size: 40,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -335,10 +271,11 @@ class _RegisterFormState extends State<RegisterForm> {
 class PasswordForm extends StatefulWidget {
   const PasswordForm({
     required this.login,
-    required this.email,
+    required this.startRegistration,
   });
-  final String email;
+
   final void Function(String email, String password) login;
+  final void Function() startRegistration;
   @override
   _PasswordFormState createState() => _PasswordFormState();
 }
@@ -351,78 +288,143 @@ class _PasswordFormState extends State<PasswordForm> {
   @override
   void initState() {
     super.initState();
-    _emailController.text = widget.email;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Header('Sign in'),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextFormField(
-                    controller: _emailController,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your email',
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your email address to continue';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextFormField(
-                    controller: _passwordController,
-                    decoration: const InputDecoration(
-                      hintText: 'Password',
-                    ),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your password';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const SizedBox(width: 16),
-                      StyledButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            widget.login(
-                              _emailController.text,
-                              _passwordController.text,
-                            );
-                          }
-                        },
-                        child: const Text('SIGN IN'),
+    return SingleChildScrollView(
+      padding: EdgeInsets.only(top: 89),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FlutterLogo(
+            size: 100,
+          ),
+          SizedBox(height: 10),
+          Header('Iniciar Sesión'),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: TextFormField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(
+                        hintText: 'Correo',
                       ),
-                      const SizedBox(width: 30),
-                    ],
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Ingresa tu correo para continuar';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: TextFormField(
+                      controller: _passwordController,
+                      decoration: const InputDecoration(
+                        hintText: 'Contraseña',
+                      ),
+                      obscureText: true,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Ingresa tu contraseña';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const SizedBox(width: 16),
+                        OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
+                            side: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary),
+                          ),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              widget.login(
+                                _emailController.text,
+                                _passwordController.text,
+                              );
+                            }
+                          },
+                          child: const Text('Ingresar'),
+                        ),
+                        const SizedBox(width: 30),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Center(
+            child: TextButton(
+              onPressed: () => widget.startRegistration(),
+              child: Text('¿No tienes cuenta? Registrate con tu correo'),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+            child: Row(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Divider(
+                    thickness: 2,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text("o ingresa con tus redes sociales"),
+                ),
+                Flexible(
+                  flex: 1,
+                  child: Divider(
+                    thickness: 2,
                   ),
                 ),
               ],
             ),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                FlutterLogo(
+                  size: 40,
+                ),
+                FlutterLogo(
+                  size: 40,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
+
+Map<String, String> errorMessages = {
+  'wrong-password': "Contraseña incorrecta",
+  'too-many-requests':
+      "Cantidad de intentos sobrepasada, intente de nuevo más tarde",
+  'user-not-found': "Usuario no encontrado en nuestra base de datos",
+  "email-already-in-use": "Este correo ya esta registrado",
+  "weak-password": "Contraseña debil",
+};
