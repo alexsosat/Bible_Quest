@@ -1,14 +1,11 @@
 import 'dart:math';
 
 import 'package:bible_quest/app/modules/user/controllers/current_reading_controller.dart';
-import 'package:bible_quest/app/modules/user/models/current_reading.dart';
 import 'package:bible_quest/globals/progress/linear_progress_bar.dart';
-import 'package:bible_quest/services/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ContinueReadingBox extends GetView<CurrentReadingController> {
-  final CurrentReading currentReading = Storage().currentReading;
   ContinueReadingBox({Key? key}) : super(key: key);
 
   String _getImage() {
@@ -23,7 +20,7 @@ class ContinueReadingBox extends GetView<CurrentReadingController> {
   @override
   Widget build(BuildContext context) {
     return controller.obx(
-      (state) => Container(
+      (reading) => Container(
         margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
@@ -55,7 +52,7 @@ class ContinueReadingBox extends GetView<CurrentReadingController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      currentReading.reference,
+                      reading!.reference,
                       style: Theme.of(context).textTheme.headline5!.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -69,7 +66,7 @@ class ContinueReadingBox extends GetView<CurrentReadingController> {
             Container(
               margin: EdgeInsets.only(bottom: 20),
               child: LinearProgressBar(
-                currentValue: currentReading.chapterProgress,
+                currentValue: reading.chapterProgress,
                 maxValue: 100,
                 lineWidth: 7,
                 gradient: LinearGradient(

@@ -6,10 +6,11 @@ import 'package:get/get.dart';
 class IsUserLoggedIn extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
-    var controller = Get.find<AuthenticationController>();
-    return controller.isUserLoggedIn
+    bool authenticated = Get.find<AuthenticationController>().isUserLoggedIn;
+    // print("Hola");
+    return authenticated
         ? RouteSettings(
-            name: Routes.TABS,
+            name: Routes.NAVIGATION,
           )
         : null;
   }

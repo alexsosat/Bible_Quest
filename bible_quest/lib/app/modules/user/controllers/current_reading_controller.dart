@@ -4,12 +4,7 @@ import 'package:get/get.dart';
 
 class CurrentReadingController extends GetxController
     with StateMixin<CurrentReading> {
-  var currentReading = CurrentReading(
-    reference: "",
-    chapterProgress: 0,
-  ).obs;
-
-  CurrentReading get reading => currentReading.value;
+  //CurrentReading get reading => currentReading.value;
 
   @override
   onInit() {
@@ -19,14 +14,23 @@ class CurrentReadingController extends GetxController
 
   void fetchCurrentReading() async {
     try {
-      currentReading(Storage().currentReading);
-      change(
-        currentReading.value,
-        status: RxStatus.success(),
-      );
+      final reading = Storage().currentReading;
+      if (reading != null) {
+        change(
+          reading,
+          status: RxStatus.success(),
+        );
+      } else {
+        change(
+          null,
+          status: RxStatus.empty(),
+        );
+      }
+      //currentReading(Storage().currentReading);
+
     } catch (e) {
       change(
-        currentReading.value,
+        null,
         status: RxStatus.error(),
       );
     }

@@ -30,7 +30,7 @@ class LoginController extends GetxController {
         email: email,
         password: password,
       );
-      Get.offNamed(Routes.TABS);
+      Get.offNamed(Routes.NAVIGATION);
     } on FirebaseAuthException catch (e) {
       errorCallback(e);
     }
@@ -42,7 +42,7 @@ class LoginController extends GetxController {
       var credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       await credential.user!.updateDisplayName(displayName);
-      Get.offNamed(Routes.TABS);
+      Get.offNamed(Routes.NAVIGATION);
     } on FirebaseAuthException catch (e) {
       errorCallback(e);
     }

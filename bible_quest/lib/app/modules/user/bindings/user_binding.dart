@@ -11,9 +11,7 @@ class UserBinding extends Bindings {
     Get.lazyPut<MissionsController>(
       () => MissionsController(),
     );
-    Get.lazyPut<CurrentReadingController>(
-      () => CurrentReadingController(),
-    );
+
     Get.lazyPut<UserController>(
       () => UserController(),
     );

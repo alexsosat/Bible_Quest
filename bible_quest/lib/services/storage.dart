@@ -8,8 +8,10 @@ class Storage {
 
   double get fontSize => getStorage.read('fontSize');
 
-  CurrentReading get currentReading =>
-      CurrentReading.fromJson(getStorage.read('curReading'));
+  CurrentReading? get currentReading {
+    final reading = getStorage.read('curReading');
+    return reading != null ? CurrentReading.fromJson(reading) : null;
+  }
 
   Future<void> write(String key, dynamic value) async =>
       await getStorage.write(key, value);
