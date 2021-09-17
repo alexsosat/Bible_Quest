@@ -4,9 +4,10 @@ import 'package:bible_quest/app/modules/banners/views/banners_view.dart';
 import 'package:bible_quest/app/modules/lectures/models/bible/bible_exports.dart';
 import 'package:bible_quest/app/modules/lectures/views/lectures_view.dart';
 import 'package:bible_quest/app/modules/tabs/controllers/tabs_controller.dart';
-import 'package:bible_quest/app/modules/user/views/home/home.dart';
-import 'package:bible_quest/app/modules/user/views/missions/missions.dart';
-import 'package:bible_quest/app/modules/user/views/overview/user.dart';
+import 'package:bible_quest/app/modules/user/modules/equipment/views/user.dart';
+import 'package:bible_quest/app/modules/user/modules/home/views/home.dart';
+import 'package:bible_quest/app/modules/user/modules/missions/views/missions.dart';
+
 import 'package:bible_quest/globals/tab_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,10 +21,10 @@ class _TabsViewState extends State<TabsView>
     with SingleTickerProviderStateMixin {
   final List<Widget> widgetsChildren = [
     HomeView(),
-    MissionsPage(),
+    MissionsView(),
     LecturesView(section: BibleSections.main),
     BannersView(),
-    UserPage(),
+    EquipmentView(),
   ];
 
   @override
