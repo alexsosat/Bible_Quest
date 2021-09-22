@@ -11,9 +11,14 @@ import 'app/routes/app_pages.dart';
 
 import 'package:device_preview/device_preview.dart';
 
+import 'services/translations/flutter_translations.dart';
+import 'services/translations/get_translations.dart';
+
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp();
+  await FlutterTranslations.initialize();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -34,12 +39,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       //Internationalization
+      translations: Messages(),
       locale: DevicePreview.locale(context),
       supportedLocales: [
-        Locale('es'),
+        Locale('es', 'MX'),
         Locale('en'),
       ],
-      fallbackLocale: Locale('es'),
+      fallbackLocale: Locale('es', 'MX'),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

@@ -1,6 +1,5 @@
 import 'package:bible_quest/app/modules/login/bindings/authentication_binding.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:bible_quest/app/modules/login/controllers/authentication_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -9,10 +8,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 
 import 'app/routes/app_pages.dart';
+import 'services/translations/flutter_translations.dart';
+import 'services/translations/get_translations.dart';
 
 void main() async {
   await GetStorage.init();
   await Firebase.initializeApp();
+  await FlutterTranslations.initialize();
   runApp(
     MyApp(),
   );
@@ -30,12 +32,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       //Internationalization
-      locale: Locale('es'),
+      translations: Messages(),
+      locale: Locale('es', 'MX'),
       supportedLocales: [
-        Locale('es'),
+        Locale('es', 'MX'),
         Locale('en'),
       ],
-      fallbackLocale: Locale('es'),
+      fallbackLocale: Locale('es', 'MX'),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

@@ -32,6 +32,8 @@ flutter:
     - assets/images/sprites/body/
     - assets/images/sprites/head/
     - assets/images/sprites/miscellaneous/
+    - assets/translations/
+    
   fonts: 
     - family: TabIcons
       fonts: 

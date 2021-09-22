@@ -1,5 +1,6 @@
 import 'package:bible_quest/app/modules/login/views/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class PasswordForm extends StatefulWidget {
   const PasswordForm({
@@ -34,7 +35,7 @@ class _PasswordFormState extends State<PasswordForm> {
             size: 100,
           ),
           SizedBox(height: 10),
-          Header('Iniciar Sesión'),
+          Header('login'.tr),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Form(
@@ -46,12 +47,12 @@ class _PasswordFormState extends State<PasswordForm> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: TextFormField(
                       controller: _emailController,
-                      decoration: const InputDecoration(
-                        hintText: 'Correo',
+                      decoration: InputDecoration(
+                        hintText: 'email'.tr,
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Ingresa tu correo para continuar';
+                          return 'email-validator'.tr;
                         }
                         return null;
                       },
@@ -62,13 +63,13 @@ class _PasswordFormState extends State<PasswordForm> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: TextFormField(
                       controller: _passwordController,
-                      decoration: const InputDecoration(
-                        hintText: 'Contraseña',
+                      decoration: InputDecoration(
+                        hintText: 'password'.tr,
                       ),
                       obscureText: true,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Ingresa tu contraseña';
+                          return 'password-validator'.tr;
                         }
                         return null;
                       },
@@ -95,7 +96,7 @@ class _PasswordFormState extends State<PasswordForm> {
                               );
                             }
                           },
-                          child: const Text('Ingresar'),
+                          child: Text('sign-in'.tr),
                         ),
                         const SizedBox(width: 30),
                       ],
@@ -108,7 +109,7 @@ class _PasswordFormState extends State<PasswordForm> {
           Center(
             child: TextButton(
               onPressed: () => widget.startRegistration(),
-              child: Text('¿No tienes cuenta? Registrate con tu correo'),
+              child: Text('no-account'.tr),
             ),
           ),
           Padding(
@@ -123,7 +124,7 @@ class _PasswordFormState extends State<PasswordForm> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text("o ingresa con tus redes sociales"),
+                  child: Text("social-media-register".tr),
                 ),
                 Flexible(
                   flex: 1,

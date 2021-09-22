@@ -27,7 +27,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text("Inicio"),
                   onTap: () {
                     Navigator.of(context).pop();
-                    controller.active_view.value = DrawerViews.home;
+                    controller.activeView.value = DrawerViews.home;
                   },
                 ),
                 ListTile(
@@ -35,7 +35,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text("Lecturas"),
                   onTap: () {
                     Navigator.of(context).pop();
-                    controller.active_view.value = DrawerViews.lectures;
+                    controller.activeView.value = DrawerViews.lectures;
                   },
                 ),
                 ListTile(
@@ -43,7 +43,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text("Juegos"),
                   onTap: () {
                     Navigator.of(context).pop();
-                    controller.active_view.value = DrawerViews.games;
+                    controller.activeView.value = DrawerViews.games;
                   },
                 ),
                 ListTile(
@@ -51,7 +51,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text("Banners"),
                   onTap: () {
                     Navigator.of(context).pop();
-                    controller.active_view.value = DrawerViews.banners;
+                    controller.activeView.value = DrawerViews.banners;
                   },
                 ),
                 ListTile(
@@ -59,7 +59,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text("Intercambios"),
                   onTap: () {
                     Navigator.of(context).pop();
-                    controller.active_view.value = DrawerViews.exchange_store;
+                    controller.activeView.value = DrawerViews.exchange_store;
                   },
                 ),
                 ListTile(
@@ -67,7 +67,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text("Personalizar"),
                   onTap: () {
                     Navigator.of(context).pop();
-                    controller.active_view.value = DrawerViews.equipment;
+                    controller.activeView.value = DrawerViews.equipment;
                   },
                 ),
                 ListTile(
@@ -75,7 +75,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text("Misiones"),
                   onTap: () {
                     Navigator.of(context).pop();
-                    controller.active_view.value = DrawerViews.missions;
+                    controller.activeView.value = DrawerViews.missions;
                   },
                 ),
                 ListTile(
@@ -83,7 +83,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text("Logros"),
                   onTap: () {
                     Navigator.of(context).pop();
-                    controller.active_view.value = DrawerViews.achievements;
+                    controller.activeView.value = DrawerViews.achievements;
                   },
                 ),
                 ListTile(
@@ -91,7 +91,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text("Noticias"),
                   onTap: () {
                     Navigator.of(context).pop();
-                    controller.active_view.value = DrawerViews.news;
+                    controller.activeView.value = DrawerViews.news;
                   },
                 ),
                 ListTile(
@@ -99,7 +99,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text("Configuración"),
                   onTap: () {
                     Navigator.of(context).pop();
-                    controller.active_view.value = DrawerViews.settings;
+                    controller.activeView.value = DrawerViews.settings;
                   },
                 ),
                 ListTile(
@@ -107,7 +107,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text("Acerca de"),
                   onTap: () {
                     Navigator.of(context).pop();
-                    controller.active_view.value = DrawerViews.about;
+                    controller.activeView.value = DrawerViews.about;
                   },
                 ),
               ],

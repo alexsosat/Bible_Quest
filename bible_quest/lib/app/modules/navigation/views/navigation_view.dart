@@ -24,7 +24,7 @@ class NavigationView extends GetView<NavigationController> {
       drawer: AppDrawer(),
       body: GetX<NavigationController>(
         builder: (_) {
-          switch (_.active_view.value) {
+          switch (_.activeView.value) {
             case DrawerViews.home:
               return HomeView();
             case DrawerViews.lectures:

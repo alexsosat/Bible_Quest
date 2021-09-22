@@ -41,11 +41,8 @@ class Authentication extends StatelessWidget {
       case ApplicationLoginState.login:
         return PasswordForm(
           login: (email, password) {
-            signInWithEmailAndPassword(
-                email,
-                password,
-                (e) => _showErrorSnackBar(
-                    context, 'Fallo de inicio de sesión', e));
+            signInWithEmailAndPassword(email, password,
+                (e) => _showErrorSnackBar(context, 'login-failed'.tr, e));
           },
           startRegistration: startRegistration,
         );
@@ -65,7 +62,7 @@ class Authentication extends StatelessWidget {
                 displayName,
                 password,
                 (e) =>
-                    _showErrorSnackBar(context, 'Failed to create account', e));
+                    _showErrorSnackBar(context, 'registration-failed'.tr, e));
           },
         );
 
@@ -82,22 +79,12 @@ class Authentication extends StatelessWidget {
 
   void _showErrorSnackBar(BuildContext context, String title, Exception e) {
     print((e as dynamic).code);
-    String message =
-        errorMessages[(e as dynamic).code] ?? "Ocurrió un error inesperado";
+    String message = (e as dynamic).code;
     Get.snackbar(
       title,
-      message,
+      message.tr,
       snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.all(20),
     );
   }
 }
-
-Map<String, String> errorMessages = {
-  'wrong-password': "Contraseña incorrecta",
-  'too-many-requests':
-      "Cantidad de intentos sobrepasada, intente de nuevo más tarde",
-  'user-not-found': "Usuario no encontrado en nuestra base de datos",
-  "email-already-in-use": "Este correo ya esta registrado",
-  "weak-password": "Contraseña debil",
-};

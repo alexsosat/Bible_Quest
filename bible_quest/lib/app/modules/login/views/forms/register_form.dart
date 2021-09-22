@@ -1,5 +1,7 @@
 import 'package:bible_quest/app/modules/login/views/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get/get_utils/src/extensions/string_extensions.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({
@@ -35,7 +37,7 @@ class _RegisterFormState extends State<RegisterForm> {
             size: 100,
           ),
           SizedBox(height: 10),
-          Header('Crear cuenta'),
+          Header('create-account'.tr),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Form(
@@ -47,12 +49,12 @@ class _RegisterFormState extends State<RegisterForm> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: TextFormField(
                       controller: _emailController,
-                      decoration: const InputDecoration(
-                        hintText: 'Ingresa tu correo',
+                      decoration: InputDecoration(
+                        hintText: 'email'.tr,
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Ingresa tu correo para continuar';
+                          return 'email-validator'.tr;
                         }
                         return null;
                       },
@@ -63,16 +65,16 @@ class _RegisterFormState extends State<RegisterForm> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: TextFormField(
                       controller: _displayNameController,
-                      decoration: const InputDecoration(
-                        hintText: 'Nombre de usuario',
+                      decoration: InputDecoration(
+                        hintText: 'username'.tr,
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Ingresa tu nombre de usuario';
+                          return 'username-validator-empty'.tr;
                         } else if (value.length > 9) {
-                          return 'El nombre de usuario no puede acceder los 9 caractéres';
+                          return 'username-validator-length'.tr;
                         } else if (value.contains(' ')) {
-                          return 'El nombre de usuario no puede tener espacios';
+                          return 'username-validator-spaces'.tr;
                         }
                         return null;
                       },
@@ -83,13 +85,13 @@ class _RegisterFormState extends State<RegisterForm> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: TextFormField(
                       controller: _passwordController,
-                      decoration: const InputDecoration(
-                        hintText: 'Contraseña',
+                      decoration: InputDecoration(
+                        hintText: 'password'.tr,
                       ),
                       obscureText: true,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Ingresa tu contraseña';
+                          return 'password-validator'.tr;
                         }
                         return null;
                       },
@@ -102,8 +104,8 @@ class _RegisterFormState extends State<RegisterForm> {
                       children: [
                         TextButton(
                           onPressed: widget.cancel,
-                          child: const Text(
-                            'Cancelar',
+                          child: Text(
+                            'cancel'.tr.capitalizeFirst!,
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
@@ -124,7 +126,7 @@ class _RegisterFormState extends State<RegisterForm> {
                               );
                             }
                           },
-                          child: const Text('Registrarse'),
+                          child: Text('register'.tr),
                         ),
                         const SizedBox(width: 30),
                       ],
@@ -146,7 +148,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text("o ingresa con tus redes sociales"),
+                  child: Text("social-media-register".tr),
                 ),
                 Flexible(
                   flex: 1,
