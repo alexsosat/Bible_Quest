@@ -1,22 +1,32 @@
 import 'dart:convert';
 
+import 'package:bible_quest/app/modules/login/controllers/authentication_controller.dart';
+import 'package:bible_quest/app/modules/user/models/current_items.dart';
 import 'package:bible_quest/app/modules/user/models/user.dart';
-import 'package:bible_quest/services/storage.dart';
+import 'package:bible_quest/keys.dart';
 import 'package:get/get.dart';
 
-import '../../../../keys.dart';
-
 class UserProvider extends GetConnect {
-  @override
-  void onInit() {
-    httpClient.baseUrl = 'YOUR-API-URL';
+  var authController = Get.find<AuthenticationController>();
+
+  Future<bool> userExists() async {
+    final response = await get(
+      '${environment['web_url']}users/${authController.userUID}/exists',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+    );
+    if (response.status.hasError) {
+      return Future.error(response.statusText!);
+    } else {
+      return response.body as bool;
+    }
   }
 
-  final userId = Storage().userId;
-
-  Future<User> getUser() async {
+  Future<User> getUserStats() async {
     final response = await get(
-      '${environment['web_url']}users/$userId',
+      '${environment['web_url']}users/${authController.userUID}/stats',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -30,9 +40,11 @@ class UserProvider extends GetConnect {
     }
   }
 
+
+
   Future updateUser(Map<String, dynamic> content) async {
     final response = await put(
-      '${environment['web_url']}users/$userId',
+      '${environment['web_url']}users/${authController.userUID}',
       content,
       headers: {
         'Content-Type': 'application/json',

@@ -4,8 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthenticationController extends GetxController {
   User? _firebaseUser;
 
-  // bool get isUserLoggedIn => _firebaseUser != null;
-  bool get isUserLoggedIn => false;
+  bool get isUserLoggedIn {
+    _firebaseUser = FirebaseAuth.instance.currentUser;
+    return _firebaseUser != null;
+  }
+  //bool get isUserLoggedIn => false;
 
   String? get userUID => _firebaseUser?.uid;
 

@@ -22,8 +22,8 @@
 
 import 'complex_stat.dart';
 
-class UserStats {
-  UserStats({
+class Stats {
+  Stats({
     required this.level,
     required this.streak,
     required this.currency,
@@ -48,9 +48,7 @@ class UserStats {
         "experience": {"current": 0, "total": 4}
       };
 
-  factory UserStats.instance() => UserStats.fromJson(initalStats());
-
-  factory UserStats.fromJson(Map<String, dynamic> json) => UserStats(
+  factory Stats.fromJson(Map<String, dynamic> json) => Stats(
         level: json["level"],
         streak: json["streak"],
         currency: json["currency"],

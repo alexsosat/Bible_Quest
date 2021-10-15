@@ -1,64 +1,76 @@
+// To parse this JSON data, do
+//
+//     final user = userFromJson(jsonString);
+
 import 'dart:convert';
 
 import 'package:bible_quest/app/modules/banners/models/categories.dart';
 import 'package:bible_quest/app/modules/banners/models/item.dart';
 
 import 'current_items.dart';
-import 'stats/complex_stat.dart';
 import 'stats/stats.dart';
 
 class User {
   User({
-    required this.id,
+    required this.key,
     required this.username,
-    required this.stats,
-    required this.items,
     required this.currentItems,
-    this.biography,
-    this.booksReaded,
+    required this.stats,
+    required this.currentReadings,
+    required this.items,
   });
 
-  int id;
+  String key;
   String username;
-  String? biography;
-  UserStats stats;
-  Map<String, dynamic>? booksReaded;
   CurrentItems currentItems;
+  Stats stats;
+  List<CurrentReading> currentReadings;
   List<Item> items;
+
+  static User userFromJson(String str) => User.fromJson(json.decode(str));
+
+  String userToJson(User data) => json.encode(data.toJson());
 
   List<Item> itemsfromCategory(ItemCategory category) =>
       items.where((element) => element.type == category).toList();
 
-  factory User.instance() => User(
-        id: 0,
-        username: "",
-        currentItems: CurrentItems.instance(),
-        items: [],
-        stats: UserStats.instance(),
-      );
-
   factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json["id"],
+        key: json["key"],
         username: json["username"],
-        biography: json["biography"],
-        stats: UserStats(
-          level: json["level"],
-          currency: json["currency"].toDouble(),
-          streak: json["streak"],
-          experience: ComplexStat.fromJson(json["experience"]),
-          health: ComplexStat.fromJson(json["health"]),
-        ),
-        booksReaded: json["books_readed"],
-        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
         currentItems: CurrentItems.fromJson(json["current_items"]),
+        stats: Stats.fromJson(json["stats"]),
+        currentReadings: List<CurrentReading>.from(
+            json["current_readings"].map((x) => CurrentReading.fromJson(x))),
+        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        "key": key,
         "username": username,
-        "biography": biography,
-        "books_readed": jsonEncode(booksReaded!),
-        "items": List<dynamic>.from(items.map((x) => x.toJson())),
         "current_items": currentItems.toJson(),
-      }..addAll(stats.toJson());
+        "stats": stats.toJson(),
+        "current_readings":
+            List<dynamic>.from(currentReadings.map((x) => x.toJson())),
+        "items": List<dynamic>.from(items.map((x) => x)),
+      };
+}
+
+class CurrentReading {
+  CurrentReading({
+    this.readed,
+    required this.planName,
+  });
+
+  Map<String, dynamic>? readed;
+  String planName;
+
+  factory CurrentReading.fromJson(Map<String, dynamic> json) => CurrentReading(
+        readed: json["readed"],
+        planName: json["plan_name"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "readed": readed,
+        "plan_name": planName,
+      };
 }

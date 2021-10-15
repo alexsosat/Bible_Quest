@@ -1,3 +1,6 @@
+import 'package:bible_quest/app/modules/user/modules/create/bindings/create_user_bindings.dart';
+import 'package:bible_quest/app/modules/user/modules/create/views/create_user_view.dart';
+import 'package:bible_quest/app/modules/user/providers/user_provider.dart';
 import 'package:bible_quest/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // new
@@ -30,7 +33,12 @@ class LoginController extends GetxController {
         email: email,
         password: password,
       );
-      Get.offNamed(Routes.NAVIGATION);
+      bool userExists = await UserProvider().userExists();
+      if (userExists) {
+        Get.offNamed(Routes.NAVIGATION);
+      } else {
+        Get.off(() => CreateUserView(), binding: CreateUserBindings());
+      }
     } on FirebaseAuthException catch (e) {
       errorCallback(e);
     }
@@ -42,7 +50,7 @@ class LoginController extends GetxController {
       var credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       await credential.user!.updateDisplayName(displayName);
-      Get.offNamed(Routes.NAVIGATION);
+      Get.off(() => CreateUserView(), binding: CreateUserBindings());
     } on FirebaseAuthException catch (e) {
       errorCallback(e);
     }

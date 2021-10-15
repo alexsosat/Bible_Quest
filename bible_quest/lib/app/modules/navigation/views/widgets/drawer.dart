@@ -1,5 +1,7 @@
 import 'package:bible_quest/app/modules/navigation/controllers/navigation_controller.dart';
 import 'package:bible_quest/app/modules/navigation/models/views_enum.dart';
+import 'package:bible_quest/app/routes/app_pages.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -108,6 +110,15 @@ class AppDrawer extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).pop();
                     controller.activeView.value = DrawerViews.about;
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.logout, color:Colors.red),
+                  title: Text("Cerrar Sesión"),
+                  onTap: () async{
+                    Navigator.of(context).pop();
+                    await FirebaseAuth.instance.signOut();
+                    Get.offAllNamed(Routes.LOGIN);
                   },
                 ),
               ],

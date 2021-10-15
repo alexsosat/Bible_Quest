@@ -11,7 +11,8 @@ class BibleProvider extends GetConnect {
         'https://api.scripture.api.bible/v1/bibles/${environment["bible_book"]!}/books?include-chapters=true',
         headers: {'api-key': environment['bible_key']!});
 
-    final readedBooks = Get.find<UserController>().user.booksReaded;
+    final readedBooks =
+        Get.find<UserController>().user.currentReadings[0].readed;
 
     if (response.status.hasError) {
       return Future.error(response.statusText!);

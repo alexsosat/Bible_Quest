@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class SpriteCard extends StatelessWidget {
   final String? spritePath;
   final String title;
+  final double size;
   final Function()? onPressed;
 
   const SpriteCard({
@@ -11,6 +12,7 @@ class SpriteCard extends StatelessWidget {
     required this.spritePath,
     required this.title,
     this.onPressed,
+    this.size = 60,
   }) : super(key: key);
 
   @override
@@ -20,17 +22,17 @@ class SpriteCard extends StatelessWidget {
       content: (spritePath != null)
           ? Image.asset(
               spritePath!,
-              height: 60,
-              width: 60,
+              height: size,
+              width: size,
               fit: BoxFit.contain,
             )
           : Container(
-              height: 60,
-              width: 60,
+              height: size,
+              width: size,
             ),
       title: Container(
         margin: EdgeInsets.symmetric(vertical: 5),
-        width: 60,
+        width: size,
         child: Text(
           title,
           textAlign: TextAlign.center,

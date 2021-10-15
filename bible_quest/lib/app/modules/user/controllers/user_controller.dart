@@ -7,8 +7,6 @@ import 'package:bible_quest/app/modules/user/providers/user_provider.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController with StateMixin<User> {
-  var content = User.instance().obs;
-
   final UserProvider apiService = UserProvider();
   final _UserGrow userGrow = _UserGrow();
 
@@ -24,15 +22,14 @@ class UserController extends GetxController with StateMixin<User> {
 
   void fetchUser() async {
     try {
-      var response = await apiService.getUser();
-      content(response);
-      change(content.value, status: RxStatus.success());
+      var response = await apiService.getUserStats();
+      change(response, status: RxStatus.success());
     } catch (e) {
       change(null, status: RxStatus.error());
     }
   }
 
-  User get user => content.value;
+  User get user => state!;
 
   Future updateUser(Map<String, dynamic> content) async {
     await apiService.updateUser(content);

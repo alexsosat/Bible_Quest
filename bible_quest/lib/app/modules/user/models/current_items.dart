@@ -4,21 +4,18 @@ class CurrentItems {
   CurrentItems({
     required this.head,
     required this.body,
-    required this.base,
     this.arm,
     this.background,
     this.pet,
+    required this.base,
   });
 
-  String base;
   String head;
   String body;
   String? arm;
   String? background;
   String? pet;
-
-  factory CurrentItems.instance() =>
-      CurrentItems(head: "tile023", body: "tile055", base: "tile007");
+  String base;
 
   String? categoryToItem(ItemCategory category) {
     switch (category) {

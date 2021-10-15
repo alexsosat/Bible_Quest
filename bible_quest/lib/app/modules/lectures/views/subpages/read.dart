@@ -64,7 +64,8 @@ class _ReadPageState extends State<ReadPage> {
             var plansController = Get.find<LecturesController>();
             var readController = Get.find<ReadController>();
 
-            Map<String, dynamic>? readedBooks = userController.user.booksReaded;
+            Map<String, dynamic>? readedBooks =
+                userController.user.currentReadings[0].readed;
 
             Map<String, dynamic> data =
                 readController.isChapterReaded(readedBooks);
