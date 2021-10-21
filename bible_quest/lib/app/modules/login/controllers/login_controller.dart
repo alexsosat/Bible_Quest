@@ -9,8 +9,10 @@ import '../views/authentication.dart';
 
 class LoginController extends GetxController {
   String? _email;
+
   String? get email => _email;
   ApplicationLoginState _loginState = ApplicationLoginState.login;
+
   ApplicationLoginState get loginState => _loginState;
 
   void startRegistration() {
@@ -37,7 +39,7 @@ class LoginController extends GetxController {
       if (userExists) {
         Get.offNamed(Routes.NAVIGATION);
       } else {
-        Get.off(() => CreateUserView(), binding: CreateUserBindings());
+        Get.offNamed(Routes.CREATE);
       }
     } on FirebaseAuthException catch (e) {
       errorCallback(e);
@@ -50,7 +52,7 @@ class LoginController extends GetxController {
       var credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       await credential.user!.updateDisplayName(displayName);
-      Get.off(() => CreateUserView(), binding: CreateUserBindings());
+      Get.offNamed(Routes.CREATE);
     } on FirebaseAuthException catch (e) {
       errorCallback(e);
     }

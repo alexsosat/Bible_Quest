@@ -1,3 +1,5 @@
+import 'package:bible_quest/app/modules/user/modules/create/bindings/create_user_bindings.dart';
+import 'package:bible_quest/app/modules/user/modules/create/views/create_user_view.dart';
 import 'package:get/get.dart';
 
 import 'package:bible_quest/app/modules/login/bindings/login_binding.dart';
@@ -24,6 +26,11 @@ class AppPages {
       name: _Paths.NAVIGATION,
       page: () => NavigationView(),
       binding: NavigationBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE,
+      page: () => CreateUserView(),
+      binding: CreateUserBindings(),
     ),
   ];
 }

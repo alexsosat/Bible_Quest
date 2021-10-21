@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 class CreateUserController extends GetxController {
   final provider = UserProvider();
 
-  var headSprite = "tile026".obs;
-  var bodySprite = "tile064".obs;
-  var baseSprite = "tile007".obs;
+  var headSprite = 0.obs;
+  var bodySprite = 0.obs;
+  var baseSprite = 0.obs;
 
   @override
   void onInit() {
