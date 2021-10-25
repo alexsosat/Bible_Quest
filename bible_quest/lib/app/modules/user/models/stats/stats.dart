@@ -38,15 +38,16 @@ class Stats {
   ComplexStat experience;
 
   get healthPercent => health.current / health.total;
+
   get experiencePercent => experience.current / experience.total;
 
-  static Map<String, dynamic> initalStats() => {
-        "level": 1,
-        "streak": 0,
-        "currency": 0.0,
-        "health": {"current": 9, "total": 9},
-        "experience": {"current": 0, "total": 4}
-      };
+  factory Stats.initialStats() => Stats(
+        level: 1,
+        streak: 0,
+        currency: 0.0,
+        health: ComplexStat(current: 9, total: 9),
+        experience: ComplexStat(current: 0, total: 4),
+      );
 
   factory Stats.fromJson(Map<String, dynamic> json) => Stats(
         level: json["level"],

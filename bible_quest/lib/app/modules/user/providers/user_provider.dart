@@ -40,7 +40,22 @@ class UserProvider extends GetConnect {
     }
   }
 
+  Future<bool> createUser(User user) async {
+    final response = await post(
+      '${environment['web_url']}users/',
+      user.toJson(),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+    );
 
+    if (response.status.hasError) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   Future updateUser(Map<String, dynamic> content) async {
     final response = await put(
