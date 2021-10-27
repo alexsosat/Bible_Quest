@@ -1,7 +1,5 @@
-import 'package:bible_quest/app/modules/user/models/start_items.dart';
 import 'package:bible_quest/app/modules/user/modules/create/controllers/create_user_controller.dart';
 import 'package:bible_quest/app/modules/user/modules/create/views/widgets/items_tabs.dart';
-import 'package:bible_quest/globals/cards/sprite_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

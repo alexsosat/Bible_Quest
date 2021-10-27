@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bible_quest/app/modules/banners/models/categories.dart';
 import 'package:bible_quest/app/modules/user/models/current_items.dart';
+import 'package:bible_quest/app/modules/user/models/stats/stats.dart';
 import 'package:bible_quest/app/modules/user/models/user.dart';
 import 'package:bible_quest/app/modules/user/providers/user_provider.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,10 @@ import 'package:get/get.dart';
 class UserController extends GetxController with StateMixin<User> {
   final UserProvider apiService = UserProvider();
   final _UserGrow userGrow = _UserGrow();
+
+  User get user => state!;
+
+  Stats get userStats => state!.stats;
 
   @override
   onInit() {
@@ -22,14 +27,12 @@ class UserController extends GetxController with StateMixin<User> {
 
   void fetchUser() async {
     try {
-      var response = await apiService.getUserStats();
+      var response = await apiService.getUserAll();
       change(response, status: RxStatus.success());
     } catch (e) {
       change(null, status: RxStatus.error());
     }
   }
-
-  User get user => state!;
 
   Future updateUser(Map<String, dynamic> content) async {
     await apiService.updateUser(content);

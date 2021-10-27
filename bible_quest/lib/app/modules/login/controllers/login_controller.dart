@@ -1,5 +1,3 @@
-import 'package:bible_quest/app/modules/user/modules/create/bindings/create_user_bindings.dart';
-import 'package:bible_quest/app/modules/user/modules/create/views/create_user_view.dart';
 import 'package:bible_quest/app/modules/user/providers/user_provider.dart';
 import 'package:bible_quest/app/routes/app_pages.dart';
 import 'package:get/get.dart';
