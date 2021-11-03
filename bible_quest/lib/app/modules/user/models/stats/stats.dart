@@ -20,6 +20,8 @@
 //
 //     final userStats = userStatsFromJson(jsonString);
 
+import 'dart:convert';
+
 import 'complex_stat.dart';
 
 class Stats {
@@ -52,7 +54,7 @@ class Stats {
   factory Stats.fromJson(Map<String, dynamic> json) => Stats(
         level: json["level"],
         streak: json["streak"],
-        currency: json["currency"],
+        currency: json["currency"].toDouble(),
         health: ComplexStat.fromJson(json["health"]),
         experience: ComplexStat.fromJson(json["experience"]),
       );

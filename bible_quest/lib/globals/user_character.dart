@@ -1,8 +1,8 @@
-import 'package:bible_quest/app/modules/user/controllers/user_controller.dart';
+import 'package:bible_quest/app/modules/user/controllers/user_info_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class UserCharacter extends GetView<UserController> {
+class UserCharacter extends GetView<UserInfoController> {
   final double size;
   final BoxShape shape;
   const UserCharacter({
@@ -13,38 +13,35 @@ class UserCharacter extends GetView<UserController> {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      flex: 4,
-      child: controller.obx(
-        (state) => Container(
-          height: size,
-          width: size,
-          decoration: BoxDecoration(
-            color: Colors.deepPurple[800],
-            shape: shape,
-          ),
-          child: Stack(
-            children: <Widget>[
+    return controller.obx(
+      (state) => Container(
+        height: size,
+        width: size,
+        decoration: BoxDecoration(
+          color: Colors.deepPurple[800],
+          shape: shape,
+        ),
+        child: Stack(
+          children: <Widget>[
+            Image.asset(
+              state!.currentItems.stringtoImagePath.base,
+              fit: BoxFit.contain,
+            ),
+            Image.asset(
+              state.currentItems.stringtoImagePath.body,
+              fit: BoxFit.contain,
+            ),
+            Image.asset(
+              state.currentItems.stringtoImagePath.head,
+              fit: BoxFit.contain,
+            ),
+            if (state.currentItems.arm != null &&
+                state.currentItems.arm!.isNotEmpty)
               Image.asset(
-                controller.user.currentItems.stringtoImagePath.base,
+                state.currentItems.stringtoImagePath.arm!,
                 fit: BoxFit.contain,
               ),
-              Image.asset(
-                controller.user.currentItems.stringtoImagePath.body,
-                fit: BoxFit.contain,
-              ),
-              Image.asset(
-                controller.user.currentItems.stringtoImagePath.head,
-                fit: BoxFit.contain,
-              ),
-              if (controller.user.currentItems.arm != null &&
-                  controller.user.currentItems.arm!.isNotEmpty)
-                Image.asset(
-                  controller.user.currentItems.stringtoImagePath.arm!,
-                  fit: BoxFit.contain,
-                ),
-            ],
-          ),
+          ],
         ),
       ),
     );

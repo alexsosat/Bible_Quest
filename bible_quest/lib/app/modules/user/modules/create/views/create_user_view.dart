@@ -12,7 +12,7 @@ class CreateUserView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Create your user"),
+        title: Text("personalize-character".tr.capitalizeFirst!),
         centerTitle: false,
         backgroundColor: Colors.transparent,
         elevation: 0,

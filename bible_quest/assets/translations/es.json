@@ -21,5 +21,6 @@
   "username-validator-empty": "Ingresa tu nombre de usuario",
   "username-validator-length": "El nombre de usuario no puede acceder los 9 caractéres",
   "username-validator-spaces": "El nombre de usuario no puede tener espacios",
-  "cancel": "cancelar"
+  "cancel": "cancelar",
+  "personalize-character": "Personalizar personaje"
 }

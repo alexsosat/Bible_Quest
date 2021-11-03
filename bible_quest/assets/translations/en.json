@@ -21,5 +21,6 @@
   "username-validator-empty": "Enter your username",
   "username-validator-length": "The username connot exceed 9 characters",
   "username-validator-spaces": "Username cannot contain spaces",
-  "cancel": "cancel"
+  "cancel": "cancel",
+  "personalize-character": "Personalize character"
 }
