@@ -19,4 +19,8 @@ class AuthenticationController extends GetxController {
     _firebaseUser = FirebaseAuth.instance.currentUser;
     super.onInit();
   }
+
+  void loggeUserInApp() {
+    _firebaseUser = FirebaseAuth.instance.currentUser;
+  }
 }

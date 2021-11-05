@@ -1,3 +1,4 @@
+import 'package:bible_quest/app/modules/login/controllers/authentication_controller.dart';
 import 'package:bible_quest/app/modules/user/providers/user_provider.dart';
 import 'package:bible_quest/app/routes/app_pages.dart';
 import 'package:get/get.dart';
@@ -33,6 +34,7 @@ class LoginController extends GetxController {
         email: email,
         password: password,
       );
+      Get.find<AuthenticationController>().loggeUserInApp();
       bool userExists = await UserProvider().userExists();
       if (userExists) {
         Get.offNamed(Routes.NAVIGATION);
