@@ -1,3 +1,4 @@
+import 'package:bible_quest/globals/data_display/user_stat_indicator.dart';
 import 'package:flutter/material.dart';
 
 class UserStatAlign extends StatelessWidget {
@@ -15,18 +16,10 @@ class UserStatAlign extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topLeft,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: Row(
-          mainAxisAlignment: alignment,
-          children: [
-            icon,
-            Padding(
-              padding: const EdgeInsets.only(left: 5.0),
-              child: Text(data),
-            ),
-          ],
-        ),
+      child: UserStatIndicator(
+        data: data,
+        icon: icon,
+        alignment: alignment,
       ),
     );
   }

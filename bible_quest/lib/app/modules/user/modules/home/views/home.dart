@@ -2,6 +2,8 @@ import 'package:bible_quest/app/modules/user/modules/home/views/widgets/home_app
 import 'package:bible_quest/app/modules/user/modules/home/views/widgets/header/user_header_layout.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/current_reading_box.dart';
+
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
 
@@ -16,6 +18,7 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 20),
         children: [
           UserHeaderLayout(),
+          ContinueReadingBox(),
         ],
       ),
     );

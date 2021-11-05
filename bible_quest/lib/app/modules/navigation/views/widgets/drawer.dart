@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'drawer_header/drawer_header_section.dart';
+
 class AppDrawer extends StatelessWidget {
   AppDrawer({Key? key}) : super(key: key);
 
@@ -15,14 +17,10 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          DrawerHeader(
-            child: Container(
-              height: 150,
-              color: Colors.red,
-            ),
-          ),
+          DrawerHeaderSection(),
           Expanded(
             child: ListView(
+              padding: EdgeInsets.zero,
               children: [
                 ListTile(
                   leading: Icon(Icons.home),
@@ -113,9 +111,9 @@ class AppDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.logout, color:Colors.red),
+                  leading: Icon(Icons.logout, color: Colors.red),
                   title: Text("Cerrar Sesión"),
-                  onTap: () async{
+                  onTap: () async {
                     Navigator.of(context).pop();
                     await FirebaseAuth.instance.signOut();
                     Get.offAllNamed(Routes.LOGIN);
