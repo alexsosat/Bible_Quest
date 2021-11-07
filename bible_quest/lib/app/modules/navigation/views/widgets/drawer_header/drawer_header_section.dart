@@ -7,6 +7,9 @@ class DrawerHeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DrawerHeader(
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
+      ),
       child: Container(
         height: 150,
         child: Row(
