@@ -1,4 +1,4 @@
-import 'package:bible_quest/app/modules/lectures/controllers/lectures_controller.dart';
+import 'package:bible_quest/app/modules/activities/lectures/controllers/lectures_controller.dart';
 import 'package:bible_quest/app/modules/lectures/controllers/read_controller.dart';
 import 'package:bible_quest/app/modules/lectures/views/widgets/read_page_icons_icons.dart';
 import 'package:bible_quest/app/modules/user/controllers/user_controller.dart';

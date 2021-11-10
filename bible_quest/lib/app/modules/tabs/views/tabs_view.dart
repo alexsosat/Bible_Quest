@@ -22,7 +22,7 @@ class _TabsViewState extends State<TabsView>
   final List<Widget> widgetsChildren = [
     HomeView(),
     MissionsView(),
-    LecturesView(section: BibleSections.main),
+    //LecturesView(section: PlanSections.main),
     BannersView(),
     EquipmentView(),
   ];

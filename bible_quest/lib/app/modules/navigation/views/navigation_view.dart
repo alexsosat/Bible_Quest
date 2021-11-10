@@ -1,5 +1,5 @@
 import 'package:bible_quest/app/modules/activities/games/views/games_view.dart';
-import 'package:bible_quest/app/modules/activities/lectures/views/lectures_view.dart';
+import 'package:bible_quest/app/modules/activities/lectures/views/lectures_navigation_view.dart';
 import 'package:bible_quest/app/modules/application/about/views/about_view.dart';
 import 'package:bible_quest/app/modules/application/news/views/news_view.dart';
 import 'package:bible_quest/app/modules/application/settings/views/settings_view.dart';

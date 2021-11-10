@@ -4,6 +4,7 @@ import 'package:bible_quest/app/modules/login/controllers/authentication_control
 import 'package:bible_quest/app/modules/user/models/stats/stats.dart';
 import 'package:bible_quest/app/modules/user/models/user.dart';
 import 'package:bible_quest/app/modules/user/models/user_info.dart';
+import 'package:bible_quest/app/modules/user/models/user_readings.dart';
 import 'package:bible_quest/keys.dart';
 import 'package:get/get.dart';
 
@@ -70,6 +71,22 @@ class UserProvider extends GetConnect {
       return Future.error(response.statusText!);
     } else {
       return Stats.fromJson(jsonDecode(response.bodyString!));
+    }
+  }
+
+  Future<List<UserReadings>?> getUserReadings() async {
+    final response = await get(
+      '${environment['web_url']}users/${authController.userUID}/books_readed',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+    );
+
+    if (response.status.hasError) {
+      return Future.error(response.statusText!);
+    } else {
+      return UserReadings.userReadingsFromJson(response.bodyString!);
     }
   }
 

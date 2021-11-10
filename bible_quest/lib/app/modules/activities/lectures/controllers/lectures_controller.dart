@@ -3,34 +3,27 @@ import 'package:bible_quest/app/modules/lectures/providers/bible_provider.dart';
 import 'package:bible_quest/app/modules/user/controllers/user_controller.dart';
 import 'package:get/get.dart';
 
-class LecturesController extends GetxController {
-  Bible bible = Bible.instance();
+class LecturesController extends GetxController with StateMixin<Bible> {
+  var currentSection = PlanSections.main.obs;
 
   @override
   void onInit() {
-    fetchContent();
+    fetchPlans();
     super.onInit();
   }
 
   void refreshContent() {
-    fetchContent();
+    fetchPlans();
     update();
   }
 
-  void fetchContent() async {
-    try {
-      // isLoading(true);
-      await fetchPlans();
-    } finally {
-      // isLoading(false);
-      update();
-    }
-  }
-
   Future<void> fetchPlans() async {
+    //try {
     final response = await BibleProvider().getBible();
-
-    bible = response;
+    change(response, status: RxStatus.success());
+    //} catch (e) {
+    //change(null, status: RxStatus.error());
+    //}
   }
 
   Future updateReadedBooks(Map<String, dynamic> content) async {

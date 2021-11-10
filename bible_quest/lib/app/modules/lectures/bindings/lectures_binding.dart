@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 // import 'package:bible_quest/app/modules/lectures/controllers/read_controller.dart';
 
-import '../controllers/lectures_controller.dart';
+import '../../activities/lectures/controllers/lectures_controller.dart';
 
 class LecturesBinding extends Bindings {
   @override
