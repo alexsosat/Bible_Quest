@@ -37,51 +37,52 @@ class LecturesView extends GetView<LecturesController> {
               Icons.menu,
             )),
       ),
-      body: controller.obx(
-        (state) => GetX<LecturesController>(
-          builder: (_) {
-            switch (_.currentSection.value) {
-              case PlanSections.main:
-                return GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    //change
-                    crossAxisCount: 1,
-                    mainAxisSpacing: 10,
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: controller.obx(
+          (state) => GetX<LecturesController>(
+            builder: (_) {
+              switch (_.currentSection.value) {
+                case PlanSections.main:
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      //change
+                      crossAxisCount: 1,
+                      mainAxisSpacing: 10,
 
-                    //change height 125
-                    mainAxisExtent: 125,
-                    crossAxisSpacing: 10,
-                  ),
-                  itemBuilder: (_, index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: PlanCard(
+                      //change height 125
+                      mainAxisExtent: 125,
+                      crossAxisSpacing: 10,
+                    ),
+                    itemBuilder: (_, index) => PlanCard(
                       category: "Bible",
                       color: "626677",
                       projectName: "Name",
                       ratingsLowerNumber: 25,
                       ratingsUpperNumber: 3,
                     ),
-                  ),
-                  itemCount: 1,
-                );
+                    itemCount: 1,
+                  );
 
-              case PlanSections.books:
-                return Center(
-                  child: ElevatedButton(
-                    onPressed: () =>
-                        _.currentSection.value = PlanSections.chapters,
-                    child: Text("go to chapters"),
-                  ),
-                );
-              case PlanSections.chapters:
-                return Center(
-                  child: ElevatedButton(
-                    onPressed: () => _.currentSection.value = PlanSections.main,
-                    child: Text("go to main"),
-                  ),
-                );
-            }
-          },
+                case PlanSections.books:
+                  return Center(
+                    child: ElevatedButton(
+                      onPressed: () =>
+                          _.currentSection.value = PlanSections.chapters,
+                      child: Text("go to chapters"),
+                    ),
+                  );
+                case PlanSections.chapters:
+                  return Center(
+                    child: ElevatedButton(
+                      onPressed: () =>
+                          _.currentSection.value = PlanSections.main,
+                      child: Text("go to main"),
+                    ),
+                  );
+              }
+            },
+          ),
         ),
       ),
     );

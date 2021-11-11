@@ -1,3 +1,4 @@
+import 'package:bible_quest/globals/progress/linear_progress_bar.dart';
 import 'package:bible_quest/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -21,13 +22,17 @@ class PlanCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
+    return TextButton(
+      onPressed: () {},
+      style: TextButton.styleFrom(
+        primary: Colors.white,
+        backgroundColor: HexColor.fromHex("20222A"),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(18.0),
+        ),
+      ),
       child: Container(
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-            color: HexColor.fromHex("20222A"),
-            borderRadius: BorderRadius.circular(20)),
+        padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -75,24 +80,10 @@ class PlanCard extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20),
-            Expanded(
-              child: Container(
-                  width: double.infinity,
-                  height: 5,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: HexColor.fromHex("343840")),
-                  child: Row(children: [
-                    Expanded(
-                        flex: ratingsUpperNumber,
-                        child: Container(
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(colors: [
-                          darken(HexColor.fromHex(color)),
-                          HexColor.fromHex(color)
-                        ])))),
-                    Expanded(flex: ratingsLowerNumber, child: SizedBox())
-                  ])),
+            LinearProgressBar(
+              currentValue: ratingsUpperNumber,
+              maxValue: ratingsLowerNumber,
+              barColor: HexColor.fromHex(color),
             )
           ],
         ),

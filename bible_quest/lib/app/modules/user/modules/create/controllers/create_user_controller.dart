@@ -20,7 +20,12 @@ class CreateUserController extends GetxController {
     User user = User(
       key: _authController.userUID!,
       username: _authController.username!,
-      currentReadings: [],
+      currentReadings: [
+        CurrentReading(
+          planName: "Bible",
+          readed: {},
+        )
+      ],
       items: [],
       currentItems: CurrentItems(
         base: StartItems.base[baseSprite.value].assetName,
