@@ -1,5 +1,6 @@
 import 'package:bible_quest/app/modules/activities/lectures/controllers/lectures_controller.dart';
-import 'package:bible_quest/app/modules/lectures/models/bible/bible_exports.dart';
+import 'package:bible_quest/app/modules/activities/lectures/models/bible/indexes/sections.dart';
+import 'package:bible_quest/app/modules/activities/lectures/views/widgets/progress_card.dart';
 import 'package:bible_quest/app/modules/lectures/views/subpages/read.dart';
 import 'package:bible_quest/app/modules/lectures/views/widgets/chapter_tile.dart';
 import 'package:bible_quest/app/modules/lectures/views/widgets/plan_tile.dart';
@@ -41,13 +42,29 @@ class LecturesView extends GetView<LecturesController> {
           builder: (_) {
             switch (_.currentSection.value) {
               case PlanSections.main:
-                return Center(
-                  child: ElevatedButton(
-                    onPressed: () =>
-                        _.currentSection.value = PlanSections.books,
-                    child: Text("go to books"),
+                return GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    //change
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 10,
+
+                    //change height 125
+                    mainAxisExtent: 125,
+                    crossAxisSpacing: 10,
                   ),
+                  itemBuilder: (_, index) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: PlanCard(
+                      category: "Bible",
+                      color: "626677",
+                      projectName: "Name",
+                      ratingsLowerNumber: 25,
+                      ratingsUpperNumber: 3,
+                    ),
+                  ),
+                  itemCount: 1,
                 );
+
               case PlanSections.books:
                 return Center(
                   child: ElevatedButton(

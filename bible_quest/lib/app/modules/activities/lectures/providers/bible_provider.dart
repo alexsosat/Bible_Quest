@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:bible_quest/app/modules/lectures/models/bible/bible_exports.dart';
-import 'package:bible_quest/app/modules/user/controllers/user_controller.dart';
+import 'package:bible_quest/app/modules/activities/lectures/models/bible/content/chapter_content.dart';
+import 'package:bible_quest/app/modules/activities/lectures/models/bible/indexes/bible.dart';
 import 'package:bible_quest/app/modules/user/providers/user_provider.dart';
 import 'package:bible_quest/keys.dart';
 import 'package:get/get.dart';

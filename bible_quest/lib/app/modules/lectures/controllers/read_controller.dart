@@ -1,5 +1,5 @@
-import 'package:bible_quest/app/modules/lectures/models/bible/bible_exports.dart';
-import 'package:bible_quest/app/modules/lectures/providers/bible_provider.dart';
+import 'package:bible_quest/app/modules/activities/lectures/models/bible/content/chapter_content.dart';
+import 'package:bible_quest/app/modules/activities/lectures/providers/bible_provider.dart';
 import 'package:get/get.dart';
 
 class ReadController extends GetxController {
