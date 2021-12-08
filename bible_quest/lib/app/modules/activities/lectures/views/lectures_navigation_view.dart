@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:bible_quest/app/modules/activities/lectures/controllers/lectures_controller.dart';
 import 'package:bible_quest/app/modules/activities/lectures/models/bible/indexes/sections.dart';
+import 'package:bible_quest/app/modules/activities/lectures/views/widgets/lectures_colors.dart';
 import 'package:bible_quest/app/modules/activities/lectures/views/widgets/progress_card.dart';
 import 'package:bible_quest/app/modules/lectures/views/subpages/read.dart';
 import 'package:bible_quest/app/modules/lectures/views/widgets/chapter_tile.dart';
@@ -41,8 +44,8 @@ class LecturesView extends GetView<LecturesController> {
         padding: const EdgeInsets.all(20.0),
         child: controller.obx(
           (state) => GetX<LecturesController>(
-            builder: (_) {
-              switch (_.currentSection.value) {
+            builder: (getController) {
+              switch (getController.currentSection.value) {
                 case PlanSections.main:
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -55,30 +58,67 @@ class LecturesView extends GetView<LecturesController> {
                       crossAxisSpacing: 10,
                     ),
                     itemBuilder: (_, index) => PlanCard(
-                      category: "Bible",
+                      category: "Reina Valera",
                       color: "626677",
-                      projectName: "Name",
-                      ratingsLowerNumber: 25,
-                      ratingsUpperNumber: 3,
+                      projectName: "Bible",
+                      ratingsLowerNumber: state!.books.length,
+                      ratingsUpperNumber: state.finishedBooksCount,
+                      onPressed: () => getController.currentSection.value =
+                          PlanSections.books,
                     ),
                     itemCount: 1,
                   );
 
                 case PlanSections.books:
-                  return Center(
-                    child: ElevatedButton(
-                      onPressed: () =>
-                          _.currentSection.value = PlanSections.chapters,
-                      child: Text("go to chapters"),
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      //change
+                      crossAxisCount: 1,
+                      mainAxisSpacing: 10,
+
+                      //change height 125
+                      mainAxisExtent: 125,
+                      crossAxisSpacing: 10,
                     ),
+                    itemBuilder: (_, index) => PlanCard(
+                      projectName: state!.books[index].name,
+                      color: lectureColors[index],
+                      category: state.books[index].id.toLowerCase(),
+                      ratingsLowerNumber: state.books[index].totalChapters,
+                      ratingsUpperNumber: state.books[index].readedChapters,
+                      onPressed: () {
+                        getController.activeBook = state.books[index];
+                        getController.currentSection.value =
+                            PlanSections.chapters;
+                      },
+                    ),
+                    itemCount: state!.books.length,
                   );
                 case PlanSections.chapters:
-                  return Center(
-                    child: ElevatedButton(
-                      onPressed: () =>
-                          _.currentSection.value = PlanSections.main,
-                      child: Text("go to main"),
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      //change
+                      crossAxisCount: 1,
+                      mainAxisSpacing: 10,
+
+                      //change height 125
+                      mainAxisExtent: 125,
+                      crossAxisSpacing: 10,
                     ),
+                    itemBuilder: (_, index) => PlanCard(
+                      projectName: getController.activeBook!.nameLong +
+                          " " +
+                          getController.activeBook!.chapters[index].number,
+                      color: lectureColors[Random().nextInt(66)],
+                      category: getController.activeBook!.chapters[index].id,
+                      ratingsLowerNumber: 1,
+                      ratingsUpperNumber:
+                          getController.activeBook!.chapters[index].readed
+                              ? 1
+                              : 0,
+                      onPressed: () {},
+                    ),
+                    itemCount: getController.activeBook!.chapters.length,
                   );
               }
             },

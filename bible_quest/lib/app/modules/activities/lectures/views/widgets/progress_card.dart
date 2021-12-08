@@ -10,20 +10,22 @@ class PlanCard extends StatelessWidget {
   final int ratingsUpperNumber;
   final int ratingsLowerNumber;
   final String color;
+  final Function()? onPressed;
 
-  const PlanCard(
-      {Key? key,
-      required this.projectName,
-      required this.category,
-      required this.ratingsUpperNumber,
-      required this.ratingsLowerNumber,
-      required this.color})
-      : super(key: key);
+  const PlanCard({
+    Key? key,
+    required this.projectName,
+    required this.category,
+    required this.ratingsUpperNumber,
+    required this.ratingsLowerNumber,
+    required this.color,
+    this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: TextButton.styleFrom(
         primary: Colors.white,
         backgroundColor: HexColor.fromHex("20222A"),

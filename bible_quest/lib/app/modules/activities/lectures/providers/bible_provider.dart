@@ -2,22 +2,21 @@ import 'dart:convert';
 
 import 'package:bible_quest/app/modules/activities/lectures/models/bible/content/chapter_content.dart';
 import 'package:bible_quest/app/modules/activities/lectures/models/bible/indexes/bible.dart';
-import 'package:bible_quest/app/modules/user/providers/user_provider.dart';
+import 'package:bible_quest/app/modules/user/models/user_readings.dart';
 import 'package:bible_quest/keys.dart';
 import 'package:get/get.dart';
 import 'package:collection/collection.dart';
 
 class BibleProvider extends GetConnect {
-  Future<Bible> getBible() async {
+  Future<Bible> getBible(List<UserReadings>? readPlans) async {
     final response = await get(
         'https://api.scripture.api.bible/v1/bibles/${environment["bible_book"]!}/books?include-chapters=true',
         headers: {'api-key': environment['bible-key']!});
 
-    final readedPlans = await UserProvider().getUserReadings();
     Map<String, dynamic>? readedBibleBooks = {};
-    if (readedPlans != null) {
-      final biblePlan = readedPlans
-          .firstWhereOrNull((element) => element.planName == "Bible");
+    if (readPlans != null) {
+      final biblePlan =
+          readPlans.firstWhereOrNull((element) => element.planName == "Bible");
 
       readedBibleBooks = biblePlan != null ? biblePlan.readed : {};
     }

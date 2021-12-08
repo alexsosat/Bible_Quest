@@ -7,6 +7,16 @@ class Bible {
 
   List<Book> books;
 
+  int get finishedBooksCount {
+    int count = 0;
+    books.forEach((book) {
+      if (book.readedChapters == book.totalChapters) {
+        count++;
+      }
+    });
+    return count;
+  }
+
   factory Bible.fromJson(
           Map<String, dynamic> json, Map<String, dynamic>? userData) =>
       Bible(
