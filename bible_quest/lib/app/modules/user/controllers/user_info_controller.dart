@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 class UserInfoController extends GetxController with StateMixin<UserInfo> {
   final UserProvider _apiService = UserProvider();
 
+  late UserInfo userInfo;
+
   @override
   onInit() {
     _fetchUserInfo();
@@ -13,8 +15,8 @@ class UserInfoController extends GetxController with StateMixin<UserInfo> {
 
   _fetchUserInfo() async {
     try {
-      var response = await _apiService.getUserInfo();
-      change(response, status: RxStatus.success());
+      userInfo = await _apiService.getUserInfo();
+      change(userInfo, status: RxStatus.success());
     } catch (e) {
       change(null, status: RxStatus.error());
     }

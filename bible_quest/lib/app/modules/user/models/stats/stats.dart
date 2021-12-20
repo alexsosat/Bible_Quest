@@ -20,7 +20,6 @@
 //
 //     final userStats = userStatsFromJson(jsonString);
 
-import 'dart:convert';
 
 import 'complex_stat.dart';
 

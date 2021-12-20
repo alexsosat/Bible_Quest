@@ -5,6 +5,7 @@ import 'package:bible_quest/app/modules/user/models/stats/stats.dart';
 import 'package:bible_quest/app/modules/user/models/user.dart';
 import 'package:bible_quest/app/modules/user/models/user_info.dart';
 import 'package:bible_quest/app/modules/user/models/user_readings.dart';
+import 'package:bible_quest/app/modules/user/modules/equipment/views/widgets/user_stats.dart';
 import 'package:bible_quest/keys.dart';
 import 'package:get/get.dart';
 
@@ -107,10 +108,10 @@ class UserProvider extends GetConnect {
     }
   }
 
-  Future updateUser(Map<String, dynamic> content) async {
+  Future updateUserStats(Stats userStats) async {
     final response = await put(
-      '${environment['web_url']}users/${authController.userUID}',
-      content,
+      '${environment['web_url']}users/${authController.userUID}/stats/update',
+      userStats.toJson(),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'

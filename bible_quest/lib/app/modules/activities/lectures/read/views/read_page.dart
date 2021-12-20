@@ -1,7 +1,7 @@
-import 'package:bible_quest/app/modules/activities/lectures/controllers/lectures_controller.dart';
-import 'package:bible_quest/app/modules/lectures/controllers/read_controller.dart';
-import 'package:bible_quest/app/modules/lectures/views/widgets/read_page_icons_icons.dart';
-import 'package:bible_quest/app/modules/user/controllers/user_controller.dart';
+import 'package:bible_quest/app/modules/activities/lectures/navigation/controllers/lectures_controller.dart';
+import 'package:bible_quest/app/modules/activities/lectures/read/controller/read_controller.dart';
+import 'package:bible_quest/app/modules/activities/lectures/read/views/widgets/read_page_icons_icons.dart';
+import 'package:bible_quest/app/modules/user/controllers/user_stats_controller.dart';
 import 'package:bible_quest/app/modules/user/models/current_reading.dart';
 import 'package:bible_quest/globals/user_character.dart';
 import 'package:bible_quest/globals/tab_icons_icons.dart';
@@ -60,20 +60,20 @@ class _ReadPageState extends State<ReadPage> {
           } else {
             // You're at the bottom.
 
-            var userController = Get.find<UserController>();
-            var plansController = Get.find<LecturesController>();
+            var lecturesController = Get.find<LecturesController>();
             var readController = Get.find<ReadController>();
+            var userStatsController = Get.find<UserStatsController>();
 
             Map<String, dynamic>? readedBooks =
-                userController.user.currentReadings[0].readed;
+                lecturesController.userReadings[0].readed;
 
             Map<String, dynamic> data =
                 readController.isChapterReaded(readedBooks);
 
             if (!data['isReaded']) {
-              plansController.updateReadedBooks(data['books']);
-              Map<String, dynamic> growStats =
-                  await userController.chapterReward(onLevelUp: _levelUpDialog);
+              lecturesController.updateReadedBooks(data['books']);
+              Map<String, dynamic> growStats = await userStatsController
+                  .chapterReward(onLevelUp: _levelUpDialog);
               _showSnackbar(growStats['xp'], growStats['money']);
             }
           }
@@ -125,7 +125,7 @@ class _ReadPageState extends State<ReadPage> {
   }
 
   Future _levelUpDialog() async {
-    int level = Get.find<UserController>().user.stats.level;
+    int level = Get.find<UserStatsController>().userStats.level;
     await Get.dialog(
       AlertDialog(
         title: Text("🎉  Subiste de nivel  🎉"),
