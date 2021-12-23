@@ -5,8 +5,8 @@ import 'package:bible_quest/app/modules/user/models/stats/stats.dart';
 import 'package:bible_quest/app/modules/user/models/user.dart';
 import 'package:bible_quest/app/modules/user/models/user_info.dart';
 import 'package:bible_quest/app/modules/user/models/user_readings.dart';
-import 'package:bible_quest/app/modules/user/modules/equipment/views/widgets/user_stats.dart';
 import 'package:bible_quest/keys.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class UserProvider extends GetConnect {
@@ -14,7 +14,7 @@ class UserProvider extends GetConnect {
 
   Future<bool> userExists() async {
     final response = await get(
-      '${environment['web_url']}users/${authController.userUID}/exists',
+      '${environment['web_url']}players/${authController.userUID}/exists',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -29,7 +29,7 @@ class UserProvider extends GetConnect {
 
   Future<User> getUserAll() async {
     final response = await get(
-      '${environment['web_url']}users/${authController.userUID}/info',
+      '${environment['web_url']}players/${authController.userUID}/info',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -45,7 +45,7 @@ class UserProvider extends GetConnect {
 
   Future<UserInfo> getUserInfo() async {
     final response = await get(
-      '${environment['web_url']}users/${authController.userUID}/info',
+      '${environment['web_url']}players/${authController.userUID}/info',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -61,7 +61,7 @@ class UserProvider extends GetConnect {
 
   Future<Stats> getUserStats() async {
     final response = await get(
-      '${environment['web_url']}users/${authController.userUID}/stats',
+      '${environment['web_url']}players/${authController.userUID}/stats',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -77,7 +77,7 @@ class UserProvider extends GetConnect {
 
   Future<List<UserReadings>?> getUserReadings() async {
     final response = await get(
-      '${environment['web_url']}users/${authController.userUID}/books_readed',
+      '${environment['web_url']}players/${authController.userUID}/books_readed',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -93,7 +93,7 @@ class UserProvider extends GetConnect {
 
   Future<bool> createUser(User user) async {
     final response = await post(
-      '${environment['web_url']}users/',
+      '${environment['web_url']}players/',
       user.toJson(),
       headers: {
         'Content-Type': 'application/json',
@@ -110,8 +110,23 @@ class UserProvider extends GetConnect {
 
   Future updateUserStats(Stats userStats) async {
     final response = await put(
-      '${environment['web_url']}users/${authController.userUID}/stats/update',
-      userStats.toJson(),
+      '${environment['web_url']}players/${authController.userUID}/stats/update',
+      jsonEncode(userStats.toJson()),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+    );
+    if (response.status.hasError) {
+      debugPrint(response.bodyString);
+      return Future.error(response.statusText!);
+    }
+  }
+
+  Future updateUserReadings(List<UserReadings> readings) async {
+    final response = await put(
+      '${environment['web_url']}players/${authController.userUID}/books_readed/update',
+      jsonEncode(readings),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'

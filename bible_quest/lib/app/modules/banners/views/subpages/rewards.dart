@@ -2,7 +2,6 @@ import 'package:bible_quest/app/modules/banners/controllers/banners_controller.d
 import 'package:bible_quest/app/modules/banners/models/item_banner.dart';
 import 'package:bible_quest/app/modules/banners/models/reward_item.dart';
 import 'package:bible_quest/globals/cards/sprite_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spring/spring.dart';

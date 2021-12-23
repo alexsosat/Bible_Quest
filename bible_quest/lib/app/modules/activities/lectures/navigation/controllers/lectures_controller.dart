@@ -2,14 +2,14 @@ import 'package:bible_quest/app/modules/activities/lectures/navigation/models/bi
 import 'package:bible_quest/app/modules/activities/lectures/navigation/models/bible/indexes/book.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/models/bible/indexes/sections.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/providers/bible_provider.dart';
-import 'package:bible_quest/app/modules/user/controllers/user_info_controller.dart';
+import 'package:bible_quest/app/modules/user/models/user_readings.dart';
 import 'package:bible_quest/app/modules/user/providers/user_provider.dart';
 import 'package:get/get.dart';
 
 class LecturesController extends GetxController with StateMixin<Bible> {
   var currentSection = PlanSections.main.obs;
 
-  var userReadings;
+  late List<UserReadings>? userReadings;
 
   Book? activeBook;
 
@@ -20,8 +20,8 @@ class LecturesController extends GetxController with StateMixin<Bible> {
   }
 
   void refreshContent() {
+    change(null, status: RxStatus.loading());
     fetchPlans();
-    update();
   }
 
   Future<void> fetchPlans() async {
@@ -30,15 +30,12 @@ class LecturesController extends GetxController with StateMixin<Bible> {
       final response = await BibleProvider().getBible(userReadings);
       change(response, status: RxStatus.success());
     } catch (e) {
-      change(null, status: RxStatus.error());
+      change(null, status: RxStatus.error(e.toString()));
     }
   }
 
-  Future updateReadedBooks(Map<String, dynamic> content) async {
-    await UserProvider().updateUser(
-      Get.find<UserInfoController>().userInfo.id,
-      {"books_readed": content},
-    );
+  Future updateReadedBooks() async {
+    await UserProvider().updateUserReadings(userReadings!);
     refreshContent();
   }
 }

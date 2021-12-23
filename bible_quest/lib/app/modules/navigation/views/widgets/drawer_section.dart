@@ -1,6 +1,5 @@
 import 'package:bible_quest/app/modules/navigation/controllers/navigation_controller.dart';
 import 'package:bible_quest/app/modules/navigation/models/drawer_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

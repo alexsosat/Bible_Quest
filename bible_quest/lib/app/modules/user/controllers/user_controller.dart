@@ -1,5 +1,4 @@
 import 'package:bible_quest/app/modules/banners/models/categories.dart';
-import 'package:bible_quest/app/modules/user/controllers/user_info_controller.dart';
 import 'package:bible_quest/app/modules/user/models/current_items.dart';
 import 'package:bible_quest/app/modules/user/models/stats/stats.dart';
 import 'package:bible_quest/app/modules/user/models/user.dart';
@@ -33,10 +32,10 @@ class UserController extends GetxController with StateMixin<User> {
   }
 
   Future updateUser(Map<String, dynamic> content) async {
-    await apiService.updateUser(
-      Get.find<UserInfoController>().userInfo.id,
-      content,
-    );
+    // await apiService.updateUser(
+    //   Get.find<UserInfoController>().userInfo.id,
+    //   content,
+    // );
   }
 
   Future changeGear(ItemCategory key, String itemId) async {

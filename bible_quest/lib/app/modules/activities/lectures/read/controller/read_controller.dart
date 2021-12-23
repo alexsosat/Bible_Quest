@@ -34,38 +34,26 @@ class ReadController extends GetxController {
     }
   }
 
-  Map<String, dynamic> isChapterReaded(Map<String, dynamic>? readedBooks) {
+  bool isChapterReaded(Map<String, dynamic>? readedBooks) {
     final bookData = content.value.data;
 
     if (readedBooks != null) {
       if (readedBooks.containsKey(bookData.bookId)) {
         if (!readedBooks[bookData.bookId].contains(bookData.id)) {
           readedBooks[bookData.bookId].add(bookData.id);
-          return {
-            'isReaded': false,
-            'books': readedBooks,
-          };
+          return false;
         }
       } else {
         readedBooks[bookData.bookId] = [bookData.id];
-        return {
-          'isReaded': false,
-          'books': readedBooks,
-        };
+        return false;
       }
     } else {
       readedBooks = {
         bookData.bookId: [bookData.id],
       };
-      return {
-        'isReaded': false,
-        'books': readedBooks,
-      };
+      return false;
     }
 
-    return {
-      'isReaded': true,
-      'books': readedBooks,
-    };
+    return true;
   }
 }

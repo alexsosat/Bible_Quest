@@ -65,13 +65,12 @@ class _ReadPageState extends State<ReadPage> {
             var userStatsController = Get.find<UserStatsController>();
 
             Map<String, dynamic>? readedBooks =
-                lecturesController.userReadings[0].readed;
+                lecturesController.userReadings![0].readed;
 
-            Map<String, dynamic> data =
-                readController.isChapterReaded(readedBooks);
+            bool isRead = readController.isChapterReaded(readedBooks);
 
-            if (!data['isReaded']) {
-              lecturesController.updateReadedBooks(data['books']);
+            if (!isRead) {
+              await lecturesController.updateReadedBooks();
               Map<String, dynamic> growStats = await userStatsController
                   .chapterReward(onLevelUp: _levelUpDialog);
               _showSnackbar(growStats['xp'], growStats['money']);

@@ -1,4 +1,3 @@
-import 'package:bible_quest/app/modules/user/controllers/user_info_controller.dart';
 import 'package:bible_quest/app/modules/user/models/stats/stats.dart';
 import 'package:bible_quest/app/modules/user/providers/user_provider.dart';
 import 'package:bible_quest/app/modules/user/utils/user_grow.dart';
