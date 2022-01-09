@@ -29,94 +29,121 @@ class LecturesView extends GetView<LecturesController> {
               Icons.menu,
             )),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: controller.obx(
-          (state) => GetX<LecturesController>(
-            builder: (getController) {
-              switch (getController.currentSection.value) {
-                case PlanSections.main:
-                  return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      //change
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 10,
+      body: controller.obx(
+        (state) => GetX<LecturesController>(
+          builder: (getController) {
+            switch (getController.currentSection.value) {
+              case PlanSections.main:
+                return GridView.builder(
+                  padding: EdgeInsets.all(20.0),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    //change
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 10,
 
-                      //change height 125
-                      mainAxisExtent: 125,
-                      crossAxisSpacing: 10,
-                    ),
-                    itemBuilder: (_, index) => PlanCard(
-                      category: "Reina Valera",
-                      color: "626677",
-                      projectName: "Bible",
-                      ratingsLowerNumber: state!.books.length,
-                      ratingsUpperNumber: state.finishedBooksCount,
-                      onPressed: () => getController.currentSection.value =
-                          PlanSections.books,
-                    ),
-                    itemCount: 1,
-                  );
+                    //change height 125
+                    mainAxisExtent: 125,
+                    crossAxisSpacing: 10,
+                  ),
+                  itemBuilder: (_, index) => PlanCard(
+                    category: "Reina Valera",
+                    color: "626677",
+                    projectName: "Bible",
+                    ratingsLowerNumber: state!.books.length,
+                    ratingsUpperNumber: state.finishedBooksCount,
+                    onPressed: () =>
+                        getController.currentSection.value = PlanSections.books,
+                  ),
+                  itemCount: 1,
+                );
 
-                case PlanSections.books:
-                  return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      //change
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 10,
+              case PlanSections.books:
+                return ListView(
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () => getController.currentSection.value =
+                              PlanSections.main,
+                          icon: Icon(Icons.chevron_left),
+                        ),
+                      ],
+                    ),
+                    GridView.builder(
+                      padding: EdgeInsets.all(20.0),
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        //change
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 10,
 
-                      //change height 125
-                      mainAxisExtent: 125,
-                      crossAxisSpacing: 10,
+                        //change height 125
+                        mainAxisExtent: 125,
+                        crossAxisSpacing: 10,
+                      ),
+                      itemBuilder: (_, index) => PlanCard(
+                        projectName: state!.books[index].name,
+                        color: lectureColors[index],
+                        category: state.books[index].id.toLowerCase(),
+                        ratingsLowerNumber: state.books[index].totalChapters,
+                        ratingsUpperNumber: state.books[index].readedChapters,
+                        onPressed: () {
+                          getController.activeBook = index;
+                          getController.currentSection.value =
+                              PlanSections.chapters;
+                        },
+                      ),
+                      itemCount: state!.books.length,
                     ),
-                    itemBuilder: (_, index) => PlanCard(
-                      projectName: state!.books[index].name,
-                      color: lectureColors[index],
-                      category: state.books[index].id.toLowerCase(),
-                      ratingsLowerNumber: state.books[index].totalChapters,
-                      ratingsUpperNumber: state.books[index].readedChapters,
-                      onPressed: () {
-                        getController.activeBook = state.books[index];
-                        getController.currentSection.value =
-                            PlanSections.chapters;
-                      },
-                    ),
-                    itemCount: state!.books.length,
-                  );
-                case PlanSections.chapters:
-                  return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      //change
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 10,
+                  ],
+                );
 
-                      //change height 125
-                      mainAxisExtent: 125,
-                      crossAxisSpacing: 10,
+              case PlanSections.chapters:
+                final book = state!.books[getController.activeBook!];
+                return ListView(
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () => getController.currentSection.value =
+                              PlanSections.books,
+                          icon: Icon(Icons.chevron_left),
+                        ),
+                      ],
                     ),
-                    itemBuilder: (_, index) => PlanCard(
-                      projectName: getController.activeBook!.nameLong +
-                          " " +
-                          getController.activeBook!.chapters[index].number,
-                      color: lectureColors[Random().nextInt(66)],
-                      category: getController.activeBook!.chapters[index].id,
-                      ratingsLowerNumber: 1,
-                      ratingsUpperNumber:
-                          getController.activeBook!.chapters[index].readed
-                              ? 1
-                              : 0,
-                      onPressed: () => Get.to(
-                        () => ReadPage(
-                          chapterId:
-                              getController.activeBook!.chapters[index].id,
+                    GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: EdgeInsets.all(20.0),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        //change
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 10,
+
+                        //change height 125
+                        mainAxisExtent: 125,
+                        crossAxisSpacing: 10,
+                      ),
+                      itemBuilder: (_, index) => PlanCard(
+                        projectName:
+                            book.nameLong + " " + book.chapters[index].number,
+                        color: lectureColors[Random().nextInt(66)],
+                        category: book.chapters[index].id,
+                        ratingsLowerNumber: 1,
+                        ratingsUpperNumber: book.chapters[index].readed ? 1 : 0,
+                        onPressed: () => Get.to(
+                          () => ReadPage(
+                            chapterId: book.chapters[index].id,
+                          ),
                         ),
                       ),
+                      itemCount: book.chapters.length,
                     ),
-                    itemCount: getController.activeBook!.chapters.length,
-                  );
-              }
-            },
-          ),
+                  ],
+                );
+            }
+          },
         ),
       ),
     );

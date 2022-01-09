@@ -11,7 +11,7 @@ class LecturesController extends GetxController with StateMixin<Bible> {
 
   late List<UserReadings>? userReadings;
 
-  Book? activeBook;
+  int? activeBook;
 
   @override
   void onInit() {
