@@ -22,6 +22,7 @@ class UserCharacter extends GetView<UserInfoController> {
           shape: shape,
         ),
         child: Stack(
+          alignment: Alignment(-0.15, 0),
           children: <Widget>[
             Image.asset(
               state!.currentItems.stringtoImagePath.base,

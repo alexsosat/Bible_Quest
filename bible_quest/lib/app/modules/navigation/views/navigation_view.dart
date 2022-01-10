@@ -7,7 +7,7 @@ import 'package:bible_quest/app/modules/banners/views/banners_view.dart';
 import 'package:bible_quest/app/modules/navigation/models/views_enum.dart';
 import 'package:bible_quest/app/modules/store/exchange/views/exchange_store_view.dart';
 import 'package:bible_quest/app/modules/user/modules/achievements/views/achievements_view.dart';
-import 'package:bible_quest/app/modules/user/modules/equipment/views/user.dart';
+import 'package:bible_quest/app/modules/user/modules/equipment/views/equipment_view.dart';
 import 'package:bible_quest/app/modules/user/modules/home/views/home.dart';
 import 'package:bible_quest/app/modules/user/modules/missions/views/missions.dart';
 import 'package:flutter/material.dart';
