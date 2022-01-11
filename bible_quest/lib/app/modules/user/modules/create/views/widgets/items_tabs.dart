@@ -2,6 +2,7 @@ import 'package:bible_quest/app/modules/user/models/start_items.dart';
 import 'package:bible_quest/app/modules/user/modules/create/controllers/create_user_controller.dart';
 import 'package:bible_quest/app/modules/user/modules/create/views/widgets/list_items.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class InitialItemsTabs extends GetView<CreateUserController> {
@@ -17,9 +18,13 @@ class InitialItemsTabs extends GetView<CreateUserController> {
           children: [
             TabBar(
               tabs: [
-                Tab(icon: Icon(Icons.directions_car)),
-                Tab(icon: Icon(Icons.directions_transit)),
-                Tab(icon: Icon(Icons.directions_bike)),
+                Tab(
+                    icon: Icon(
+                  Icons.accessibility_new,
+                  size: 32,
+                )),
+                Tab(icon: Icon(FontAwesomeIcons.userAlt)),
+                Tab(icon: Icon(FontAwesomeIcons.tshirt)),
               ],
             ),
             Container(

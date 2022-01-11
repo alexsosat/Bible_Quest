@@ -4,8 +4,6 @@ import 'package:bible_quest/globals/user_character.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'widgets/equipment_menu.dart';
-
 class EquipmentView extends StatelessWidget {
   const EquipmentView({Key? key}) : super(key: key);
 

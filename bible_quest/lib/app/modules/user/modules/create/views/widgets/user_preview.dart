@@ -27,6 +27,7 @@ class UserPreview extends GetView<CreateUserController> {
                 StartItems.bodies[controller.bodySprite.value].imagePath,
                 fit: BoxFit.contain,
               ),
+              Image.asset(StartItems.outline.imagePath),
               Image.asset(
                 StartItems.heads[controller.headSprite.value].imagePath,
                 fit: BoxFit.contain,

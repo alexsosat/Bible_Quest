@@ -4,7 +4,6 @@ import 'package:bible_quest/app/modules/user/controllers/user_info_controller.da
 import 'package:bible_quest/app/modules/user/controllers/user_items_controller.dart';
 import 'package:bible_quest/app/modules/user/models/current_items.dart';
 import 'package:bible_quest/app/modules/user/modules/equipment/models/equipment_sections.dart';
-import 'package:bible_quest/app/modules/user/modules/equipment/views/subviews/change_equipment.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

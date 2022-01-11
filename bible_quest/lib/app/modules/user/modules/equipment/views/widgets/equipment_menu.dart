@@ -1,8 +1,5 @@
-import 'package:bible_quest/app/modules/banners/models/categories.dart';
-import 'package:bible_quest/app/modules/tabs/controllers/tabs_controller.dart';
 import 'package:bible_quest/app/modules/user/controllers/user_info_controller.dart';
 import 'package:bible_quest/app/modules/user/modules/equipment/models/equipment_sections.dart';
-import 'package:bible_quest/app/modules/user/modules/equipment/views/subviews/change_equipment.dart';
 import 'package:bible_quest/globals/cards/sprite_card.dart';
 import '../../../../../../../globals/cards/sprite_card.dart';
 import 'user_section.dart';

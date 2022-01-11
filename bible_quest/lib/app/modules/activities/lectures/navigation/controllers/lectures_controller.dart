@@ -1,5 +1,4 @@
 import 'package:bible_quest/app/modules/activities/lectures/navigation/models/bible/indexes/bible.dart';
-import 'package:bible_quest/app/modules/activities/lectures/navigation/models/bible/indexes/book.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/models/bible/indexes/sections.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/providers/bible_provider.dart';
 import 'package:bible_quest/app/modules/user/models/user_readings.dart';

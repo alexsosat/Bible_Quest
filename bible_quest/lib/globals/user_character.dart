@@ -1,4 +1,5 @@
 import 'package:bible_quest/app/modules/user/controllers/user_info_controller.dart';
+import 'package:bible_quest/app/modules/user/models/start_items.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,6 +33,7 @@ class UserCharacter extends GetView<UserInfoController> {
               state.currentItems.stringtoImagePath.body,
               fit: BoxFit.contain,
             ),
+            Image.asset(StartItems.outline.imagePath),
             Image.asset(
               state.currentItems.stringtoImagePath.head,
               fit: BoxFit.contain,
