@@ -26,7 +26,10 @@ class EquipmentView extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(child: UserCharacter(size: 200)),
+          Container(
+            color: Colors.deepPurple[800],
+            child: Center(child: UserCharacter(size: 200)),
+          ),
           SizedBox(height: 40),
           Expanded(child: EquipmentSection()),
         ],

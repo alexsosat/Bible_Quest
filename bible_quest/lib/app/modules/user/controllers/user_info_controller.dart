@@ -1,3 +1,4 @@
+import 'package:bible_quest/app/modules/user/models/current_items.dart';
 import 'package:bible_quest/app/modules/user/models/user_info.dart';
 import 'package:bible_quest/app/modules/user/providers/user_provider.dart';
 import 'package:get/get.dart';
@@ -20,5 +21,10 @@ class UserInfoController extends GetxController with StateMixin<UserInfo> {
     } catch (e) {
       change(null, status: RxStatus.error());
     }
+  }
+
+  updateUserItems(CurrentItems newCurrentItems) async {
+    await _apiService.updateUserCurrentItems(newCurrentItems);
+    _fetchUserInfo();
   }
 }

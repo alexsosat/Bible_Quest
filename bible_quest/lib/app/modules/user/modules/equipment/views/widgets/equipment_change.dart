@@ -1,14 +1,123 @@
+import 'package:bible_quest/app/modules/banners/models/categories.dart';
+import 'package:bible_quest/app/modules/banners/models/item.dart';
+import 'package:bible_quest/app/modules/user/controllers/user_info_controller.dart';
+import 'package:bible_quest/app/modules/user/controllers/user_items_controller.dart';
+import 'package:bible_quest/app/modules/user/models/current_items.dart';
+import 'package:bible_quest/app/modules/user/modules/equipment/models/equipment_sections.dart';
+import 'package:bible_quest/app/modules/user/modules/equipment/views/subviews/change_equipment.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EquipmentChange extends StatelessWidget {
   final Function() onReturn;
-  const EquipmentChange({Key? key, required this.onReturn}) : super(key: key);
+  final EquipmentSectionPage section;
+  const EquipmentChange({
+    Key? key,
+    required this.onReturn,
+    required this.section,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onReturn,
-      child: Text("Return to menu"),
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        Row(
+          children: [
+            IconButton(onPressed: onReturn, icon: Icon(Icons.chevron_left)),
+          ],
+        ),
+        GetBuilder<UserItemsController>(
+          init: UserItemsController(section),
+          builder: (controller) => controller.obx(
+            (state) => Column(
+              children: state!
+                  .map(
+                    (item) => TextButton(
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        primary: Colors.white,
+                      ),
+                      onPressed: () async {
+                        var userInfoController = Get.find<UserInfoController>();
+                        CurrentItems newItems =
+                            userInfoController.userInfo.currentItems;
+                        newItems = changeEquipment(
+                          item.type,
+                          userInfoController.userInfo.currentItems,
+                          item,
+                        );
+                        await userInfoController.updateUserItems(newItems);
+                      },
+                      child: Container(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 10),
+                            ListTile(
+                              leading: Container(
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF151529),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                ),
+                                child: Image.asset(
+                                  item.imagePath,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                              title: Text(item.displayName),
+                              subtitle: Text(item.description),
+                              // trailing: (userController.user.currentItems
+                              //             .categoryToItem(widget.category) ==
+                              //         element.assetName)
+                              //     ? Icon(
+                              //         Icons.check_circle,
+                              //         color: Colors.green,
+                              //       )
+                              //     : null,
+                            ),
+                            SizedBox(height: 10),
+                            Divider(height: 0),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+            onEmpty: Center(
+              child: Text("No tienes objetos de esta categoría"),
+            ),
+          ),
+        )
+      ],
     );
+  }
+
+  CurrentItems changeEquipment(
+      ItemCategory type, CurrentItems currentItems, Item item) {
+    switch (type) {
+      case ItemCategory.arm:
+        currentItems.arm = item.assetName;
+        break;
+      case ItemCategory.background:
+        currentItems.background = item.assetName;
+        break;
+      case ItemCategory.base:
+        currentItems.base = item.assetName;
+        break;
+      case ItemCategory.body:
+        currentItems.body = item.assetName;
+        break;
+      case ItemCategory.head:
+        currentItems.head = item.assetName;
+        break;
+      case ItemCategory.pet:
+        currentItems.pet = item.assetName;
+        break;
+    }
+
+    return currentItems;
   }
 }

@@ -23,6 +23,7 @@ class _EquipmentSectionState extends State<EquipmentSection> {
         );
       default:
         return EquipmentChange(
+          section: section,
           onReturn: () {
             setState(() {
               section = EquipmentSectionPage.menu;
