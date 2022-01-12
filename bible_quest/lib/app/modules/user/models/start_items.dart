@@ -43,13 +43,6 @@ class StartItems {
         type: ItemCategory.body,
         description: "",
         appearRate: 1.0),
-    Item(
-        id: 1,
-        assetName: "tile005",
-        displayName: "body 2",
-        type: ItemCategory.body,
-        description: "",
-        appearRate: 1.0),
   ];
 
   static List<Item> base = [

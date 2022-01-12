@@ -60,9 +60,15 @@ class EquipmentChange extends StatelessWidget {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5)),
                                 ),
-                                child: Image.asset(
-                                  item.imagePath,
-                                  fit: BoxFit.contain,
+                                child: Container(
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(item.imagePath),
+                                      fit: BoxFit.cover,
+                                      alignment: Alignment.topCenter,
+                                    ),
+                                  ),
                                 ),
                               ),
                               title: Text(item.displayName),

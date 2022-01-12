@@ -14,12 +14,15 @@ class UserStatAlign extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topLeft,
-      child: UserStatIndicator(
-        data: data,
-        icon: icon,
-        alignment: alignment,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: UserStatIndicator(
+          data: data,
+          icon: icon,
+          alignment: alignment,
+        ),
       ),
     );
   }

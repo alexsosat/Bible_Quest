@@ -1,6 +1,6 @@
 import 'package:bible_quest/app/modules/user/controllers/user_stats_controller.dart';
-import 'package:bible_quest/app/modules/user/modules/home/views/widgets/header/user_character_with_header.dart';
 import 'package:bible_quest/app/modules/user/modules/home/views/widgets/header/user_stat_align.dart';
+import 'package:bible_quest/globals/user_character.dart';
 import 'package:bible_quest/utils/icons.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +15,7 @@ class UserHeaderLayout extends GetView<UserStatsController> {
         child: Stack(
           fit: StackFit.expand,
           children: [
+            UserCharacter(size: 90),
             UserStatAlign(
               alignment: MainAxisAlignment.start,
               data: stats!.currency.toStringAsFixed(2),
@@ -24,10 +25,6 @@ class UserHeaderLayout extends GetView<UserStatsController> {
               alignment: MainAxisAlignment.end,
               data: "${stats.health.current}/${stats.health.total}",
               icon: AppIcons.healthIcon,
-            ),
-            UserCharacterWithProgress(
-              level: stats.level,
-              percent: stats.experiencePercent,
             ),
           ],
         ),

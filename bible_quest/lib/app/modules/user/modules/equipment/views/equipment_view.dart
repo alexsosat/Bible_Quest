@@ -24,28 +24,19 @@ class EquipmentView extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            color: Colors.deepPurple[800],
-            child: Center(child: UserCharacter(size: 200)),
+          SizedBox(
+            height: 250,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                UserCharacter(size: 50),
+              ],
+            ),
           ),
           SizedBox(height: 40),
           Expanded(child: EquipmentSection()),
         ],
       ),
-
-      // CustomScrollView(
-      //   physics: BouncingScrollPhysics(),
-      //   slivers: [
-      //     UserAppBar(),
-      //     SliverList(
-      //       delegate: SliverChildListDelegate([
-      //         EquipmentSection(),
-      //         AchievementsSection(),
-      //         SizedBox(height: 95),
-      //       ]),
-      //     ),
-      //   ],
-      // ),
     );
   }
 }

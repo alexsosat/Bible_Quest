@@ -6,10 +6,12 @@ import 'package:get/get.dart';
 class UserCharacter extends GetView<UserInfoController> {
   final double size;
   final BoxShape shape;
+  final justUserFace;
   const UserCharacter({
     Key? key,
     required this.size,
     this.shape = BoxShape.rectangle,
+    this.justUserFace = false,
   }) : super(key: key);
 
   @override
@@ -18,33 +20,38 @@ class UserCharacter extends GetView<UserInfoController> {
       (state) => Container(
         height: size,
         width: size,
+        clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           color: Colors.deepPurple[800],
           shape: shape,
         ),
-        child: Stack(
-          alignment: Alignment(-0.15, 0),
-          children: <Widget>[
-            Image.asset(
-              state!.currentItems.stringtoImagePath.base,
-              fit: BoxFit.contain,
-            ),
-            Image.asset(
-              state.currentItems.stringtoImagePath.body,
-              fit: BoxFit.contain,
-            ),
-            Image.asset(StartItems.outline.imagePath),
-            Image.asset(
-              state.currentItems.stringtoImagePath.head,
-              fit: BoxFit.contain,
-            ),
-            if (state.currentItems.arm != null &&
-                state.currentItems.arm!.isNotEmpty)
+        child: FittedBox(
+          fit: (justUserFace) ? BoxFit.cover : BoxFit.contain,
+          alignment: (justUserFace) ? Alignment.topCenter : Alignment.center,
+          child: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
               Image.asset(
-                state.currentItems.stringtoImagePath.arm!,
+                state!.currentItems.stringtoImagePath.base,
                 fit: BoxFit.contain,
               ),
-          ],
+              Image.asset(
+                state.currentItems.stringtoImagePath.body,
+                fit: BoxFit.contain,
+              ),
+              Image.asset(StartItems.outline.imagePath),
+              Image.asset(
+                state.currentItems.stringtoImagePath.head,
+                fit: BoxFit.contain,
+              ),
+              if (state.currentItems.arm != null &&
+                  state.currentItems.arm!.isNotEmpty)
+                Image.asset(
+                  state.currentItems.stringtoImagePath.arm!,
+                  fit: BoxFit.contain,
+                ),
+            ],
+          ),
         ),
       ),
     );

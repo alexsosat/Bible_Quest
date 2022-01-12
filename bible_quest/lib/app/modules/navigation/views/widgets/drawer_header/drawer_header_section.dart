@@ -1,3 +1,4 @@
+import 'package:bible_quest/app/modules/navigation/views/widgets/drawer_header/user_character_with_header.dart';
 import 'package:bible_quest/globals/user_character.dart';
 import 'package:flutter/material.dart';
 
@@ -14,15 +15,19 @@ class DrawerHeaderSection extends StatelessWidget {
         height: 150,
         child: Row(
           children: [
-            UserCharacter(
-              size: 76,
-              shape: BoxShape.circle,
+            Flexible(
+              flex: 2,
+              child: UserCharacterWithProgress(
+                size: 90,
+              ),
             ),
-            UserHeaderData(),
-            Expanded(child: SizedBox()),
-            IconButton(
-              icon: Icon(Icons.settings),
-              onPressed: () {},
+            Flexible(flex: 3, child: UserHeaderData()),
+            Flexible(
+              flex: 1,
+              child: IconButton(
+                icon: Icon(Icons.settings),
+                onPressed: () {},
+              ),
             ),
           ],
         ),
