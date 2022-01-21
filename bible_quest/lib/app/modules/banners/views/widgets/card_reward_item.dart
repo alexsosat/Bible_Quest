@@ -21,7 +21,7 @@ class CardRewardItem extends StatelessWidget {
         width: double.maxFinite,
         radiusSpread: 2,
         centerItem: Image.asset(
-          "assets/images/sprites/miscellaneous/tile000.png", //TODO: search for better images
+          "assets/images/sprites/miscellaneous/tile000.png",
           fit: BoxFit.contain,
           height: 50,
         ),

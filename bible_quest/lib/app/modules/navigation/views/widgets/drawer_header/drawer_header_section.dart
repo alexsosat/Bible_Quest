@@ -1,5 +1,4 @@
 import 'package:bible_quest/app/modules/navigation/views/widgets/drawer_header/user_character_with_header.dart';
-import 'package:bible_quest/globals/user_character.dart';
 import 'package:flutter/material.dart';
 
 import 'user_header_data.dart';

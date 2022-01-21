@@ -1,3 +1,5 @@
+import 'package:bible_quest/services/translations/supported_locales.dart';
+
 import 'categories.dart';
 
 class Item {
@@ -22,15 +24,25 @@ class Item {
   get imagePath =>
       'assets/images/sprites/${ItemCategoryHelpers.categoryToString(this.type)}/${this.assetName}.png';
 
-  factory Item.fromJson(Map<String, dynamic> json) => Item(
-        id: json["id"],
-        assetName: json["asset_name"],
-        description: json["description"],
-        effects: json["effects"],
-        displayName: json["display_name"],
-        appearRate: json["appearRate"].toDouble(),
-        type: ItemCategoryHelpers.stringToCategory(json["type"]),
-      );
+  factory Item.fromJson(Map<String, dynamic> json) {
+    String displayName = BibleQuestLocales.isLocaleSpanish()
+        ? json["display_name"]["es"]
+        : json["display_name"]["en"];
+
+    String description = BibleQuestLocales.isLocaleSpanish()
+        ? json["description"]["es"]
+        : json["description"]["en"];
+
+    return Item(
+      id: json["id"],
+      assetName: json["asset_name"],
+      description: description,
+      effects: json["effects"],
+      displayName: displayName,
+      appearRate: json["appear_rate"].toDouble(),
+      type: ItemCategoryHelpers.stringToCategory(json["type"]),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "id": id,

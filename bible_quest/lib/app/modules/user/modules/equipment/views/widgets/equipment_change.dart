@@ -66,7 +66,7 @@ class EquipmentChange extends StatelessWidget {
                                     image: DecorationImage(
                                       image: AssetImage(item.imagePath),
                                       fit: BoxFit.cover,
-                                      alignment: Alignment.topCenter,
+                                      alignment: getViewAlignment(),
                                     ),
                                   ),
                                 ),
@@ -124,5 +124,20 @@ class EquipmentChange extends StatelessWidget {
     }
 
     return currentItems;
+  }
+
+  Alignment getViewAlignment() {
+    switch (section) {
+      case EquipmentSectionPage.head:
+        return Alignment.topCenter;
+      case EquipmentSectionPage.body:
+        return Alignment.center;
+      case EquipmentSectionPage.arm:
+        return Alignment(0, 0.3);
+      case EquipmentSectionPage.base:
+        return Alignment.topCenter;
+      default:
+        return Alignment.center;
+    }
   }
 }

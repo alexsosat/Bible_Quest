@@ -1,4 +1,5 @@
 import 'package:bible_quest/app/modules/login/bindings/authentication_binding.dart';
+import 'package:bible_quest/services/translations/supported_locales.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,12 +34,9 @@ class MyApp extends StatelessWidget {
 
       //Internationalization
       translations: Messages(),
-      locale: Locale('es', 'MX'),
-      supportedLocales: [
-        Locale('es', 'MX'),
-        Locale('en'),
-      ],
-      fallbackLocale: Locale('es', 'MX'),
+      locale: BibleQuestLocales.spanishLocale,
+      supportedLocales: BibleQuestLocales.supportedLocales,
+      fallbackLocale: BibleQuestLocales.spanishLocale,
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
