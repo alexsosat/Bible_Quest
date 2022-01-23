@@ -1,5 +1,5 @@
-import 'package:bible_quest/app/modules/banners/models/categories.dart';
-import 'package:bible_quest/app/modules/banners/models/item.dart';
+import 'package:bible_quest/app/modules/store/banners/models/categories.dart';
+import 'package:bible_quest/app/modules/store/banners/models/item.dart';
 import 'package:bible_quest/app/modules/user/controllers/user_info_controller.dart';
 import 'package:bible_quest/app/modules/user/controllers/user_items_controller.dart';
 import 'package:bible_quest/app/modules/user/models/current_items.dart';

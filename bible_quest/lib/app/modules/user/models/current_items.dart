@@ -1,4 +1,4 @@
-import 'package:bible_quest/app/modules/banners/models/categories.dart';
+import 'package:bible_quest/app/modules/store/banners/models/categories.dart';
 
 class CurrentItems {
   CurrentItems({

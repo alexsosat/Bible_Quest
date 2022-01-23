@@ -1,4 +1,4 @@
-import 'package:bible_quest/app/modules/banners/models/item.dart';
+import 'package:bible_quest/app/modules/store/banners/models/item.dart';
 import 'package:bible_quest/app/modules/user/models/start_items.dart';
 import 'package:bible_quest/app/modules/user/modules/equipment/models/equipment_sections.dart';
 import 'package:bible_quest/app/modules/user/providers/user_provider.dart';

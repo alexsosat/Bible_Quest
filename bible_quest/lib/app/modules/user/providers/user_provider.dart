@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:bible_quest/app/modules/banners/models/item.dart';
 import 'package:bible_quest/app/modules/login/controllers/authentication_controller.dart';
+import 'package:bible_quest/app/modules/store/banners/models/item.dart';
 import 'package:bible_quest/app/modules/user/models/current_items.dart';
 import 'package:bible_quest/app/modules/user/models/stats/stats.dart';
 import 'package:bible_quest/app/modules/user/models/user.dart';
@@ -187,6 +187,21 @@ class UserProvider extends GetConnect {
     );
     if (response.status.hasError) {
       debugPrint(response.bodyString);
+      return Future.error(response.statusText!);
+    }
+  }
+
+  Future updateUserItems(List<Item> userItems) async {
+    final response = await put(
+      '${environment['web_url']}players/${authController.userUID}/items/update',
+      jsonEncode(userItems.map((item) => item.toJson()).toList()),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+    );
+
+    if (response.status.hasError) {
       return Future.error(response.statusText!);
     }
   }

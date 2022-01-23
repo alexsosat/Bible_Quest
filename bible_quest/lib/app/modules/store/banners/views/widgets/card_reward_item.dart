@@ -1,13 +1,13 @@
-import 'package:bible_quest/app/modules/banners/models/item_banner.dart';
-import 'package:bible_quest/app/modules/banners/views/subpages/banner.dart';
-import 'package:bible_quest/app/modules/tabs/controllers/tabs_controller.dart';
+import 'package:bible_quest/app/modules/store/banners/bindings/banner_binding.dart';
+import 'package:bible_quest/app/modules/store/banners/models/item_banner.dart';
+import 'package:bible_quest/app/modules/store/banners/views/subpages/banner.dart';
 import 'package:bible_quest/globals/cards/card_center_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CardRewardItem extends StatelessWidget {
+class BannerCard extends StatelessWidget {
   final ItemBanner banner;
-  const CardRewardItem({
+  const BannerCard({
     Key? key,
     required this.banner,
   }) : super(key: key);
@@ -33,13 +33,11 @@ class CardRewardItem extends StatelessWidget {
               .copyWith(fontWeight: FontWeight.bold),
         ),
         onPressed: () async {
-          Get.find<TabsController>().goToSubTabView(
-            BannerPage(banner: banner),
-            context,
+          Get.to(
+            BannerPage(),
+            binding: BannerBinding(banner.id),
+            transition: Transition.rightToLeftWithFade,
           );
-          // final reward = await bannerDialog(banner);
-
-          // if (reward.isNotEmpty) rewardedItemsDialog(reward);
         },
       ),
     );

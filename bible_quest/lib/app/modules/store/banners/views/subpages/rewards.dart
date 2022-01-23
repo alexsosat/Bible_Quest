@@ -1,6 +1,6 @@
-import 'package:bible_quest/app/modules/banners/controllers/banners_controller.dart';
-import 'package:bible_quest/app/modules/banners/models/item_banner.dart';
-import 'package:bible_quest/app/modules/banners/models/reward_item.dart';
+import 'package:bible_quest/app/modules/store/banners/controllers/banner_controller.dart';
+import 'package:bible_quest/app/modules/store/banners/models/item_banner.dart';
+import 'package:bible_quest/app/modules/store/banners/models/reward_item.dart';
 import 'package:bible_quest/globals/cards/sprite_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -75,7 +75,7 @@ class _RewardsPageState extends State<RewardsPage> {
 
   FutureBuilder<List<RewardItem>> _rewardItems() {
     return FutureBuilder<List<RewardItem>>(
-        future: Get.find<BannersController>().buyItem(
+        future: Get.find<BannerController>().buyItem(
           widget.banner,
           widget.rewardCount,
         ),

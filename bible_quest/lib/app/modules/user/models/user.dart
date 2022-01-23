@@ -4,8 +4,8 @@
 
 import 'dart:convert';
 
-import 'package:bible_quest/app/modules/banners/models/categories.dart';
-import 'package:bible_quest/app/modules/banners/models/item.dart';
+import 'package:bible_quest/app/modules/store/banners/models/categories.dart';
+import 'package:bible_quest/app/modules/store/banners/models/item.dart';
 
 import 'current_items.dart';
 import 'stats/stats.dart';
