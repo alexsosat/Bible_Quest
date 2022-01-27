@@ -34,7 +34,7 @@ class BannerCard extends StatelessWidget {
         ),
         onPressed: () async {
           Get.to(
-            BannerPage(),
+            () => BannerPage(),
             binding: BannerBinding(banner.id),
             transition: Transition.rightToLeftWithFade,
           );

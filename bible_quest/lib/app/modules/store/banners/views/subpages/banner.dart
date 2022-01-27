@@ -20,7 +20,7 @@ class BannerPage extends GetView<BannerController> {
       appBar: AppBar(
         title: controller.obx(
           (banner) => Text(banner!.title),
-          onEmpty: Text("Cargando"),
+          onLoading: Text("Cargando"),
         ),
       ),
       body: controller.obx(

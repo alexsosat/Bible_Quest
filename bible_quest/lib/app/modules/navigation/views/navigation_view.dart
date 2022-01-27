@@ -23,33 +23,39 @@ class NavigationView extends GetView<NavigationController> {
       key: controller.drawerKey,
       drawer: AppDrawer(),
       body: controller.obx(
-        (state) => GetX<NavigationController>(
-          builder: (_) {
-            switch (_.activeView.value) {
-              case DrawerViews.home:
-                return HomeView();
-              case DrawerViews.lectures:
-                return LecturesView();
-              case DrawerViews.games:
-                return GamesView();
-              case DrawerViews.banners:
-                return BannersView();
-              case DrawerViews.exchange_store:
-                return ExchangeStoreView();
-              case DrawerViews.equipment:
-                return EquipmentView();
-              case DrawerViews.missions:
-                return MissionsView();
-              case DrawerViews.achievements:
-                return AchievementsView();
-              case DrawerViews.news:
-                return NewsView();
-              case DrawerViews.settings:
-                return SettingsView();
-              case DrawerViews.about:
-                return AboutView();
-            }
+        (state) => WillPopScope(
+          onWillPop: () async {
+            controller.drawerKey.currentState?.openDrawer();
+            return false;
           },
+          child: GetX<NavigationController>(
+            builder: (_) {
+              switch (_.activeView.value) {
+                case DrawerViews.home:
+                  return HomeView();
+                case DrawerViews.lectures:
+                  return LecturesView();
+                case DrawerViews.games:
+                  return GamesView();
+                case DrawerViews.banners:
+                  return BannersView();
+                case DrawerViews.exchange_store:
+                  return ExchangeStoreView();
+                case DrawerViews.equipment:
+                  return EquipmentView();
+                case DrawerViews.missions:
+                  return MissionsView();
+                case DrawerViews.achievements:
+                  return AchievementsView();
+                case DrawerViews.news:
+                  return NewsView();
+                case DrawerViews.settings:
+                  return SettingsView();
+                case DrawerViews.about:
+                  return AboutView();
+              }
+            },
+          ),
         ),
       ),
     );
