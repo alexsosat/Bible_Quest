@@ -10,6 +10,7 @@ import 'package:bible_quest/app/modules/user/modules/achievements/views/achievem
 import 'package:bible_quest/app/modules/user/modules/equipment/views/equipment_view.dart';
 import 'package:bible_quest/app/modules/user/modules/home/views/home.dart';
 import 'package:bible_quest/app/modules/user/modules/missions/views/missions.dart';
+import 'package:bible_quest/globals/layout/navigation_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,38 +24,23 @@ class NavigationView extends GetView<NavigationController> {
       key: controller.drawerKey,
       drawer: AppDrawer(),
       body: controller.obx(
-        (state) => WillPopScope(
-          onWillPop: () async {
-            controller.drawerKey.currentState?.openDrawer();
-            return false;
-          },
-          child: GetX<NavigationController>(
-            builder: (_) {
-              switch (_.activeView.value) {
-                case DrawerViews.home:
-                  return HomeView();
-                case DrawerViews.lectures:
-                  return LecturesView();
-                case DrawerViews.games:
-                  return GamesView();
-                case DrawerViews.banners:
-                  return BannersView();
-                case DrawerViews.exchange_store:
-                  return ExchangeStoreView();
-                case DrawerViews.equipment:
-                  return EquipmentView();
-                case DrawerViews.missions:
-                  return MissionsView();
-                case DrawerViews.achievements:
-                  return AchievementsView();
-                case DrawerViews.news:
-                  return NewsView();
-                case DrawerViews.settings:
-                  return SettingsView();
-                case DrawerViews.about:
-                  return AboutView();
-              }
-            },
+        (state) => GetX<NavigationController>(
+          builder: (_) => NavigationBuilder<DrawerViews>(
+            values: DrawerViews.values,
+            currentValue: _.activeView.value,
+            pages: <Widget>[
+              HomeView(),
+              LecturesView(),
+              GamesView(),
+              BannersView(),
+              ExchangeStoreView(),
+              EquipmentView(),
+              MissionsView(),
+              AchievementsView(),
+              NewsView(),
+              SettingsView(),
+              AboutView(),
+            ],
           ),
         ),
       ),

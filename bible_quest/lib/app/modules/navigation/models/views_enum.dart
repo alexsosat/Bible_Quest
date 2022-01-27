@@ -1,13 +1,13 @@
 enum DrawerViews {
   home,
   lectures,
-  equipment,
-  banners,
   games,
+  banners,
   exchange_store,
-  news,
-  about,
+  equipment,
   missions,
   achievements,
+  news,
   settings,
+  about,
 }
