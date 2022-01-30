@@ -9,16 +9,16 @@ import 'package:bible_quest/services/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ReadPage extends StatefulWidget {
-  const ReadPage({
+class ReadView extends StatefulWidget {
+  const ReadView({
     Key? key,
   }) : super(key: key);
 
   @override
-  _ReadPageState createState() => _ReadPageState();
+  _ReadViewState createState() => _ReadViewState();
 }
 
-class _ReadPageState extends State<ReadPage> {
+class _ReadViewState extends State<ReadView> {
   final _scrollController = ScrollController();
   final storage = Storage();
   late String chapterId;

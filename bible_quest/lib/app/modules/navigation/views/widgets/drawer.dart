@@ -55,7 +55,7 @@ class AppDrawer extends StatelessWidget {
                       DrawerItem(
                         icon: TabIcons.summons,
                         title: "Banners",
-                        view: Routes.BANNERS,
+                        view: Routes.BANNERSLIST,
                       ),
                       DrawerItem(
                         icon: FontAwesomeIcons.exchangeAlt,

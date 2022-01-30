@@ -1,6 +1,7 @@
 import 'package:bible_quest/app/modules/store/banners/bindings/banner_binding.dart';
 import 'package:bible_quest/app/modules/store/banners/models/item_banner.dart';
-import 'package:bible_quest/app/modules/store/banners/views/subpages/banner.dart';
+import 'package:bible_quest/app/modules/store/banners/views/subpages/banner_view.dart';
+import 'package:bible_quest/app/routes/app_pages.dart';
 import 'package:bible_quest/globals/cards/card_center_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,11 +34,7 @@ class BannerCard extends StatelessWidget {
               .copyWith(fontWeight: FontWeight.bold),
         ),
         onPressed: () async {
-          Get.to(
-            () => BannerPage(),
-            binding: BannerBinding(banner.id),
-            transition: Transition.rightToLeftWithFade,
-          );
+          Get.toNamed(Routes.BANNER(banner.id.toString()));
         },
       ),
     );

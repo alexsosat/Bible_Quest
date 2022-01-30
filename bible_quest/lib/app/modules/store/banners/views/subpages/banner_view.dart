@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import 'rewards.dart';
+import 'rewards_view.dart';
 
-class BannerPage extends GetView<BannerController> {
-  BannerPage({
+class BannerView extends GetView<BannerController> {
+  BannerView({
     Key? key,
   }) : super(key: key);
 
@@ -99,7 +99,7 @@ class BannerPage extends GetView<BannerController> {
                           onPressed: (userCurrency >= banner.cost)
                               ? () async {
                                   Get.to(
-                                    () => RewardsPage(
+                                    () => RewardsView(
                                       banner: banner,
                                       rewardCount: 1,
                                     ),
@@ -132,7 +132,7 @@ class BannerPage extends GetView<BannerController> {
                           onPressed: (userCurrency >= (banner.cost * 5))
                               ? () async {
                                   Get.to(
-                                    () => RewardsPage(
+                                    () => RewardsView(
                                       banner: banner,
                                       rewardCount: 6,
                                     ),

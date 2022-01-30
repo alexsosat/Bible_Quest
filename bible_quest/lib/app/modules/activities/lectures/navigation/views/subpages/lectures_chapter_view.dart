@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/controllers/lectures_controller.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/views/widgets/lectures_colors.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/views/widgets/progress_card.dart';
-import 'package:bible_quest/app/modules/activities/lectures/read/views/read_page.dart';
 import 'package:bible_quest/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

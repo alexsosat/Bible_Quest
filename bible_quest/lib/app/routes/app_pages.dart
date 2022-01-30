@@ -1,8 +1,13 @@
+import 'package:bible_quest/app/modules/activities/games/views/games_view.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/bindings/lectures_bindings.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/views/lectures_main_view.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/views/subpages/lectures_books_view.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/views/subpages/lectures_chapter_view.dart';
 import 'package:bible_quest/app/modules/activities/lectures/read/views/read_page.dart';
+import 'package:bible_quest/app/modules/store/banners/bindings/banner_binding.dart';
+import 'package:bible_quest/app/modules/store/banners/bindings/banners_list_binding.dart';
+import 'package:bible_quest/app/modules/store/banners/views/banners_list_view.dart';
+import 'package:bible_quest/app/modules/store/banners/views/subpages/banner_view.dart';
 import 'package:bible_quest/app/modules/user/modules/create/bindings/create_user_bindings.dart';
 import 'package:bible_quest/app/modules/user/modules/create/views/create_user_view.dart';
 import 'package:bible_quest/app/modules/user/modules/home/bindings/home_bindings.dart';
@@ -49,7 +54,22 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LECTURESREAD,
-      page: () => ReadPage(),
+      page: () => ReadView(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: _Paths.GAMES,
+      page: () => GamesView(),
+    ),
+    GetPage(
+      name: _Paths.BANNERSLIST,
+      page: () => BannersListView(),
+      binding: BannersListBinding(),
+    ),
+    GetPage(
+      name: _Paths.BANNER,
+      page: () => BannerView(),
+      binding: BannerBinding(),
       transition: Transition.rightToLeft,
     ),
     GetPage(

@@ -6,20 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spring/spring.dart';
 
-class RewardsPage extends StatefulWidget {
+class RewardsView extends StatefulWidget {
   final int rewardCount;
   final ItemBanner banner;
-  const RewardsPage({
+  const RewardsView({
     Key? key,
     required this.rewardCount,
     required this.banner,
   }) : super(key: key);
 
   @override
-  _RewardsPageState createState() => _RewardsPageState();
+  _RewardsViewState createState() => _RewardsViewState();
 }
 
-class _RewardsPageState extends State<RewardsPage> {
+class _RewardsViewState extends State<RewardsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +60,7 @@ class _RewardsPageState extends State<RewardsPage> {
         ),
         ElevatedButton(
           onPressed: () => Get.off(
-            () => RewardsPage(
+            () => RewardsView(
               banner: widget.banner,
               rewardCount: widget.rewardCount,
             ),
