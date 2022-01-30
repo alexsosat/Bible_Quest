@@ -1,9 +1,7 @@
-import 'package:bible_quest/app/modules/navigation/controllers/navigation_controller.dart';
 import 'package:bible_quest/app/modules/user/modules/equipment/models/equipment_sections.dart';
 import 'package:bible_quest/app/modules/user/modules/equipment/views/widgets/equipment_change.dart';
 import 'package:bible_quest/app/modules/user/modules/equipment/views/widgets/equipment_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
 
 class EquipmentSection extends StatefulWidget {
   @override
@@ -21,7 +19,7 @@ class _EquipmentSectionState extends State<EquipmentSection> {
             section = EquipmentSectionPage.menu;
           });
         } else {
-          Get.find<NavigationController>().drawerKey.currentState!.openDrawer();
+          // Get.find<NavigationController>().drawerKey.currentState!.openDrawer();
         }
         return false;
       },

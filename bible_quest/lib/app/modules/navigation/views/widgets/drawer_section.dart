@@ -1,9 +1,8 @@
-import 'package:bible_quest/app/modules/navigation/controllers/navigation_controller.dart';
 import 'package:bible_quest/app/modules/navigation/models/drawer_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DrawerSection extends GetView<NavigationController> {
+class DrawerSection extends StatelessWidget {
   final List<DrawerItem> children;
   final String sectionTitle;
   const DrawerSection({
@@ -37,7 +36,7 @@ class DrawerSection extends GetView<NavigationController> {
                 title: Text(item.title),
                 onTap: () {
                   Navigator.of(context).pop();
-                  controller.activeView.value = item.view;
+                  Get.toNamed(item.view);
                 },
               ),
             )

@@ -10,11 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ReadPage extends StatefulWidget {
-  final String chapterId;
-
   const ReadPage({
     Key? key,
-    required this.chapterId,
   }) : super(key: key);
 
   @override
@@ -24,6 +21,7 @@ class ReadPage extends StatefulWidget {
 class _ReadPageState extends State<ReadPage> {
   final _scrollController = ScrollController();
   final storage = Storage();
+  late String chapterId;
   late CurrentReading currentReading = CurrentReading(
     reference: "",
     chapterProgress: 0,
@@ -45,6 +43,7 @@ class _ReadPageState extends State<ReadPage> {
   @override
   void initState() {
     super.initState();
+    chapterId = Get.parameters['chapter_id']!;
     _value = (storage.getStorage.hasData('fontSize')) ? storage.fontSize : 18;
 
     // Setup the listener.
@@ -172,7 +171,7 @@ class _ReadPageState extends State<ReadPage> {
   @override
   Widget build(BuildContext context) {
     return GetX<ReadController>(
-        init: ReadController(chapterId: widget.chapterId),
+        init: ReadController(chapterId: chapterId),
         builder: (readerController) {
           if (!readerController.isLoading.value) {
             currentReading.reference =

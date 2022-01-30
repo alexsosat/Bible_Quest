@@ -40,7 +40,7 @@ class CreateUserController extends GetxController {
 
     if (wasCreated) {
       print("user Created");
-      Get.toNamed(Routes.NAVIGATION);
+      Get.toNamed(Routes.HOME);
     } else {
       print("couldn't create user");
     }

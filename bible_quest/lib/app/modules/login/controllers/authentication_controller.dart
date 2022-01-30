@@ -8,7 +8,6 @@ class AuthenticationController extends GetxController {
     _firebaseUser = FirebaseAuth.instance.currentUser;
     return _firebaseUser != null;
   }
-  //bool get isUserLoggedIn => false;
 
   String? get userUID => _firebaseUser?.uid;
 
@@ -16,11 +15,11 @@ class AuthenticationController extends GetxController {
 
   @override
   void onInit() {
-    _firebaseUser = FirebaseAuth.instance.currentUser;
+    logUserInApp();
     super.onInit();
   }
 
-  void loggeUserInApp() {
+  void logUserInApp() {
     _firebaseUser = FirebaseAuth.instance.currentUser;
   }
 }

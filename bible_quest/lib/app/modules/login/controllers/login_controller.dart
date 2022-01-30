@@ -34,10 +34,10 @@ class LoginController extends GetxController {
         email: email,
         password: password,
       );
-      Get.find<AuthenticationController>().loggeUserInApp();
+      Get.find<AuthenticationController>().logUserInApp();
       bool userExists = await UserProvider().userExists();
       if (userExists) {
-        Get.offNamed(Routes.NAVIGATION);
+        Get.offNamed(Routes.HOME);
       } else {
         Get.offNamed(Routes.CREATE);
       }

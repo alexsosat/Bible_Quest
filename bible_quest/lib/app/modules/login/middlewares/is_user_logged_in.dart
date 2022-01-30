@@ -7,10 +7,9 @@ class IsUserLoggedIn extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     bool authenticated = Get.find<AuthenticationController>().isUserLoggedIn;
-    // print("Hola");
     return authenticated
         ? RouteSettings(
-            name: Routes.NAVIGATION,
+            name: Routes.HOME,
           )
         : null;
   }

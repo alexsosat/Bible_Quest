@@ -1,6 +1,4 @@
-import 'package:bible_quest/app/modules/navigation/controllers/navigation_controller.dart';
 import 'package:bible_quest/app/modules/navigation/models/drawer_item.dart';
-import 'package:bible_quest/app/modules/navigation/models/views_enum.dart';
 import 'package:bible_quest/app/modules/navigation/views/widgets/drawer_section.dart';
 import 'package:bible_quest/app/routes/app_pages.dart';
 import 'package:bible_quest/globals/tab_icons_icons.dart';
@@ -13,8 +11,6 @@ import 'drawer_header/drawer_header_section.dart';
 
 class AppDrawer extends StatelessWidget {
   AppDrawer({Key? key}) : super(key: key);
-
-  final controller = Get.find<NavigationController>();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +31,7 @@ class AppDrawer extends StatelessWidget {
                     title: Text("Inicio"),
                     onTap: () {
                       Navigator.of(context).pop();
-                      controller.activeView.value = DrawerViews.home;
+                      Get.toNamed(Routes.HOME);
                     },
                   ),
                   DrawerSection(
@@ -44,12 +40,12 @@ class AppDrawer extends StatelessWidget {
                       DrawerItem(
                         icon: TabIcons.read,
                         title: "Lecturas",
-                        view: DrawerViews.lectures,
+                        view: Routes.LECTURES,
                       ),
                       DrawerItem(
                         icon: TabIcons.games,
                         title: "Juegos",
-                        view: DrawerViews.games,
+                        view: Routes.GAMES,
                       ),
                     ],
                   ),
@@ -59,12 +55,12 @@ class AppDrawer extends StatelessWidget {
                       DrawerItem(
                         icon: TabIcons.summons,
                         title: "Banners",
-                        view: DrawerViews.banners,
+                        view: Routes.BANNERS,
                       ),
                       DrawerItem(
                         icon: FontAwesomeIcons.exchangeAlt,
                         title: "Intercambios",
-                        view: DrawerViews.exchange_store,
+                        view: Routes.EXCHANGES,
                       ),
                     ],
                   ),
@@ -74,17 +70,17 @@ class AppDrawer extends StatelessWidget {
                       DrawerItem(
                         icon: FontAwesomeIcons.tshirt,
                         title: "Personalizar",
-                        view: DrawerViews.equipment,
+                        view: Routes.EQUIPMENT,
                       ),
                       DrawerItem(
                         icon: TabIcons.tasks,
                         title: "Misiones",
-                        view: DrawerViews.missions,
+                        view: Routes.MISSIONS,
                       ),
                       DrawerItem(
                         icon: Icons.emoji_events,
                         title: "Logros",
-                        view: DrawerViews.achievements,
+                        view: Routes.ACHIEVEMENTS,
                       ),
                     ],
                   ),
@@ -94,12 +90,12 @@ class AppDrawer extends StatelessWidget {
                       DrawerItem(
                         icon: Icons.new_releases,
                         title: "Noticias",
-                        view: DrawerViews.news,
+                        view: Routes.NEWS,
                       ),
                       DrawerItem(
                         icon: Icons.info,
                         title: "Acerca de",
-                        view: DrawerViews.about,
+                        view: Routes.ABOUT,
                       ),
                     ],
                   ),

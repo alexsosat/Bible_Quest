@@ -5,7 +5,6 @@ import 'package:bible_quest/app/modules/activities/lectures/navigation/models/bi
 import 'package:bible_quest/app/modules/user/models/user_readings.dart';
 import 'package:bible_quest/keys.dart';
 import 'package:get/get.dart';
-import 'package:collection/collection.dart';
 
 class BibleProvider extends GetConnect {
   Future<Bible> getBible(List<UserReadings>? readPlans) async {
