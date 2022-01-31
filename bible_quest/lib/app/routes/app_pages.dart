@@ -4,17 +4,22 @@ import 'package:bible_quest/app/modules/activities/lectures/navigation/views/lec
 import 'package:bible_quest/app/modules/activities/lectures/navigation/views/subpages/lectures_books_view.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/views/subpages/lectures_chapter_view.dart';
 import 'package:bible_quest/app/modules/activities/lectures/read/views/read_page.dart';
+import 'package:bible_quest/app/modules/application/about/views/about_view.dart';
+import 'package:bible_quest/app/modules/application/news/views/news_view.dart';
 import 'package:bible_quest/app/modules/store/banners/bindings/banner_binding.dart';
 import 'package:bible_quest/app/modules/store/banners/bindings/banners_list_binding.dart';
 import 'package:bible_quest/app/modules/store/banners/views/banners_list_view.dart';
 import 'package:bible_quest/app/modules/store/banners/views/subpages/banner_view.dart';
 import 'package:bible_quest/app/modules/store/exchange/views/exchange_store_view.dart';
+import 'package:bible_quest/app/modules/user/modules/achievements/views/achievements_view.dart';
 import 'package:bible_quest/app/modules/user/modules/create/bindings/create_user_bindings.dart';
 import 'package:bible_quest/app/modules/user/modules/create/views/create_user_view.dart';
 import 'package:bible_quest/app/modules/user/modules/equipment/views/change_equipment_view.dart';
 import 'package:bible_quest/app/modules/user/modules/equipment/views/equipment_view.dart';
 import 'package:bible_quest/app/modules/user/modules/home/bindings/home_bindings.dart';
 import 'package:bible_quest/app/modules/user/modules/home/views/home.dart';
+import 'package:bible_quest/app/modules/user/modules/missions/bindings/missions_bindings.dart';
+import 'package:bible_quest/app/modules/user/modules/missions/views/missions.dart';
 import 'package:get/get.dart';
 
 import 'package:bible_quest/app/modules/login/bindings/login_binding.dart';
@@ -87,6 +92,23 @@ class AppPages {
       name: _Paths.EQUIPMENTCHANGE,
       page: () => ChangeEquipmentView(),
       transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.MISSIONS,
+      page: () => MissionsView(),
+      binding: MissionsBinding(),
+    ),
+    GetPage(
+      name: _Paths.ACHIEVEMENTS,
+      page: () => AchievementsView(),
+    ),
+    GetPage(
+      name: _Paths.NEWS,
+      page: () => NewsView(),
+    ),
+    GetPage(
+      name: _Paths.ABOUT,
+      page: () => AboutView(),
     ),
     GetPage(
       name: _Paths.CREATE,

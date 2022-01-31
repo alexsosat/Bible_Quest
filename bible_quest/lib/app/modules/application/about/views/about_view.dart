@@ -1,3 +1,4 @@
+import 'package:bible_quest/app/modules/navigation/views/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class AboutView extends StatelessWidget {
@@ -9,6 +10,7 @@ class AboutView extends StatelessWidget {
       appBar: AppBar(
         title: Text("About"),
       ),
+      drawer: AppDrawer(),
       body: Center(
         child: Text("About body"),
       ),
