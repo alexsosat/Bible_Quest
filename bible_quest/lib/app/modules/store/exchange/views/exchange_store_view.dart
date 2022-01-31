@@ -1,3 +1,4 @@
+import 'package:bible_quest/app/modules/navigation/views/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class ExchangeStoreView extends StatelessWidget {
@@ -9,6 +10,7 @@ class ExchangeStoreView extends StatelessWidget {
       appBar: AppBar(
         title: Text("Exchange Store"),
       ),
+      drawer: AppDrawer(),
       body: Center(
         child: Text("Exchange Store"),
       ),

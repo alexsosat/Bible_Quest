@@ -8,8 +8,11 @@ import 'package:bible_quest/app/modules/store/banners/bindings/banner_binding.da
 import 'package:bible_quest/app/modules/store/banners/bindings/banners_list_binding.dart';
 import 'package:bible_quest/app/modules/store/banners/views/banners_list_view.dart';
 import 'package:bible_quest/app/modules/store/banners/views/subpages/banner_view.dart';
+import 'package:bible_quest/app/modules/store/exchange/views/exchange_store_view.dart';
 import 'package:bible_quest/app/modules/user/modules/create/bindings/create_user_bindings.dart';
 import 'package:bible_quest/app/modules/user/modules/create/views/create_user_view.dart';
+import 'package:bible_quest/app/modules/user/modules/equipment/views/change_equipment_view.dart';
+import 'package:bible_quest/app/modules/user/modules/equipment/views/equipment_view.dart';
 import 'package:bible_quest/app/modules/user/modules/home/bindings/home_bindings.dart';
 import 'package:bible_quest/app/modules/user/modules/home/views/home.dart';
 import 'package:get/get.dart';
@@ -71,6 +74,19 @@ class AppPages {
       page: () => BannerView(),
       binding: BannerBinding(),
       transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: _Paths.EXCHANGES,
+      page: () => ExchangeStoreView(),
+    ),
+    GetPage(
+      name: _Paths.EQUIPMENT,
+      page: () => EquipmentView(),
+    ),
+    GetPage(
+      name: _Paths.EQUIPMENTCHANGE,
+      page: () => ChangeEquipmentView(),
+      transition: Transition.noTransition,
     ),
     GetPage(
       name: _Paths.CREATE,

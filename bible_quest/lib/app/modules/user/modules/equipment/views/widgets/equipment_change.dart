@@ -8,11 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EquipmentChange extends StatelessWidget {
-  final Function() onReturn;
   final EquipmentSectionPage section;
   const EquipmentChange({
     Key? key,
-    required this.onReturn,
     required this.section,
   }) : super(key: key);
 
@@ -21,11 +19,6 @@ class EquipmentChange extends StatelessWidget {
     return ListView(
       shrinkWrap: true,
       children: [
-        Row(
-          children: [
-            IconButton(onPressed: onReturn, icon: Icon(Icons.chevron_left)),
-          ],
-        ),
         GetBuilder<UserItemsController>(
           init: UserItemsController(section),
           builder: (controller) => controller.obx(

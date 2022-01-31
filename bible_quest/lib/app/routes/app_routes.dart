@@ -22,7 +22,10 @@ abstract class Routes {
   static BANNER(String bannerId) => '/banners/$bannerId';
 
   static const EXCHANGES = _Paths.EXCHANGES;
+
   static const EQUIPMENT = _Paths.EQUIPMENT;
+  static EQUIPMENTCHANGE(String category) => '/equipment/change/$category';
+
   static const MISSIONS = _Paths.MISSIONS;
   static const ACHIEVEMENTS = _Paths.ACHIEVEMENTS;
   static const NEWS = _Paths.NEWS;
@@ -43,6 +46,7 @@ abstract class _Paths {
   static const BANNER = '/banners/:banner_id';
   static const EXCHANGES = '/exchanges';
   static const EQUIPMENT = '/equipment';
+  static const EQUIPMENTCHANGE = '/equipment/change/:category';
   static const MISSIONS = '/missions';
   static const ACHIEVEMENTS = '/achievements';
   static const NEWS = '/news';
