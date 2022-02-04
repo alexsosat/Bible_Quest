@@ -9,200 +9,129 @@ import 'package:bible_quest/app/modules/user/models/user_info.dart';
 import 'package:bible_quest/app/modules/user/models/user_readings.dart';
 import 'package:bible_quest/app/modules/user/modules/equipment/models/equipment_sections.dart';
 import 'package:bible_quest/keys.dart';
-import 'package:flutter/foundation.dart';
+import 'package:bible_quest/services/connectivity/api_call.dart';
 import 'package:get/get.dart';
 
-class UserProvider extends GetConnect {
-  var authController = Get.find<AuthenticationController>();
+class UserProvider {
+  /// The path of the requests group.
+  static final String path = 'players';
 
-  Future<bool> userExists() async {
-    final response = await get(
-      '${environment['web_url']}players/${authController.userUID}/exists',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    );
-    if (response.status.hasError) {
-      return Future.error(response.statusText!);
-    } else {
-      return response.body as bool;
-    }
+  /// The API client.
+  BibleQuestHttpClient _http;
+
+  var userUID = Get.find<AuthenticationController>().userUID;
+
+  UserProvider({
+    String token = "",
+  }) : this._http = BibleQuestHttpClient(
+          baseUrl: getWebUrl() + path,
+          // auth: Auth(
+          //   token: () => token,
+          //   tokenType: 'Bearer',
+          //   headerName: 'Authorization',
+          // ),
+        );
+
+  /// Retrieves whether the user exists on the api
+  Future<bool> userExists() {
+    return this._http.customGet<bool>(
+          path: '$userUID/exists',
+          mapper: (json) => json as bool,
+        );
   }
 
-  Future<User> getUserAll() async {
-    final response = await get(
-      '${environment['web_url']}players/${authController.userUID}/info',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    );
+  /// Retirieves all user information
+  Future<User> getUserAll() => this._http.customGet<User>(
+        path: '$userUID',
+        mapper: (json) => User.fromJson(json),
+      );
 
-    if (response.status.hasError) {
-      return Future.error(response.statusText!);
-    } else {
-      return User.fromJson(jsonDecode(response.bodyString!));
-    }
-  }
+  /// Retrieves the user main info
+  Future<UserInfo> getUserInfo() => this._http.customGet<UserInfo>(
+        path: '$userUID/info',
+        mapper: (json) => UserInfo.fromJson(json),
+      );
 
-  Future<UserInfo> getUserInfo() async {
-    final response = await get(
-      '${environment['web_url']}players/${authController.userUID}/info',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    );
+  /// Retrieves the user stats
+  Future<Stats> getUserStats() async => this._http.customGet<Stats>(
+        path: '$userUID/stats',
+        mapper: (json) => Stats.fromJson(json),
+      );
 
-    if (response.status.hasError) {
-      return Future.error(response.statusText!);
-    } else {
-      return UserInfo.fromJson(jsonDecode(response.bodyString!));
-    }
-  }
+  /// Retrieves the user read lectures
+  Future<List<UserReadings>?> getUserReadings() =>
+      this._http.customGet<List<UserReadings>>(
+            path: '$userUID/books_readed',
+            mapper: (json) => UserReadings.userReadingsFromJson(json),
+          );
 
-  Future<Stats> getUserStats() async {
-    final response = await get(
-      '${environment['web_url']}players/${authController.userUID}/stats',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    );
+  /// Retrieves all the user acquired items
+  Future<List<Item>> getAllUserItems() => this._http.customGet<List<Item>>(
+        path: '$userUID/items',
+        mapper: (json) => List<Item>.from(json.map((x) => Item.fromJson(x))),
+      );
 
-    if (response.status.hasError) {
-      return Future.error(response.statusText!);
-    } else {
-      return Stats.fromJson(jsonDecode(response.bodyString!));
-    }
-  }
+  /// Retrieves the user acquired items by [page] filter
+  Future<List<Item>> getUserItemsByCategory(EquipmentSectionPage page) =>
+      this._http.customGet<List<Item>>(
+            path: '$userUID/items/${page.name}',
+            mapper: (json) => List<Item>.from(
+              json.map((x) => Item.fromJson(x)),
+            ),
+          );
 
-  Future<List<UserReadings>?> getUserReadings() async {
-    final response = await get(
-      '${environment['web_url']}players/${authController.userUID}/books_readed',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    );
+  /// Creates a new user
+  Future<bool> createUser(User user) => this._http.customPost<bool>(
+        body: user.toJson(),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        mapper: (json) => true, //TODO: check this mapper
+      );
 
-    if (response.status.hasError) {
-      return Future.error(response.statusText!);
-    } else {
-      return UserReadings.userReadingsFromJson(response.bodyString!);
-    }
-  }
+  /// Updates the user stats with [userStats] values
+  Future updateUserStats(Stats userStats) => this._http.customPut(
+        path: '$userUID/items/stats/update',
+        body: jsonEncode(userStats.toJson()),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      );
 
-  Future<List<Item>> getAllUserItems() async {
-    final response = await get(
-      '${environment['web_url']}players/${authController.userUID}/items',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    );
+  /// Updates the user readings with [readings] values
+  Future updateUserReadings(List<UserReadings> readings) =>
+      this._http.customPut(
+        path: '$userUID/books_readed/update',
+        body: jsonEncode(readings),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      );
 
-    if (response.status.hasError) {
-      return Future.error(response.statusText!);
-    } else {
-      return List<Item>.from(response.body.map((x) => Item.fromJson(x)));
-    }
-  }
-
-  Future<List<Item>> getUserItemsByCategory(EquipmentSectionPage page) async {
-    final response = await get(
-      '${environment['web_url']}players/${authController.userUID}/items/${page.name}',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    );
-
-    if (response.status.hasError) {
-      return Future.error(response.statusText!);
-    } else {
-      return List<Item>.from(response.body.map((x) => Item.fromJson(x)));
-    }
-  }
-
-  Future<bool> createUser(User user) async {
-    final response = await post(
-      '${environment['web_url']}players/',
-      user.toJson(),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    );
-
-    if (response.status.hasError) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  Future updateUserStats(Stats userStats) async {
-    final response = await put(
-      '${environment['web_url']}players/${authController.userUID}/stats/update',
-      jsonEncode(userStats.toJson()),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    );
-    if (response.status.hasError) {
-      debugPrint(response.bodyString);
-      return Future.error(response.statusText!);
-    }
-  }
-
-  Future updateUserReadings(List<UserReadings> readings) async {
-    final response = await put(
-      '${environment['web_url']}players/${authController.userUID}/books_readed/update',
-      jsonEncode(readings),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    );
-
-    if (response.status.hasError) {
-      return Future.error(response.statusText!);
-    }
-  }
-
-  Future updateUserCurrentItems(CurrentItems userCurrentItems) async {
+  /// Updates the user equiped items with [currentItems] values
+  Future updateUserCurrentItems(CurrentItems userCurrentItems) {
     Map<String, Map<String, dynamic>> json = {
       "current_items": userCurrentItems.toJson(),
     };
-    final response = await put(
-      '${environment['web_url']}players/${authController.userUID}/info/current_items/update',
-      jsonEncode(json),
+    return this._http.customPut(
+      path: '$userUID/info/current_items/update',
+      body: jsonEncode(json),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
     );
-    if (response.status.hasError) {
-      debugPrint(response.bodyString);
-      return Future.error(response.statusText!);
-    }
   }
 
-  Future updateUserItems(List<Item> userItems) async {
-    final response = await put(
-      '${environment['web_url']}players/${authController.userUID}/items/update',
-      jsonEncode(userItems.map((item) => item.toJson()).toList()),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    );
-
-    if (response.status.hasError) {
-      return Future.error(response.statusText!);
-    }
-  }
+  Future updateUserItems(List<Item> userItems) => this._http.customPut(
+        path: '$userUID/items/update',
+        body: jsonEncode(userItems.map((item) => item.toJson()).toList()),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      );
 }

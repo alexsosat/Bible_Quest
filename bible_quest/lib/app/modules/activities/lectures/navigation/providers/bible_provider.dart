@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 class BibleProvider extends GetConnect {
   Future<Bible> getBible(List<UserReadings>? readPlans) async {
     final response = await get(
-        'https://api.scripture.api.bible/v1/bibles/${environment["bible_book"]!}/books?include-chapters=true',
-        headers: {'api-key': environment['bible_key']!});
+        'https://api.scripture.api.bible/v1/bibles/${keys["bible_book"]!}/books?include-chapters=true',
+        headers: {'api-key': keys['bible_key']!});
 
     Map<String, dynamic>? readedBibleBooks = {};
     if (readPlans != null) {
@@ -29,8 +29,8 @@ class BibleProvider extends GetConnect {
 
   Future<ChapterContent> getChapter(String chapterId) async {
     final response = await get(
-        'https://api.scripture.api.bible/v1/bibles/${environment["bible_book"]!}/chapters/$chapterId?content-type=text&include-notes=false&include-titles=false&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false',
-        headers: {'api-key': environment['bible_key']!});
+        'https://api.scripture.api.bible/v1/bibles/${keys["bible_book"]!}/chapters/$chapterId?content-type=text&include-notes=false&include-titles=false&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false',
+        headers: {'api-key': keys['bible_key']!});
 
     if (response.status.hasError) {
       return Future.error(response.statusText!);

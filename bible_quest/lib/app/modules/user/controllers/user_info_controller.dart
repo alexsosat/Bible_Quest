@@ -19,7 +19,7 @@ class UserInfoController extends GetxController with StateMixin<UserInfo> {
       userInfo = await _apiService.getUserInfo();
       change(userInfo, status: RxStatus.success());
     } catch (e) {
-      change(null, status: RxStatus.error());
+      change(null, status: RxStatus.error(e.toString()));
     }
   }
 
