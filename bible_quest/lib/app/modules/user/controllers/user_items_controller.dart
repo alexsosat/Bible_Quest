@@ -10,13 +10,7 @@ class UserItemsController extends GetxController with StateMixin<List<Item>> {
 
   UserItemsController(this.page);
 
-  @override
-  onInit() {
-    _fetchUserItems();
-    super.onInit();
-  }
-
-  _fetchUserItems() async {
+  Future fetchUserItems() async {
     try {
       List<Item> userAcquiredItems =
           await _apiService.getUserItemsByCategory(page);

@@ -29,6 +29,10 @@ class UserHeaderLayout extends GetView<UserStatsController> {
           ],
         ),
       ),
+      onLoading: SizedBox(
+        height: 210.0,
+        child: Center(child: CircularProgressIndicator()),
+      ),
     );
   }
 }

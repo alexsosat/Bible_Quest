@@ -23,6 +23,8 @@ class HomeBinding implements Bindings {
       () => CurrentReadingController(),
     );
 
-    Get.put<HomeController>(HomeController());
+    Get.lazyPut<HomeController>(
+      () => HomeController(),
+    );
   }
 }

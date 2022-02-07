@@ -123,7 +123,7 @@ class _ReadViewState extends State<ReadView> {
   }
 
   Future _levelUpDialog() async {
-    int level = Get.find<UserStatsController>().userStats.level;
+    int level = Get.find<UserStatsController>().data.level;
     await Get.dialog(
       AlertDialog(
         title: Text("🎉  Subiste de nivel  🎉"),

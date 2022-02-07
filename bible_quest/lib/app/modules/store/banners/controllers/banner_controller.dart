@@ -38,7 +38,7 @@ class BannerController extends GetxController with StateMixin<ItemBanner> {
     double weight = 0;
     banner.items?.forEach((element) => weight += element.appearRate);
     final _userApi = UserProvider();
-    final userStats = Get.find<UserStatsController>().userStats;
+    final userStats = Get.find<UserStatsController>().data;
     final userItems = await _userApi.getAllUserItems();
 
     for (int i = 0; i < count; i++) {

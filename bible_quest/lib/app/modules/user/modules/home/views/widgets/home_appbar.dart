@@ -8,11 +8,15 @@ class HomeAppbar extends GetView<UserInfoController> {
   Widget build(BuildContext context) {
     return controller.obx(
       (user) => AppBar(
-        title: Text("Welcome ${user!.username}"),
+        title: Text(
+          "Welcome ${user!.username}",
+          style: Theme.of(context).textTheme.headline5,
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       onLoading: Container(),
+      onError: (e) => Container(),
     );
   }
 }

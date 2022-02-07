@@ -33,10 +33,10 @@ class EquipmentChange extends StatelessWidget {
                       onPressed: () async {
                         var userInfoController = Get.find<UserInfoController>();
                         CurrentItems newItems =
-                            userInfoController.userInfo.currentItems;
+                            userInfoController.data.currentItems;
                         newItems = changeEquipment(
                           item.type,
-                          userInfoController.userInfo.currentItems,
+                          userInfoController.data.currentItems,
                           item,
                         );
                         await userInfoController.updateUserItems(newItems);

@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 
 class CurrentReadingController extends GetxController
     with StateMixin<CurrentReading> {
-  //CurrentReading get reading => currentReading.value;
-
   @override
   onInit() {
     fetchCurrentReading();
@@ -26,8 +24,6 @@ class CurrentReadingController extends GetxController
           status: RxStatus.empty(),
         );
       }
-      //currentReading(Storage().currentReading);
-
     } catch (e) {
       change(
         null,

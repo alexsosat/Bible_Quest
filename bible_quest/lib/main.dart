@@ -1,8 +1,8 @@
 import 'package:bible_quest/app/modules/login/bindings/authentication_binding.dart';
+import 'package:bible_quest/globals/theme.dart';
 import 'package:bible_quest/services/translations/supported_locales.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -44,25 +44,7 @@ class MyApp extends StatelessWidget {
       ],
 
       //theme
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromRGBO(25, 26, 50, 1.0),
-        brightness: Brightness.dark,
-        colorScheme: ColorScheme.dark(
-          primary: Color.fromRGBO(51, 230, 246, 1.0),
-          secondary: Color.fromRGBO(41, 52, 208, 1.0),
-        ),
-        cardColor: Color(0xFF151529),
-        fontFamily: 'sk_Modernist',
-        appBarTheme: AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          titleTextStyle: Theme.of(context).textTheme.headline6!.copyWith(
-                color: Colors.white,
-              ),
-          iconTheme: IconThemeData(
-            color: Colors.white,
-          ),
-        ),
-      ),
+      theme: appTheme,
 
       //Builder
       builder: (BuildContext context, Widget? child) {

@@ -1,6 +1,5 @@
 import 'package:bible_quest/app/modules/errors/models/enums.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class NoConnectionView extends StatefulWidget {
   /// The function executed when the refresh button is clicked
@@ -42,43 +41,58 @@ class _NoConnectionViewState extends State<NoConnectionView> {
         bodyText =
             "Actualmente estamos teniendo problemas para conextarnos al servidor, estamos trabajando en ello";
         break;
+
+      case InternetErrorType.other:
+        icon = Icons.error_outline;
+        titleText = "Error Inesperado";
+        bodyText =
+            "Ha ocurrido un error inesperado, por favor recarga la página o intenta más tarde";
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          margin: EdgeInsets.only(bottom: 25),
-          child: Icon(
-            icon,
+        child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: EdgeInsets.only(bottom: 10),
+            child: Icon(
+              icon,
+              size: 128,
+            ),
           ),
-        ),
-        Container(
-          margin: EdgeInsets.only(bottom: 25, left: 25, right: 25),
-          child: Text(
-            titleText,
-            textAlign: TextAlign.center,
+          Container(
+            margin: EdgeInsets.only(bottom: 25, left: 25, right: 25),
+            child: Text(
+              titleText,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline1,
+            ),
           ),
-        ),
-        Container(
-          margin: EdgeInsets.only(bottom: 15),
-          child: Text(
-            bodyText,
+          Container(
+            margin: EdgeInsets.only(bottom: 30),
+            child: Text(
+              bodyText,
+              textAlign: TextAlign.center,
+            ),
           ),
-        ),
-        ElevatedButton(
+          ElevatedButton(
             style: ElevatedButton.styleFrom(
-                elevation: 5.0, onPrimary: Colors.white),
-            child: Text('reload'.tr.capitalizeFirst!),
+              elevation: 5.0,
+              onPrimary: Colors.white,
+            ),
+            child: Text("Recargar página"),
             onPressed: () {
               widget.toPageReturn();
-            })
-      ],
+            },
+          )
+        ],
+      ),
     ));
   }
 }

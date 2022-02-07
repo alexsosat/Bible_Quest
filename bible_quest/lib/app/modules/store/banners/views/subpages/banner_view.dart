@@ -12,7 +12,7 @@ class BannerView extends GetView<BannerController> {
     Key? key,
   }) : super(key: key);
 
-  final userCurrency = Get.find<UserStatsController>().userStats.currency;
+  final userCurrency = Get.find<UserStatsController>().data.currency;
 
   @override
   Widget build(BuildContext context) {
