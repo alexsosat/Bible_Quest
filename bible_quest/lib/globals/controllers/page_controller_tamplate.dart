@@ -17,7 +17,10 @@ class PageControllerTemplate extends GetxController {
   List<ApiControllerTemplate> apiControllers = [];
 
   /// Refreshes the content inside the controller
-  void refreshContent() {}
+  void refreshContent() {
+    errorOcurred(false);
+    loadPage();
+  }
 
   /// Returns the page where says the error in which why the screen couldn't load
   Widget internetPage(InternetErrorType errorType) {

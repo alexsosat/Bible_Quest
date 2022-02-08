@@ -62,7 +62,8 @@ class UserProvider {
   Future<List<UserReadings>?> getUserReadings() =>
       this._http.customGet<List<UserReadings>>(
             path: '/$userUID/books_readed',
-            mapper: (json) => UserReadings.userReadingsFromJson(json),
+            mapper: (json) => List<UserReadings>.from(
+                (json).map((x) => UserReadings.fromJson(x))),
           );
 
   /// Retrieves all the user acquired items

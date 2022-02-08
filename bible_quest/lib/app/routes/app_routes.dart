@@ -29,6 +29,7 @@ abstract class Routes {
   static const MISSIONS = _Paths.MISSIONS;
   static const ACHIEVEMENTS = _Paths.ACHIEVEMENTS;
   static const NEWS = _Paths.NEWS;
+  static const SETTINGS = _Paths.SETTINGS;
   static const ABOUT = _Paths.ABOUT;
 }
 
@@ -50,6 +51,7 @@ abstract class _Paths {
   static const MISSIONS = '/missions';
   static const ACHIEVEMENTS = '/achievements';
   static const NEWS = '/news';
+  static const SETTINGS = '/settings';
   static const ABOUT = '/about';
   static const CREATE = '/create';
 }

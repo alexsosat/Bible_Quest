@@ -6,6 +6,7 @@ import 'package:bible_quest/app/modules/activities/lectures/navigation/views/sub
 import 'package:bible_quest/app/modules/activities/lectures/read/views/read_page.dart';
 import 'package:bible_quest/app/modules/application/about/views/about_view.dart';
 import 'package:bible_quest/app/modules/application/news/views/news_view.dart';
+import 'package:bible_quest/app/modules/application/settings/views/settings_view.dart';
 import 'package:bible_quest/app/modules/store/banners/bindings/banner_binding.dart';
 import 'package:bible_quest/app/modules/store/banners/bindings/banners_list_binding.dart';
 import 'package:bible_quest/app/modules/store/banners/views/banners_list_view.dart';
@@ -105,6 +106,10 @@ class AppPages {
     GetPage(
       name: _Paths.NEWS,
       page: () => NewsView(),
+    ),
+    GetPage(
+      name: _Paths.SETTINGS,
+      page: () => SettingsView(),
     ),
     GetPage(
       name: _Paths.ABOUT,

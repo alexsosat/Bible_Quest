@@ -15,11 +15,4 @@ class HomeController extends PageControllerTemplate {
     loadPage();
     super.onInit();
   }
-
-  @override
-  void refreshContent() {
-    errorOcurred(false);
-    loadPage();
-    super.refresh();
-  }
 }

@@ -93,6 +93,11 @@ class AppDrawer extends StatelessWidget {
                         view: Routes.NEWS,
                       ),
                       DrawerItem(
+                        icon: Icons.settings,
+                        title: "Configuración",
+                        view: Routes.SETTINGS,
+                      ),
+                      DrawerItem(
                         icon: Icons.info,
                         title: "Acerca de",
                         view: Routes.ABOUT,

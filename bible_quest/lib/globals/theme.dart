@@ -13,25 +13,27 @@ final appTheme = ThemeData(
   fontFamily: 'sk_Modernist',
   appBarTheme: AppBarTheme(
     systemOverlayStyle: SystemUiOverlayStyle.light,
-    titleTextStyle: Get.textTheme.headline6!.copyWith(
-      color: Colors.white,
-    ),
     iconTheme: IconThemeData(
       color: Colors.white,
     ),
+    titleTextStyle: Get.textTheme.headline4!.copyWith(
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+    ),
   ),
   textTheme: TextTheme(
-    headline1: TextStyle(
-      fontSize: 42,
+    headline1: Get.textTheme.headline1!.copyWith(
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
-    headline5: TextStyle(
-      fontSize: 28,
+    headline5: Get.textTheme.headline5!.copyWith(
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
-    bodyText1: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-    bodyText2: TextStyle(fontSize: 16),
+    bodyText1: Get.textTheme.bodyText1!.copyWith(
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+    ),
   ),
 );

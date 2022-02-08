@@ -10,26 +10,16 @@ class DrawerHeaderSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
       ),
-      child: Container(
-        height: 150,
-        child: Row(
-          children: [
-            Flexible(
-              flex: 2,
-              child: UserCharacterWithProgress(
-                size: 90,
-              ),
+      child: Row(
+        children: [
+          Flexible(
+            flex: 2,
+            child: UserCharacterWithProgress(
+              size: 90,
             ),
-            Flexible(flex: 3, child: UserHeaderData()),
-            Flexible(
-              flex: 1,
-              child: IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () {},
-              ),
-            ),
-          ],
-        ),
+          ),
+          Flexible(flex: 3, child: UserHeaderData()),
+        ],
       ),
     );
   }

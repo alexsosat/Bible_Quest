@@ -29,7 +29,7 @@ class UserCharacterWithProgress extends GetView<UserStatsController> {
             ),
             Center(
               child: CircularPercentIndicator(
-                radius: size,
+                radius: size / 2,
                 backgroundWidth: 5,
                 lineWidth: 5,
                 percent: state!.experiencePercent,
