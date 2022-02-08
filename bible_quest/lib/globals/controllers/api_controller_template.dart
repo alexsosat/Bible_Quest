@@ -16,10 +16,13 @@ class ApiControllerTemplate<T> extends GetxController with StateMixin<T> {
     required void Function(K) onSuccess,
     required void Function(HttpCallException) onCallError,
     required void Function(Object) onError,
+    bool addToData = true,
   }) async {
     try {
       K res = await httpCall();
-      data = res as T;
+      if (addToData) {
+        data = res as T;
+      }
       onSuccess(res);
     } on HttpCallException catch (e) {
       onCallError(e);

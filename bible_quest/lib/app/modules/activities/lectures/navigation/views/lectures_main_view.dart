@@ -1,12 +1,14 @@
+import 'package:bible_quest/app/modules/activities/lectures/navigation/controllers/bible_controller.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/controllers/lectures_controller.dart';
 import 'package:bible_quest/app/modules/activities/lectures/navigation/views/widgets/progress_card.dart';
 import 'package:bible_quest/app/modules/navigation/views/widgets/drawer.dart';
 import 'package:bible_quest/app/routes/app_pages.dart';
+import 'package:bible_quest/globals/builders/get_page_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/route_manager.dart' hide GetPageBuilder;
 
-import 'package:get/get.dart';
-
-class LecturesView extends GetView<LecturesController> {
+class LecturesView extends GetView<BibleController> {
   const LecturesView({
     Key? key,
   }) : super(key: key);
@@ -18,26 +20,28 @@ class LecturesView extends GetView<LecturesController> {
       appBar: AppBar(
         title: Text("Lectures page"),
       ),
-      body: controller.obx(
-        (state) => GridView.builder(
-          padding: EdgeInsets.all(20.0),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //change
-            crossAxisCount: 1,
-            mainAxisSpacing: 10,
+      body: GetPageBuilder<LecturesController>(
+        child: controller.obx(
+          (state) => GridView.builder(
+            padding: EdgeInsets.all(20.0),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //change
+              crossAxisCount: 1,
+              mainAxisSpacing: 10,
 
-            //change height 125
-            mainAxisExtent: 125,
-            crossAxisSpacing: 10,
+              //change height 125
+              mainAxisExtent: 125,
+              crossAxisSpacing: 10,
+            ),
+            itemBuilder: (_, index) => PlanCard(
+                category: "Reina Valera",
+                color: "626677",
+                projectName: "Bible",
+                ratingsLowerNumber: controller.state!.books.length,
+                ratingsUpperNumber: controller.state!.finishedBooksCount,
+                onPressed: () => Get.toNamed(Routes.LECTURESBOOKS("1"))),
+            itemCount: 1,
           ),
-          itemBuilder: (_, index) => PlanCard(
-              category: "Reina Valera",
-              color: "626677",
-              projectName: "Bible",
-              ratingsLowerNumber: controller.state!.books.length,
-              ratingsUpperNumber: controller.state!.finishedBooksCount,
-              onPressed: () => Get.toNamed(Routes.LECTURESBOOKS("1"))),
-          itemCount: 1,
         ),
       ),
     );

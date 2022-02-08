@@ -31,6 +31,10 @@ final appTheme = ThemeData(
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
+    headline4: Get.textTheme.headline4!.copyWith(
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    ),
     bodyText1: Get.textTheme.bodyText1!.copyWith(
       color: Colors.white,
       fontWeight: FontWeight.bold,

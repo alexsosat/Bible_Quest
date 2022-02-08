@@ -1,4 +1,4 @@
-import 'package:bible_quest/app/modules/activities/lectures/navigation/controllers/lectures_controller.dart';
+import 'package:bible_quest/app/modules/activities/lectures/navigation/controllers/bible_controller.dart';
 import 'package:bible_quest/app/modules/activities/lectures/read/controller/read_controller.dart';
 import 'package:bible_quest/app/modules/activities/lectures/read/views/widgets/read_page_icons_icons.dart';
 import 'package:bible_quest/app/modules/user/controllers/user_stats_controller.dart';
@@ -59,7 +59,7 @@ class _ReadViewState extends State<ReadView> {
           } else {
             // You're at the bottom.
 
-            var lecturesController = Get.find<LecturesController>();
+            var lecturesController = Get.find<BibleController>();
             var readController = Get.find<ReadController>();
             var userStatsController = Get.find<UserStatsController>();
 

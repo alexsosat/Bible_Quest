@@ -71,7 +71,7 @@ class _NoConnectionViewState extends State<NoConnectionView> {
             child: Text(
               titleText,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline1,
+              style: Theme.of(context).textTheme.headline4,
             ),
           ),
           Container(
